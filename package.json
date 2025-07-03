@@ -7,6 +7,8 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "cli:build": "pnpm --filter=cli build",
+    "docs:dev": "pnpm --filter=docs dev",
+    "docs:build": "pnpm --filter=docs build",
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
