@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
 import Link from "next/link";
+import "./globals.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -11,6 +11,12 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
 });
+
+const components = [
+  { name: "Button", slug: "button" },
+  { name: "Input", slug: "input" },
+  // Add more components here
+];
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,39 +32,19 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <div style={{ display: "flex", minHeight: "100vh" }}>
-          <nav
-            style={{
-              width: 220,
-              background: "#fafafa",
-              borderRight: "1px solid #eee",
-              padding: 24,
-            }}
+          <aside
+            style={{ width: 200, padding: 24, borderRight: "1px solid #eee" }}
           >
-            <h3 style={{ fontWeight: 700, fontSize: 18, marginBottom: 16 }}>
-              Components
-            </h3>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-              <li>
-                <Link href="/accordion">Accordion</Link>
-              </li>
-              <li>
-                <Link href="/button">Button</Link>
-              </li>
-              <li>
-                <Link href="/card">Card</Link>
-              </li>
-              <li>
-                <Link href="/input">Input</Link>
-              </li>
-              <li>
-                <Link href="/label">Label</Link>
-              </li>
-              <li>
-                <Link href="/tooltip">Tooltip</Link>
-              </li>
+            <h3>Components</h3>
+            <ul>
+              {components.map((comp) => (
+                <li key={comp.slug}>
+                  <Link href={`/${comp.slug}`}>{comp.name}</Link>
+                </li>
+              ))}
             </ul>
-          </nav>
-          <main style={{ flex: 1, padding: 32 }}>{children}</main>
+          </aside>
+          <main style={{ flex: 1, padding: 24 }}>{children}</main>
         </div>
       </body>
     </html>
