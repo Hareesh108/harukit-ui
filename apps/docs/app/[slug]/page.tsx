@@ -4,14 +4,15 @@ import fs from "fs/promises";
 import path from "path";
 
 export default async function ComponentPage({
-  params,
+  params: paramsPromise,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await paramsPromise;
   const filePath = path.join(
     process.cwd(),
     "apps/docs/components-docs",
-    `${params.slug}.md`
+    `${slug}.md`
   );
   let content = "";
   try {
