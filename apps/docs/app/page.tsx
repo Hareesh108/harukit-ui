@@ -7,13 +7,13 @@ export default function HomePage() {
       {/* Header */}
       <header className="w-full flex justify-between items-center px-8 py-6 border-b border-gray-200">
         <div className="flex items-center space-x-3">
-          <Image
+          {/* <Image
             src="/logo/hareesh-bhittam.png"
             alt="Harukit Logo"
             width={40}
             height={40}
             className="rounded-full"
-          />
+          /> */}
           <span className="font-bold text-2xl text-yellow-500">Harukit UI</span>
         </div>
         <nav className="space-x-6 text-sm font-medium">
