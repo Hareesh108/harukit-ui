@@ -1,16 +1,47 @@
 {
-  "name": "my-turborepo",
+  "name": "harukit-ui",
+  "version": "0.2.0",
+  "description": "A modern, accessible, and customizable React component library built with TypeScript and Tailwind CSS",
   "private": true,
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "cli:build": "pnpm --filter=cli build",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,md,json}\"",
+    "check-types": "turbo run check-types",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch",
     "docs:dev": "pnpm --filter=docs dev",
     "docs:build": "pnpm --filter=docs build",
-    "check-types": "turbo run check-types"
+    "web:dev": "pnpm --filter=web dev",
+    "web:build": "pnpm --filter=web build",
+    "cli:build": "pnpm --filter=@repo/cli build",
+    "cli:dev": "pnpm --filter=@repo/cli dev",
+    "ui:build": "pnpm --filter=@repo/ui build",
+    "ui:dev": "pnpm --filter=@repo/ui dev"
   },
+  "keywords": [
+    "react",
+    "typescript",
+    "tailwindcss",
+    "component-library",
+    "ui",
+    "accessibility",
+    "monorepo",
+    "turborepo"
+  ],
+  "author": "Hareesh Bhittam",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hareesh108/harukit-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Hareesh108/harukit-ui/issues"
+  },
+  "homepage": "https://github.com/Hareesh108/harukit-ui#readme",
   "devDependencies": {
     "prettier": "^3.6.0",
     "turbo": "^2.5.4",
