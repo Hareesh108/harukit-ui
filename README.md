@@ -18,15 +18,7 @@ This Turborepo includes the following packages and applications:
 
 ### Apps
 
-- **`web`**: Main Next.js application showcasing components
 - **`docs`**: Documentation site built with Fumadocs and MDX
-
-### Packages
-
-- **`@repo/ui`**: Core React component library
-- **`@repo/cli`**: CLI tool for component generation and management
-- **`@repo/eslint-config`**: Shared ESLint configuration
-- **`@repo/typescript-config`**: Shared TypeScript configuration
 
 ## 🛠️ Tech Stack
 
@@ -93,9 +85,7 @@ pnpm cli:build             # Build CLI tool
 
 ```bash
 # Build specific packages
-pnpm --filter=web build
 pnpm --filter=docs build
-pnpm --filter=@repo/ui build
 pnpm --filter=@repo/cli build
 
 # Development for specific packages
@@ -131,11 +121,6 @@ harukit-ui/
    pnpm --filter=@repo/cli generate component Button
    ```
 
-2. **Manual creation**:
-   - Add component to `packages/ui/src/components/`
-   - Export from `packages/ui/src/index.ts`
-   - Add examples to `apps/docs/`
-
 ### Building for Production
 
 ```bash
@@ -147,20 +132,9 @@ pnpm --filter=@repo/ui build
 pnpm --filter=docs build
 ```
 
-### Testing
-
-```bash
-# Run tests (when implemented)
-pnpm test
-
-# Run tests for specific packages
-pnpm --filter=@repo/ui test
-```
-
 ## 📖 Documentation
 
 - **Component Library**: Visit the docs site at `http://localhost:3001`
-- **API Reference**: Check individual component files in `packages/ui/src/components/`
 - **CLI Usage**: See `packages/cli/README.md` for CLI documentation
 
 ## 🤝 Contributing
@@ -178,9 +152,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Support
 
-- **Documentation**: [docs site](http://localhost:3001)
-- **Issues**: [GitHub Issues](https://github.com/your-username/harukit-ui/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-username/harukit-ui/discussions)
+- **Documentation**: [docs site](https://harukit-ui-docs.vercel.app)
+- **Issues**: [GitHub Issues](https://github.com/Hareesh108/harukit-ui/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Hareesh108/harukit-ui/discussions)
 
 ## 🔗 Useful Links
 
