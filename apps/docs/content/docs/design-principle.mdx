@@ -1,0 +1,360 @@
+---
+title: Design Principles
+description: Understanding the design philosophy and principles behind Harukit UI
+---
+
+# Design Principles
+
+Harukit UI is built on a foundation of thoughtful design principles that prioritize accessibility, customization, and developer experience. This guide explains the philosophy and design decisions that shape our component library.
+
+## Core Philosophy
+
+### Zero Runtime Dependencies
+
+Harukit UI components are copied directly into your project, giving you complete control over the code. This approach means:
+
+- **No runtime overhead**: Components are part of your bundle, not external dependencies
+- **Full customization**: Modify any aspect of the component to fit your needs
+- **No version conflicts**: You control when and how components are updated
+- **Transparency**: You can see exactly what code is running in your application
+
+### Accessibility First
+
+Every component is built with accessibility as a primary concern:
+
+- **WAI-ARIA compliance**: Components follow established accessibility patterns
+- **Keyboard navigation**: All interactive elements are keyboard accessible
+- **Screen reader support**: Proper ARIA labels and descriptions
+- **Focus management**: Logical tab order and focus indicators
+- **Color contrast**: Meets WCAG AA standards for color contrast
+
+### TypeScript Native
+
+TypeScript is not an afterthought - it's built into the core of every component:
+
+- **Full type safety**: All props, variants, and events are fully typed
+- **IntelliSense support**: Rich autocomplete and documentation
+- **Compile-time errors**: Catch issues before they reach production
+- **Better DX**: Enhanced developer experience with type checking
+
+## Design System
+
+### Color System
+
+Harukit UI uses a semantic color system built on CSS custom properties:
+
+```css
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --primary: 222.2 47.4% 11.2%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222.2 84% 4.9%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222.2 84% 4.9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 222.2 84% 4.9%;
+  --radius: 0.5rem;
+}
+```
+
+This system provides:
+
+- **Semantic meaning**: Colors have purpose, not just appearance
+- **Dark mode support**: Easy switching between light and dark themes
+- **Customization**: Easy to modify colors for your brand
+- **Consistency**: Unified color palette across all components
+
+### Typography
+
+Typography follows a systematic approach:
+
+- **Scale**: Uses a consistent type scale (12px, 14px, 16px, 18px, 20px, 24px, 30px, 36px, 48px, 60px, 72px, 96px)
+- **Line heights**: Optimized for readability (1.2, 1.4, 1.5, 1.6)
+- **Font weights**: Semantic weights (normal, medium, semibold, bold)
+- **Responsive**: Scales appropriately across different screen sizes
+
+### Spacing
+
+Consistent spacing using Tailwind's spacing scale:
+
+- **4px base unit**: All spacing is multiples of 4px
+- **Semantic spacing**: `space-1` through `space-16` for different contexts
+- **Responsive**: Adapts to different screen sizes
+- **Consistent**: Same spacing used across all components
+
+### Border Radius
+
+Unified border radius system:
+
+- **Base radius**: `0.5rem` (8px) as the default
+- **Variants**: `sm` (2px), `md` (6px), `lg` (8px), `xl` (12px)
+- **Consistent**: Same radius used for similar elements
+- **Accessible**: Large enough for touch targets
+
+## Component Design Patterns
+
+### Variant-Based API
+
+Components use a variant-based API for flexibility:
+
+```tsx
+// Button with variants
+<Button variant="default" size="md">Default</Button>
+<Button variant="destructive" size="sm">Delete</Button>
+<Button variant="outline" size="lg">Outline</Button>
+```
+
+Benefits:
+
+- **Consistent**: Same API pattern across all components
+- **Flexible**: Easy to extend with new variants
+- **Type-safe**: TypeScript ensures valid variant combinations
+- **Composable**: Mix and match variants as needed
+
+### Compound Components
+
+Complex components use compound component patterns:
+
+```tsx
+// Card with compound components
+<Card>
+  <CardHeader>
+    <CardTitle>Title</CardTitle>
+    <CardDescription>Description</CardDescription>
+  </CardHeader>
+  <CardContent>Content</CardContent>
+  <CardFooter>Footer</CardFooter>
+</Card>
+```
+
+Benefits:
+
+- **Flexible**: Use only the parts you need
+- **Semantic**: Clear structure and meaning
+- **Accessible**: Proper HTML structure for screen readers
+- **Customizable**: Easy to style individual parts
+
+### Controlled vs Uncontrolled
+
+Components support both controlled and uncontrolled usage:
+
+```tsx
+// Uncontrolled (internal state)
+<Accordion type="single" collapsible>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+
+// Controlled (external state)
+const [value, setValue] = useState<string>("item-1")
+<Accordion type="single" value={value} onValueChange={setValue}>
+  {/* ... */}
+</Accordion>
+```
+
+Benefits:
+
+- **Flexibility**: Choose the approach that fits your use case
+- **Integration**: Easy to integrate with form libraries
+- **Performance**: Uncontrolled components can be more performant
+- **Simplicity**: Uncontrolled components are easier to use
+
+## Accessibility Guidelines
+
+### ARIA Patterns
+
+All components follow established ARIA patterns:
+
+- **Accordion**: Uses `role="region"` and proper `aria-expanded` states
+- **Button**: Uses `role="button"` and `aria-pressed` for toggle buttons
+- **Tooltip**: Uses `role="tooltip"` and proper focus management
+- **Label**: Uses `htmlFor` and proper form associations
+
+### Keyboard Navigation
+
+Comprehensive keyboard support:
+
+- **Tab order**: Logical tab sequence through interactive elements
+- **Arrow keys**: Navigation within component groups (accordion, tabs)
+- **Enter/Space**: Activation of buttons and interactive elements
+- **Escape**: Dismissal of overlays and modals
+- **Focus indicators**: Visible focus states for all interactive elements
+
+### Screen Reader Support
+
+Optimized for screen readers:
+
+- **Descriptive labels**: Clear, concise labels for all elements
+- **State announcements**: Dynamic updates for state changes
+- **Landmark roles**: Proper use of landmark roles for navigation
+- **Live regions**: Announcements for dynamic content updates
+
+## Performance Considerations
+
+### Bundle Size
+
+Optimized for minimal bundle impact:
+
+- **Tree-shaking friendly**: Only import what you use
+- **No runtime dependencies**: Components are part of your bundle
+- **Efficient CSS**: Minimal, optimized styles
+- **Lazy loading**: Support for code splitting and lazy loading
+
+### Rendering Performance
+
+Designed for optimal rendering:
+
+- **Memoization**: Components use React.memo where appropriate
+- **Efficient re-renders**: Minimal unnecessary re-renders
+- **Optimized animations**: Hardware-accelerated animations
+- **Debounced events**: Proper event handling for performance
+
+## Customization Philosophy
+
+### CSS Variables
+
+Extensive use of CSS custom properties:
+
+```css
+/* Easy to customize */
+:root {
+  --radius: 0.5rem;
+  --border: 214.3 31.8% 91.4%;
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+}
+```
+
+Benefits:
+
+- **Runtime customization**: Change values without rebuilding
+- **Theme switching**: Easy light/dark mode implementation
+- **Brand consistency**: Apply your brand colors consistently
+- **Maintainability**: Centralized design tokens
+
+### Tailwind Integration
+
+Built on Tailwind CSS for maximum flexibility:
+
+- **Utility classes**: Use Tailwind utilities for custom styling
+- **Responsive design**: Built-in responsive breakpoints
+- **Dark mode**: Native dark mode support
+- **Custom utilities**: Extend with your own utilities
+
+### Component Composition
+
+Encourage composition over configuration:
+
+```tsx
+// Compose components for custom behavior
+<Button asChild>
+  <Link href="/dashboard">Go to Dashboard</Link>
+</Button>
+
+// Use variants for different styles
+<Button variant="outline" size="lg" className="w-full">
+  Custom Button
+</Button>
+```
+
+## Best Practices
+
+### Component Usage
+
+1. **Start simple**: Use default variants first, then customize
+2. **Compose components**: Build complex UIs from simple components
+3. **Maintain consistency**: Use the same variants across similar elements
+4. **Consider accessibility**: Always test with keyboard navigation and screen readers
+
+### Styling
+
+1. **Use CSS variables**: Customize through CSS variables when possible
+2. **Extend with Tailwind**: Use Tailwind utilities for custom styling
+3. **Maintain hierarchy**: Follow the established design system
+4. **Test across devices**: Ensure responsive behavior
+
+### Performance
+
+1. **Import selectively**: Only import components you need
+2. **Use controlled components**: When you need external state management
+3. **Optimize re-renders**: Use React.memo and useCallback appropriately
+4. **Monitor bundle size**: Keep track of your application's bundle size
+
+## Design Tokens
+
+### Colors
+
+```css
+/* Primary colors */
+--primary: 222.2 47.4% 11.2%;
+--primary-foreground: 210 40% 98%;
+
+/* Secondary colors */
+--secondary: 210 40% 96%;
+--secondary-foreground: 222.2 84% 4.9%;
+
+/* Semantic colors */
+--destructive: 0 84.2% 60.2%;
+--destructive-foreground: 210 40% 98%;
+--success: 142.1 76.2% 36.3%;
+--success-foreground: 355.7 100% 97.3%;
+--warning: 38 92% 50%;
+--warning-foreground: 48 96% 89%;
+```
+
+### Spacing
+
+```css
+/* Spacing scale */
+--space-1: 0.25rem;  /* 4px */
+--space-2: 0.5rem;   /* 8px */
+--space-3: 0.75rem;  /* 12px */
+--space-4: 1rem;     /* 16px */
+--space-5: 1.25rem;  /* 20px */
+--space-6: 1.5rem;   /* 24px */
+--space-8: 2rem;     /* 32px */
+--space-10: 2.5rem;  /* 40px */
+--space-12: 3rem;    /* 48px */
+--space-16: 4rem;    /* 64px */
+```
+
+### Typography
+
+```css
+/* Font sizes */
+--font-size-xs: 0.75rem;    /* 12px */
+--font-size-sm: 0.875rem;   /* 14px */
+--font-size-base: 1rem;     /* 16px */
+--font-size-lg: 1.125rem;   /* 18px */
+--font-size-xl: 1.25rem;    /* 20px */
+--font-size-2xl: 1.5rem;    /* 24px */
+--font-size-3xl: 1.875rem;  /* 30px */
+--font-size-4xl: 2.25rem;   /* 36px */
+
+/* Line heights */
+--line-height-tight: 1.25;
+--line-height-snug: 1.375;
+--line-height-normal: 1.5;
+--line-height-relaxed: 1.625;
+```
+
+## Conclusion
+
+Harukit UI's design principles are centered around creating a component library that is:
+
+- **Accessible**: Built for everyone, regardless of ability
+- **Customizable**: Adapts to your design system and brand
+- **Performant**: Optimized for speed and efficiency
+- **Developer-friendly**: Great developer experience with TypeScript and clear APIs
+- **Maintainable**: Easy to understand, modify, and extend
+
+By following these principles, Harukit UI provides a solid foundation for building beautiful, accessible, and maintainable user interfaces.

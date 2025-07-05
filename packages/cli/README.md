@@ -1,4 +1,4 @@
-# Harukit CLI
+# Harukit Ui
 
 A modern CLI tool for adding beautiful, accessible UI components to your React projects. Harukit works like shadcn/ui - components are copied to your project, giving you full control over their code and styling.
 

@@ -1,0 +1,463 @@
+---
+title: CLI Commands
+description: Complete reference for all Harukit CLI commands and options
+---
+
+# CLI Commands
+
+Harukit provides a powerful command-line interface for managing your UI components. All commands support automatic package manager detection and dependency installation.
+
+## Command Overview
+
+| Command | Description |
+|---------|-------------|
+| `init` | Initialize Harukit in your project |
+| `add` | Add components to your project |
+| `remove` | Remove components from your project |
+| `list` | List all available components |
+| `update` | Check for updates and show update instructions |
+| `info` | Show information about Harukit or specific components |
+
+## Global Options
+
+All commands support these global options:
+
+- `--help, -h` - Show help information
+- `--version, -v` - Show version information
+- `--verbose` - Enable verbose output
+- `--quiet` - Suppress output (except errors)
+
+## init
+
+Initialize Harukit in your project.
+
+```bash
+npx harukit@latest init [options]
+```
+
+### Options
+
+- `-y, --yes` - Skip prompts and use defaults
+- `--typescript` - Use TypeScript
+- `--tailwind` - Use Tailwind CSS
+- `--eslint` - Use ESLint
+- `--src-dir` - Use src directory
+- `--import-alias <alias>` - Import alias for components
+
+### Examples
+
+```bash
+# Interactive setup
+npx harukit@latest init
+
+# Skip prompts with defaults
+npx harukit@latest init --yes
+
+# Custom configuration
+npx harukit@latest init --typescript --tailwind --src-dir
+
+# Set custom import alias
+npx harukit@latest init --import-alias "~/components"
+```
+
+### What the init command does
+
+1. **Creates configuration file**: Generates `harukit.json` with your project settings
+2. **Sets up directories**: Creates `components/` and `lib/` directories
+3. **Creates utility files**: Generates `lib/utils.ts` with the `cn` function
+4. **Adds global CSS**: Updates your global CSS with Tailwind variables
+5. **Installs dependencies**: Automatically installs all required dependencies using your detected package manager
+6. **Shows progress**: Displays installation progress for each dependency
+
+> **Note:** All required dependencies are installed automatically using your detected package manager (npm, yarn, pnpm, or bun). You do not need to run a separate install command.
+
+## add
+
+Add components to your project.
+
+```bash
+npx harukit@latest add <components...> [options]
+```
+
+### Arguments
+
+- `components...` - One or more component names to add
+
+### Options
+
+- `-y, --yes` - Skip prompts and use defaults
+- `--overwrite` - Overwrite existing components
+
+### Examples
+
+```bash
+# Add single component
+npx harukit@latest add button
+
+# Add multiple components
+npx harukit@latest add button card input
+
+# Add all available components
+npx harukit@latest add accordion button card input label tooltip
+
+# Overwrite existing components
+npx harukit@latest add button --overwrite
+
+# Skip prompts
+npx harukit@latest add button card --yes
+```
+
+### Available Components
+
+| Component | Description | Category | Dependencies |
+|-----------|-------------|----------|--------------|
+| `accordion` | Collapsible content sections | Layout | `@radix-ui/react-accordion` |
+| `button` | Versatile button with multiple variants | Form | `@radix-ui/react-slot` |
+| `card` | Container for content with header, content, and footer | Layout | None |
+| `input` | Form input field | Form | None |
+| `label` | Form label with accessibility features | Form | `@radix-ui/react-label` |
+| `tooltip` | Hover tooltips | Feedback | `@radix-ui/react-tooltip` |
+
+> **Note:** Component dependencies are automatically installed using your detected package manager. For example, adding the `button` component will automatically install `@radix-ui/react-slot` and `class-variance-authority`.
+
+## remove
+
+Remove components from your project.
+
+```bash
+npx harukit@latest remove <components...>
+```
+
+### Arguments
+
+- `components...` - One or more component names to remove
+
+### Examples
+
+```bash
+# Remove single component
+npx harukit@latest remove button
+
+# Remove multiple components
+npx harukit@latest remove button card
+
+# Remove all components
+npx harukit@latest remove accordion button card input label tooltip
+```
+
+### What the remove command does
+
+1. **Removes component files**: Deletes the component files from your `components/` directory
+2. **Checks for unused dependencies**: Identifies dependencies that are no longer needed
+3. **Prompts for cleanup**: Asks if you want to remove unused dependencies
+4. **Updates configuration**: Removes component references from `harukit.json` if present
+
+> **Note:** The remove command only removes component files. It does not automatically remove dependencies, as they might be used by other components or your own code.
+
+## list
+
+List all available components.
+
+```bash
+npx harukit@latest list [options]
+```
+
+### Options
+
+- `--installed` - Show only installed components
+- `--available` - Show only available (not installed) components
+- `--json` - Output in JSON format
+
+### Examples
+
+```bash
+# List all available components
+npx harukit@latest list
+
+# List only installed components
+npx harukit@latest list --installed
+
+# List only available components
+npx harukit@latest list --available
+
+# Output in JSON format
+npx harukit@latest list --json
+```
+
+### Sample Output
+
+```
+Available Components:
+├── accordion    Collapsible content sections
+├── button       Versatile button with multiple variants
+├── card         Container for content with header, content, and footer
+├── input        Form input field
+├── label        Form label with accessibility features
+└── tooltip      Hover tooltips
+
+Installed Components:
+├── button       Versatile button with multiple variants
+└── card         Container for content with header, content, and footer
+```
+
+## update
+
+Check for updates and show update instructions.
+
+```bash
+npx harukit@latest update [options]
+```
+
+### Options
+
+- `--check` - Only check for updates, don't show instructions
+- `--force` - Force update even if already up to date
+
+### Examples
+
+```bash
+# Check for updates and show instructions
+npx harukit@latest update
+
+# Only check for updates
+npx harukit@latest update --check
+
+# Force update
+npx harukit@latest update --force
+```
+
+### What the update command does
+
+1. **Checks current version**: Determines your current Harukit version
+2. **Fetches latest version**: Retrieves the latest available version
+3. **Compares versions**: Determines if an update is available
+4. **Shows update instructions**: Provides commands to update Harukit and components
+
+### Sample Output
+
+```
+Current version: 1.2.0
+Latest version: 1.3.0
+
+Update available! To update:
+
+1. Update Harukit CLI:
+   npm install -g harukit@latest
+
+2. Update components (if needed):
+   npx harukit@latest add button --overwrite
+```
+
+## info
+
+Show information about Harukit or specific components.
+
+```bash
+npx harukit@latest info [component]
+```
+
+### Arguments
+
+- `component` - Optional component name to get specific information
+
+### Examples
+
+```bash
+# Show general information
+npx harukit@latest info
+
+# Show specific component information
+npx harukit@latest info button
+
+# Show information about multiple components
+npx harukit@latest info button card
+```
+
+### Sample Output
+
+**General Information:**
+```
+Harukit UI v1.2.0
+A modern CLI tool for adding beautiful, accessible UI components to your React projects.
+
+Project Information:
+├── Configuration: harukit.json
+├── Components Directory: components/
+├── Utils Directory: lib/
+├── Style: default
+├── TypeScript: enabled
+└── Tailwind CSS: enabled
+
+Installed Components: 2
+Available Components: 6
+```
+
+**Component Information:**
+```
+Button Component
+├── Description: Versatile button with multiple variants
+├── Category: Form
+├── Dependencies: @radix-ui/react-slot, class-variance-authority
+├── Variants: default, destructive, outline, secondary, ghost, link
+├── Sizes: default, sm, lg, icon
+└── File: components/button.tsx
+```
+
+## Package Manager Detection
+
+Harukit automatically detects your package manager and uses it for dependency installation. The detection follows this priority:
+
+1. **CLI Package Manager**: Detects the package manager used to run the CLI
+   - `npx` → npm
+   - `yarn dlx` → yarn
+   - `pnpm dlx` → pnpm
+   - `bunx` → bun
+
+2. **Project Lock Files**: Falls back to the package manager indicated by lock files
+   - `package-lock.json` → npm
+   - `yarn.lock` → yarn
+   - `pnpm-lock.yaml` → pnpm
+   - `bun.lockb` → bun
+
+3. **System Preference**: Uses bun if available, otherwise defaults to npm
+
+### Manual Override
+
+You can manually specify the package manager using environment variables:
+
+```bash
+# Force npm
+PACKAGE_MANAGER=npm npx harukit@latest init
+
+# Force yarn
+PACKAGE_MANAGER=yarn npx harukit@latest init
+
+# Force pnpm
+PACKAGE_MANAGER=pnpm npx harukit@latest init
+
+# Force bun
+PACKAGE_MANAGER=bun npx harukit@latest init
+```
+
+## Configuration File
+
+The `harukit.json` file is created during initialization and contains your project configuration:
+
+```json
+{
+  "$schema": "https://harukit.com/schema.json",
+  "style": "default",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "tailwind.config.js",
+    "css": "app/globals.css",
+    "baseColor": "slate",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils"
+  }
+}
+```
+
+### Configuration Options
+
+| Option | Type | Description | Default |
+|--------|------|-------------|---------|
+| `style` | string | The style variant to use | `"default"` |
+| `rsc` | boolean | Whether to use React Server Components | `true` |
+| `tsx` | boolean | Whether to use TypeScript | `true` |
+| `tailwind.config` | string | Path to Tailwind config file | `"tailwind.config.js"` |
+| `tailwind.css` | string | Path to global CSS file | `"app/globals.css"` |
+| `tailwind.baseColor` | string | Base color for the theme | `"slate"` |
+| `tailwind.cssVariables` | boolean | Whether to use CSS variables | `true` |
+| `tailwind.prefix` | string | CSS class prefix | `""` |
+| `aliases.components` | string | Import alias for components | `"@/components"` |
+| `aliases.utils` | string | Import alias for utilities | `"@/lib/utils"` |
+
+## Troubleshooting CLI Issues
+
+### Common Problems
+
+**"Command not found"**
+
+```bash
+# Make sure you're using the latest version
+npx harukit@latest --version
+
+# Check if Node.js is installed
+node --version
+```
+
+**"Permission denied"**
+
+```bash
+# Use npx instead of global installation
+npx harukit@latest init
+
+# Or fix permissions
+sudo npm install -g harukit@latest
+```
+
+**"Package manager detection failed"**
+
+```bash
+# Check for lock files
+ls -la | grep lock
+
+# Manually specify package manager
+PACKAGE_MANAGER=npm npx harukit@latest init
+```
+
+**"Component not found"**
+
+```bash
+# List available components
+npx harukit@latest list
+
+# Check component name spelling
+npx harukit@latest add button  # not buttons
+```
+
+**"Dependencies not installed"**
+
+```bash
+# Re-run the command
+npx harukit@latest add button
+
+# Check package manager
+npm list @radix-ui/react-slot
+```
+
+### Getting Help
+
+```bash
+# Show help for all commands
+npx harukit@latest --help
+
+# Show help for specific command
+npx harukit@latest add --help
+
+# Show version
+npx harukit@latest --version
+```
+
+### Debug Mode
+
+Enable verbose output to see what's happening:
+
+```bash
+npx harukit@latest init --verbose
+npx harukit@latest add button --verbose
+```
+
+## Best Practices
+
+1. **Use the latest version**: Always use `@latest` to get the most recent features and bug fixes
+2. **Check before adding**: Use `npx harukit@latest list` to see available components
+3. **Use overwrite carefully**: The `--overwrite` flag will replace existing components
+4. **Keep dependencies updated**: Regularly run `npx harukit@latest update` to check for updates
+5. **Use consistent package manager**: Stick to one package manager throughout your project

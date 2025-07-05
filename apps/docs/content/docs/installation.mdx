@@ -1,0 +1,321 @@
+---
+title: Installation
+description: Step-by-step guide to install and set up Harukit UI in your project
+---
+
+# Installation
+
+This guide will walk you through installing and setting up Harukit UI in your project.
+
+## Prerequisites
+
+Before installing Harukit UI, make sure you have:
+
+- **Node.js** (version 16 or higher)
+- **npm**, **yarn**, **pnpm**, or **bun** package manager
+- A React project (Next.js, Vite, Create React App, etc.)
+
+## Quick Installation
+
+### Step 1: Create a new project (if you don't have one)
+
+```bash
+# Create a new Next.js project
+npx create-next-app@latest my-app --typescript --tailwind --eslint --app --src-dir --import-alias "@/*" --yes
+cd my-app
+```
+
+### Step 2: Initialize Harukit
+
+```bash
+# Choose your package manager
+npx harukit@latest init    # npm
+pnpm dlx harukit@latest init  # pnpm
+yarn dlx harukit@latest init  # yarn
+bunx harukit@latest init      # bun
+```
+
+> **Note:** Harukit will automatically detect your package manager (npm, yarn, pnpm, or bun) and install all required dependencies for you. You do not need to run a separate install command.
+
+### Step 3: Add your first component
+
+```bash
+npx harukit@latest add button
+```
+
+### Step 4: Use the component
+
+```tsx
+import { Button } from "@/components/button"
+
+export default function Page() {
+  return (
+    <div className="p-8">
+      <Button>Hello Harukit!</Button>
+    </div>
+  )
+}
+```
+
+## Detailed Installation Guide
+
+### For New Projects
+
+#### 1. Create a Next.js Project
+
+```bash
+# Create a new Next.js project with TypeScript and Tailwind CSS
+npx create-next-app@latest my-harukit-app --typescript --tailwind --eslint --app --src-dir --import-alias "@/*" --yes
+
+# Navigate to the project directory
+cd my-harukit-app
+```
+
+#### 2. Initialize Harukit
+
+```bash
+# Initialize Harukit in your project
+npx harukit@latest init
+```
+
+This command will:
+
+- Create a `harukit.json` configuration file
+- Set up the necessary directories (`components/`, `lib/`)
+- Create the `utils.ts` file with the `cn` function
+- Add global CSS with Tailwind variables
+- **Automatically install all required dependencies** using your detected package manager
+- Show progress for each dependency as it installs
+
+#### 3. Add Components
+
+```bash
+# Add a single component
+npx harukit@latest add button
+
+# Add multiple components
+npx harukit@latest add button card input
+
+# Add all available components
+npx harukit@latest add accordion button card input label tooltip
+```
+
+### For Existing Projects
+
+#### 1. Navigate to your project
+
+```bash
+cd your-existing-project
+```
+
+#### 2. Initialize Harukit
+
+```bash
+# Initialize Harukit in your existing project
+npx harukit@latest init
+```
+
+> **Note:** If your project already has some of the required dependencies, Harukit will skip installing them and only install the missing ones.
+
+#### 3. Add Components
+
+```bash
+# Add the components you need
+npx harukit@latest add button card input
+```
+
+## Package Manager Support
+
+Harukit automatically detects your package manager and installs dependencies accordingly. The detection follows this priority:
+
+1. **CLI Package Manager**: Detects the package manager used to run the CLI (npx → npm, yarn dlx → yarn, etc.)
+2. **Project Lock Files**: Falls back to the package manager indicated by lock files in your project
+3. **System Preference**: Uses bun if available, otherwise defaults to npm
+
+### npm
+
+```bash
+# Initialize (automatically uses npm for dependencies)
+npx harukit@latest init
+
+# Add components
+npx harukit@latest add button card
+```
+
+### pnpm
+
+```bash
+# Initialize (automatically uses pnpm for dependencies)
+pnpm dlx harukit@latest init
+
+# Add components
+pnpm dlx harukit@latest add button card
+```
+
+### yarn
+
+```bash
+# Initialize (automatically uses yarn for dependencies)
+yarn dlx harukit@latest init
+
+# Add components
+yarn dlx harukit@latest add button card
+```
+
+### bun
+
+```bash
+# Initialize (automatically uses bun for dependencies)
+bunx harukit@latest init
+
+# Add components
+bunx harukit@latest add button card
+```
+
+## What Gets Installed
+
+When you run `npx harukit@latest init`, the following dependencies are automatically installed:
+
+### Core Dependencies
+
+- `clsx` - Utility for constructing className strings conditionally
+- `tailwind-merge` - Utility to merge Tailwind CSS classes without style conflicts
+- `class-variance-authority` - Library for creating variant-based component APIs
+
+### Component-Specific Dependencies
+
+When you add specific components, their dependencies are automatically installed:
+
+- **Button**: `@radix-ui/react-slot`
+- **Accordion**: `@radix-ui/react-accordion`
+- **Tooltip**: `@radix-ui/react-tooltip`
+- **Label**: `@radix-ui/react-label`
+
+### Development Dependencies
+
+- `tailwindcss-animate` - Animation utilities for Tailwind CSS
+
+## Project Structure After Installation
+
+After running the initialization command, your project will have this structure:
+
+```
+your-project/
+├── harukit.json          # Configuration file
+├── components/           # Your UI components
+│   ├── button.tsx
+│   ├── card.tsx
+│   └── ...
+├── lib/
+│   └── utils.ts         # Utility functions
+├── app/
+│   └── globals.css      # Global styles with CSS variables
+├── package.json
+└── tailwind.config.js
+```
+
+## Configuration File
+
+The `harukit.json` file contains your project configuration:
+
+```json
+{
+  "$schema": "https://harukit.com/schema.json",
+  "style": "default",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "tailwind.config.js",
+    "css": "app/globals.css",
+    "baseColor": "slate",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils"
+  }
+}
+```
+
+## Verification
+
+To verify that Harukit is properly installed:
+
+1. **Check the configuration file**:
+   ```bash
+   cat harukit.json
+   ```
+
+2. **Check the components directory**:
+   ```bash
+   ls components/
+   ```
+
+3. **Check the lib directory**:
+   ```bash
+   ls lib/
+   ```
+
+4. **Test a component**:
+   ```tsx
+   import { Button } from "@/components/button"
+   
+   export default function TestPage() {
+     return <Button>Test Button</Button>
+   }
+   ```
+
+## Troubleshooting Installation
+
+### Common Issues
+
+**"Command not found: harukit"**
+
+- Make sure you're using the latest version: `npx harukit@latest`
+- Check that Node.js is properly installed: `node --version`
+
+**"Package manager detection failed"**
+
+- Make sure you have a `package.json` file in your project root
+- Ensure you're using a supported package manager (npm, yarn, pnpm, or bun)
+- The CLI will automatically detect your package manager and install dependencies
+
+**"Dependencies not installed"**
+
+- Harukit automatically installs all required dependencies during initialization
+- If installation fails, try running the init command again
+- Check that your package manager is working correctly
+
+**"Permission denied"**
+
+- On Unix-like systems, you might need to use `sudo` for global installations
+- Consider using `npx` instead of global installation
+
+**"Network error during installation"**
+
+- Check your internet connection
+- Try using a different npm registry or package manager
+- Clear your package manager cache:
+  ```bash
+  npm cache clean --force  # npm
+  yarn cache clean         # yarn
+  pnpm store prune         # pnpm
+  ```
+
+### Getting Help
+
+If you encounter any issues during installation:
+
+1. Check the [troubleshooting section](/docs/troubleshooting) for common solutions
+2. Visit our [GitHub repository](https://github.com/your-username/harukit) for issues and discussions
+3. Join our [Discord community](https://discord.gg/harukit) for real-time support
+
+## Next Steps
+
+After successful installation:
+
+1. **Add components**: Use `npx harukit@latest add <component-name>` to add the components you need
+2. **Customize styling**: Modify the CSS variables in your global CSS file
+3. **Explore components**: Check out the [components documentation](/docs/components) for usage examples
+4. **Configure your project**: Adjust the `harukit.json` configuration file as needed
