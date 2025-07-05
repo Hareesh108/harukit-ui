@@ -38,13 +38,13 @@ A modern CLI tool for adding beautiful, accessible UI components to your React p
 npx harukit@latest init
 
 # Using pnpm
-dlx harukit@latest init
+pnpm dlx harukit@latest init
 
 # Using yarn
-yarn dlx harukit@latest init
+yarn harukit@latest init
 
 # Using bun
-bunx harukit@latest init
+bunx --bun harukit@latest init
 ```
 
 This will:
@@ -87,8 +87,8 @@ cd my-app
 # Choose your package manager
 npx harukit@latest init    # npm
 pnpm dlx harukit@latest init  # pnpm
-yarn dlx harukit@latest init  # yarn
-bunx harukit@latest init      # bun
+yarn harukit@latest init      # yarn
+bunx --bun harukit@latest init  # bun
 ```
 
 > **Note:** Harukit will automatically detect your package manager (npm, yarn, pnpm, or bun) and install all required dependencies for you. You do not need to run a separate install command.
@@ -341,7 +341,7 @@ export default function MyAccordion() {
 
 Harukit automatically detects your package manager and installs dependencies accordingly. The detection follows this priority:
 
-1. **CLI Package Manager**: Detects the package manager used to run the CLI (npx → npm, yarn dlx → yarn, etc.)
+1. **CLI Package Manager**: Detects the package manager used to run the CLI (npx → npm, yarn → yarn, etc.)
 2. **Project Lock Files**: Falls back to the package manager indicated by lock files in your project
 3. **System Preference**: Uses bun if available, otherwise defaults to npm
 
@@ -371,20 +371,20 @@ pnpm dlx harukit@latest add button card
 
 ```bash
 # Initialize (automatically uses yarn for dependencies)
-yarn dlx harukit@latest init
+yarn harukit@latest init
 
 # Add components
-yarn dlx harukit@latest add button card
+yarn harukit@latest add button card
 ```
 
 #### bun
 
 ```bash
 # Initialize (automatically uses bun for dependencies)
-bunx harukit@latest init
+bunx --bun harukit@latest init
 
 # Add components
-bunx harukit@latest add button card
+bunx --bun harukit@latest add button card
 ```
 
 > **Note**: Dependencies are automatically installed using your detected package manager. You don't need to manually install `clsx`, `tailwind-merge`, `class-variance-authority`, or any other dependencies - Harukit handles this for you!
@@ -543,10 +543,10 @@ The component APIs are compatible, so your existing code should work with minima
 
 ## Support
 
-- **Documentation**: [https://harukit.com](https://harukit.com)
-- **GitHub**: [https://github.com/your-username/harukit](https://github.com/your-username/harukit)
-- **Issues**: [https://github.com/your-username/harukit/issues](https://github.com/your-username/harukit/issues)
+- **Documentation**: [https://harukit.com](https://harukit-ui-docs.vercel.app/)
+- **GitHub**: [https://github.com/Hareesh108/harukit-ui](https://github.com/Hareesh108/harukit-ui)
+- **Issues**: [https://github.com/Hareesh108/harukit-ui/issues](https://github.com/Hareesh108/harukit-ui/issues)
 
 ## License
 
-MIT © [Your Name]
+MIT © Hareesh Bhittam
