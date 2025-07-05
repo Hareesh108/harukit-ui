@@ -1,0 +1,472 @@
+---
+title: "Tooltip"
+description: "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it."
+---
+
+## Installation
+
+### npm
+
+```bash
+npx harukit@latest add tooltip
+```
+
+### pnpm
+
+```bash
+pnpm dlx harukit@latest add tooltip
+```
+
+### yarn
+
+```bash
+yarn harukit@latest add tooltip
+```
+
+### bun
+
+```bash
+bunx --bun harukit@latest add tooltip
+```
+
+## Usage
+
+```tsx
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+
+export default function TooltipDemo() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>Hover over me</TooltipTrigger>
+        <TooltipContent>
+          <p>This is a tooltip</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
+```
+
+## Examples
+
+### Basic Tooltip
+
+```tsx
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+
+export default function BasicTooltip() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>Hover me</TooltipTrigger>
+        <TooltipContent>
+          <p>This is a basic tooltip</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
+```
+
+### Tooltip with Button
+
+```tsx
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { Button } from "@/components/ui/button"
+
+export default function TooltipWithButton() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outline">Hover for info</Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>This button has a tooltip</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
+```
+
+### Tooltip with Icon
+
+```tsx
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { Info, HelpCircle, Settings } from "lucide-react"
+
+export default function TooltipWithIcon() {
+  return (
+    <TooltipProvider>
+      <div className="flex gap-4">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Info className="h-4 w-4 cursor-help" />
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Information tooltip</p>
+          </TooltipContent>
+        </Tooltip>
+        
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <HelpCircle className="h-4 w-4 cursor-help" />
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Help tooltip</p>
+          </TooltipContent>
+        </Tooltip>
+        
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Settings className="h-4 w-4 cursor-help" />
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Settings tooltip</p>
+          </TooltipContent>
+        </Tooltip>
+      </div>
+    </TooltipProvider>
+  )
+}
+```
+
+### Tooltip Positions
+
+```tsx
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { Button } from "@/components/ui/button"
+
+export default function TooltipPositions() {
+  return (
+    <TooltipProvider>
+      <div className="flex flex-wrap gap-4">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline">Top</Button>
+          </TooltipTrigger>
+          <TooltipContent side="top">
+            <p>Tooltip on top</p>
+          </TooltipContent>
+        </Tooltip>
+        
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline">Right</Button>
+          </TooltipTrigger>
+          <TooltipContent side="right">
+            <p>Tooltip on right</p>
+          </TooltipContent>
+        </Tooltip>
+        
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline">Bottom</Button>
+          </TooltipTrigger>
+          <TooltipContent side="bottom">
+            <p>Tooltip on bottom</p>
+          </TooltipContent>
+        </Tooltip>
+        
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline">Left</Button>
+          </TooltipTrigger>
+          <TooltipContent side="left">
+            <p>Tooltip on left</p>
+          </TooltipContent>
+        </Tooltip>
+      </div>
+    </TooltipProvider>
+  )
+}
+```
+
+### Tooltip with Delay
+
+```tsx
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { Button } from "@/components/ui/button"
+
+export default function TooltipWithDelay() {
+  return (
+    <TooltipProvider delayDuration={1000}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outline">Delayed Tooltip</Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>This tooltip appears after 1 second</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
+```
+
+### Multiple Tooltips
+
+```tsx
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { Button } from "@/components/ui/button"
+
+export default function MultipleTooltips() {
+  return (
+    <TooltipProvider>
+      <div className="flex flex-wrap gap-4">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button>Save</Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Save your changes</p>
+          </TooltipContent>
+        </Tooltip>
+        
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline">Cancel</Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Cancel and discard changes</p>
+          </TooltipContent>
+        </Tooltip>
+        
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="destructive">Delete</Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Permanently delete this item</p>
+          </TooltipContent>
+        </Tooltip>
+      </div>
+    </TooltipProvider>
+  )
+}
+```
+
+### Tooltip with Rich Content
+
+```tsx
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { Button } from "@/components/ui/button"
+
+export default function RichTooltip() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outline">Rich Content</Button>
+        </TooltipTrigger>
+        <TooltipContent className="w-80">
+          <div className="space-y-2">
+            <h4 className="font-medium">Tooltip Title</h4>
+            <p className="text-sm text-muted-foreground">
+              This tooltip contains rich content with a title and description.
+            </p>
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <span>• Feature 1</span>
+              <span>• Feature 2</span>
+              <span>• Feature 3</span>
+            </div>
+          </div>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
+```
+
+### Controlled Tooltip
+
+```tsx
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { Button } from "@/components/ui/button"
+import { useState } from "react"
+
+export default function ControlledTooltip() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <TooltipProvider>
+      <Tooltip open={open} onOpenChange={setOpen}>
+        <TooltipTrigger asChild>
+          <Button 
+            variant="outline"
+            onClick={() => setOpen(!open)}
+          >
+            Controlled Tooltip
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>This tooltip is controlled by state</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
+```
+
+## API Reference
+
+### TooltipProvider
+
+The provider component that wraps all tooltips.
+
+```tsx
+import { TooltipProvider } from "@/components/ui/tooltip"
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `delayDuration` | `number` | `700` | The duration from when the mouse enters the trigger until the tooltip opens. |
+| `skipDelayDuration` | `number` | `300` | How long the tooltip should remain open after the mouse leaves the trigger when another trigger is being hovered. |
+| `disableHoverableContent` | `boolean` | `false` | When `true`, prevents the tooltip from remaining open when the mouse is moved over the tooltip content. |
+
+### Tooltip
+
+The main tooltip component.
+
+```tsx
+import { Tooltip } from "@/components/ui/tooltip"
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `defaultOpen` | `boolean` | `false` | The default open state when initially rendered. |
+| `open` | `boolean` | - | Controlled open state. |
+| `onOpenChange` | `(open: boolean) => void` | - | Event handler called when the open state changes. |
+| `delayDuration` | `number` | - | Override the delay duration for this tooltip. |
+
+### TooltipTrigger
+
+The element that triggers the tooltip.
+
+```tsx
+import { TooltipTrigger } from "@/components/ui/tooltip"
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `asChild` | `boolean` | `false` | Change the default rendered element for the one passed as a child, merging their props and behavior. |
+
+### TooltipContent
+
+The content displayed inside the tooltip.
+
+```tsx
+import { TooltipContent } from "@/components/ui/tooltip"
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"top"` | The side of the trigger to show against. |
+| `sideOffset` | `number` | `4` | The distance in pixels from the trigger. |
+| `align` | `"start" \| "center" \| "end"` | `"center"` | The alignment of the tooltip relative to the trigger. |
+| `alignOffset` | `number` | `0` | The offset in pixels from the start or end alignment. |
+| `avoidCollisions` | `boolean` | `true` | When `true`, overrides the `side` and `align` preferences to prevent the tooltip from overflowing the viewport. |
+| `collisionBoundary` | `Boundary` | `[]` | The element or elements that the tooltip should avoid overlapping. |
+| `collisionPadding` | `number \| Partial<Record<Side, number>>` | `0` | The distance in pixels from the boundary. |
+| `arrowPadding` | `number` | `0` | The padding between the arrow and the edges of the tooltip. |
+| `sticky` | `"partial" \| "always"` | `"partial"` | The sticky behavior on the align axis. |
+| `hideWhenDetached` | `boolean` | `false` | Whether to hide the tooltip when the trigger is outside of the viewport. |
+| `updatePositionStrategy` | `"optimized" \| "always"` | `"optimized"` | The strategy used to determine when to update the position of the tooltip. |
+| `onPlaced` | `() => void` | - | Event handler called when the tooltip has been placed. |
+
+## Styling
+
+The Tooltip component uses Tailwind CSS classes for styling:
+
+- **Background**: `bg-popover` with `text-popover-foreground`
+- **Border**: `border` with rounded corners
+- **Shadow**: `shadow-md` for elevation
+- **Animation**: Built-in fade and slide animations
+- **Arrow**: Automatic arrow positioning
+
+You can customize the appearance by:
+
+1. **Overriding classes**: Add your own Tailwind classes
+2. **CSS variables**: Modify the tooltip color variables
+3. **Custom animations**: Override the default animations
+
+## Accessibility
+
+The Tooltip component follows the [WAI-ARIA Tooltip Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/). It includes:
+
+- Proper ARIA attributes (`role="tooltip"`, `aria-describedby`)
+- Keyboard navigation support
+- Focus management
+- Screen reader announcements
+- Automatic positioning to avoid viewport overflow
+
+### Best Practices
+
+1. **Use sparingly**: Only show tooltips for additional context, not essential information
+2. **Keep content concise**: Tooltips should be brief and to the point
+3. **Provide meaningful content**: Ensure the tooltip adds value to the user experience
+4. **Consider mobile**: Tooltips may not work well on touch devices
+5. **Test with screen readers**: Ensure tooltips are properly announced
+
+## Dependencies
+
+This component depends on:
+
+- `@radix-ui/react-tooltip` - For the tooltip functionality
+- `clsx` - For conditional class names
+- `tailwind-merge` - For merging Tailwind classes

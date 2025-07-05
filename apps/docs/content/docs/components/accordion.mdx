@@ -1,0 +1,246 @@
+---
+title: "Accordion"
+description: "A vertically collapsible accordion component."
+---
+
+## Installation
+
+### npm
+
+```bash
+npx harukit@latest add accordion
+```
+
+### pnpm
+
+```bash
+pnpm dlx harukit@latest add accordion
+```
+
+### yarn
+
+```bash
+yarn harukit@latest add accordion
+```
+
+### bun
+
+```bash
+bunx --bun harukit@latest add accordion
+```
+
+## Usage
+
+```tsx
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+
+export default function AccordionDemo() {
+  return (
+    <Accordion type="single" collapsible>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It adheres to the WAI-ARIA design pattern.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>Is it styled?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It comes with default styles that matches the other
+          components&apos; aesthetic.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-3">
+        <AccordionTrigger>Is it animated?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It&apos;s animated by default, but you can disable it if you prefer.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  )
+}
+```
+
+## Examples
+
+### Multiple Items
+
+```tsx
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+
+export default function AccordionMultiple() {
+  return (
+    <Accordion type="multiple">
+      <AccordionItem value="item-1">
+        <AccordionTrigger>What is Harukit UI?</AccordionTrigger>
+        <AccordionContent>
+          Harukit UI is a collection of reusable components built with Radix UI and Tailwind CSS.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>How do I install it?</AccordionTrigger>
+        <AccordionContent>
+          You can install Harukit UI using the CLI: npx harukit@latest add accordion
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-3">
+        <AccordionTrigger>Is it customizable?</AccordionTrigger>
+        <AccordionContent>
+          Yes, all components are fully customizable using Tailwind CSS classes.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  )
+}
+```
+
+### Controlled Accordion
+
+```tsx
+import { useState } from "react"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+
+export default function AccordionControlled() {
+  const [value, setValue] = useState<string>("item-1")
+
+  return (
+    <Accordion type="single" value={value} onValueChange={setValue}>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Controlled Item 1</AccordionTrigger>
+        <AccordionContent>
+          This accordion is controlled by external state.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>Controlled Item 2</AccordionTrigger>
+        <AccordionContent>
+          The current value is: {value}
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  )
+}
+```
+
+### Custom Styling
+
+```tsx
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+
+export default function AccordionCustom() {
+  return (
+    <Accordion type="single" collapsible className="w-full max-w-md">
+      <AccordionItem value="item-1" className="border rounded-lg">
+        <AccordionTrigger className="px-4 py-3 hover:bg-gray-50">
+          Custom Styled Item
+        </AccordionTrigger>
+        <AccordionContent className="px-4 pb-3">
+          This accordion item has custom styling applied.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  )
+}
+```
+
+## API Reference
+
+### Accordion
+
+The main accordion container component.
+
+```tsx
+import { Accordion } from "@/components/ui/accordion"
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `type` | `"single" \| "multiple"` | - | The type of accordion. |
+| `value` | `string \| string[]` | - | The value of the accordion item(s) that should be open when controlled. |
+| `onValueChange` | `(value: string \| string[]) => void` | - | Event handler called when the value changes. |
+| `collapsible` | `boolean` | `false` | When `type` is `"single"`, allows closing content by clicking trigger for an open item. |
+| `disabled` | `boolean` | `false` | When `true`, prevents the user from interacting with the accordion. |
+
+### AccordionItem
+
+A collapsible section within an accordion.
+
+```tsx
+import { AccordionItem } from "@/components/ui/accordion"
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | - | A unique value for the item. |
+| `disabled` | `boolean` | `false` | When `true`, prevents the user from interacting with the item. |
+
+### AccordionTrigger
+
+The button that toggles the accordion item.
+
+```tsx
+import { AccordionTrigger } from "@/components/ui/accordion"
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `asChild` | `boolean` | `false` | Change the default rendered element for the one passed as a child, merging their props and behavior. |
+
+### AccordionContent
+
+The collapsible content inside the accordion item.
+
+```tsx
+import { AccordionContent } from "@/components/ui/accordion"
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `asChild` | `boolean` | `false` | Change the default rendered element for the one passed as a child, merging their props and behavior. |
+
+## Accessibility
+
+The Accordion component follows the [WAI-ARIA Accordion Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/). It includes:
+
+- Proper ARIA attributes (`aria-expanded`, `aria-controls`)
+- Keyboard navigation support
+- Focus management
+- Screen reader announcements
+
+## Dependencies
+
+This component depends on:
+
+- `@radix-ui/react-accordion` - For the accordion functionality
+- `lucide-react` - For the chevron icon
+- `clsx` - For conditional class names
+- `tailwind-merge` - For merging Tailwind classes
+

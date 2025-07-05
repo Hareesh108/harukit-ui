@@ -29,9 +29,8 @@ cd my-app
 # Choose your package manager
 npx harukit@latest init    # npm
 pnpm dlx harukit@latest init  # pnpm
-yarn dlx harukit@latest init  # yarn
-bunx harukit@latest init      # bun
-```
+yarn harukit@latest init      # yarn
+bunx --bun harukit@latest init  # bun
 
 > **Note:** Harukit will automatically detect your package manager (npm, yarn, pnpm, or bun) and install all required dependencies for you. You do not need to run a separate install command.
 
@@ -126,7 +125,7 @@ npx harukit@latest add button card input
 
 Harukit automatically detects your package manager and installs dependencies accordingly. The detection follows this priority:
 
-1. **CLI Package Manager**: Detects the package manager used to run the CLI (npx → npm, yarn dlx → yarn, etc.)
+1. **CLI Package Manager**: Detects the package manager used to run the CLI (npx → npm, yarn → yarn, etc.)
 2. **Project Lock Files**: Falls back to the package manager indicated by lock files in your project
 3. **System Preference**: Uses bun if available, otherwise defaults to npm
 
@@ -154,20 +153,20 @@ pnpm dlx harukit@latest add button card
 
 ```bash
 # Initialize (automatically uses yarn for dependencies)
-yarn dlx harukit@latest init
+yarn harukit@latest init
 
 # Add components
-yarn dlx harukit@latest add button card
+yarn harukit@latest add button card
 ```
 
 ### bun
 
 ```bash
 # Initialize (automatically uses bun for dependencies)
-bunx harukit@latest init
+bunx --bun harukit@latest init
 
 # Add components
-bunx harukit@latest add button card
+bunx --bun harukit@latest add button card
 ```
 
 ## What Gets Installed

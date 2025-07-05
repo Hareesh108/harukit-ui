@@ -1,0 +1,345 @@
+---
+title: "Label"
+description: "A form label component with accessibility features."
+---
+
+## Installation
+
+### npm
+
+```bash
+npx harukit@latest add label
+```
+
+### pnpm
+
+```bash
+pnpm dlx harukit@latest add label
+```
+
+### yarn
+
+```bash
+yarn harukit@latest add label
+```
+
+### bun
+
+```bash
+bunx --bun harukit@latest add label
+```
+
+## Usage
+
+```tsx
+import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
+
+export default function LabelDemo() {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-1.5">
+      <Label htmlFor="email">Email</Label>
+      <Input type="email" id="email" placeholder="Enter your email" />
+    </div>
+  )
+}
+```
+
+## Examples
+
+### Basic Label
+
+```tsx
+import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
+
+export default function BasicLabel() {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-1.5">
+      <Label htmlFor="name">Name</Label>
+      <Input type="text" id="name" placeholder="Enter your name" />
+    </div>
+  )
+}
+```
+
+### Label with Required Indicator
+
+```tsx
+import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
+
+export default function RequiredLabel() {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-1.5">
+      <Label htmlFor="email">
+        Email <span className="text-red-500">*</span>
+      </Label>
+      <Input type="email" id="email" placeholder="Enter your email" required />
+    </div>
+  )
+}
+```
+
+### Label with Description
+
+```tsx
+import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
+
+export default function LabelWithDescription() {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-1.5">
+      <div>
+        <Label htmlFor="password">Password</Label>
+        <p className="text-sm text-muted-foreground">
+          Must be at least 8 characters long
+        </p>
+      </div>
+      <Input type="password" id="password" placeholder="Enter your password" />
+    </div>
+  )
+}
+```
+
+### Multiple Labels
+
+```tsx
+import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
+
+export default function MultipleLabels() {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-4">
+      <div className="grid gap-1.5">
+        <Label htmlFor="firstName">First Name</Label>
+        <Input id="firstName" placeholder="Enter your first name" />
+      </div>
+      
+      <div className="grid gap-1.5">
+        <Label htmlFor="lastName">Last Name</Label>
+        <Input id="lastName" placeholder="Enter your last name" />
+      </div>
+      
+      <div className="grid gap-1.5">
+        <Label htmlFor="email">Email Address</Label>
+        <Input type="email" id="email" placeholder="Enter your email" />
+      </div>
+      
+      <div className="grid gap-1.5">
+        <Label htmlFor="phone">Phone Number</Label>
+        <Input type="tel" id="phone" placeholder="Enter your phone number" />
+      </div>
+    </div>
+  )
+}
+```
+
+### Label with Checkbox
+
+```tsx
+import { Label } from "@/components/ui/label"
+
+export default function LabelWithCheckbox() {
+  return (
+    <div className="flex items-center space-x-2">
+      <input
+        type="checkbox"
+        id="terms"
+        className="h-4 w-4 rounded border-gray-300"
+      />
+      <Label htmlFor="terms" className="text-sm font-normal">
+        I agree to the terms and conditions
+      </Label>
+    </div>
+  )
+}
+```
+
+### Label with Radio Buttons
+
+```tsx
+import { Label } from "@/components/ui/label"
+
+export default function LabelWithRadio() {
+  return (
+    <div className="space-y-2">
+      <Label className="text-base font-medium">Select your preference:</Label>
+      
+      <div className="space-y-2">
+        <div className="flex items-center space-x-2">
+          <input
+            type="radio"
+            id="option1"
+            name="options"
+            value="option1"
+            className="h-4 w-4"
+          />
+          <Label htmlFor="option1" className="text-sm font-normal">
+            Option 1
+          </Label>
+        </div>
+        
+        <div className="flex items-center space-x-2">
+          <input
+            type="radio"
+            id="option2"
+            name="options"
+            value="option2"
+            className="h-4 w-4"
+          />
+          <Label htmlFor="option2" className="text-sm font-normal">
+            Option 2
+          </Label>
+        </div>
+        
+        <div className="flex items-center space-x-2">
+          <input
+            type="radio"
+            id="option3"
+            name="options"
+            value="option3"
+            className="h-4 w-4"
+          />
+          <Label htmlFor="option3" className="text-sm font-normal">
+            Option 3
+          </Label>
+        </div>
+      </div>
+    </div>
+  )
+}
+```
+
+### Label with Select
+
+```tsx
+import { Label } from "@/components/ui/label"
+
+export default function LabelWithSelect() {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-1.5">
+      <Label htmlFor="country">Country</Label>
+      <select
+        id="country"
+        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        <option value="">Select a country</option>
+        <option value="us">United States</option>
+        <option value="ca">Canada</option>
+        <option value="uk">United Kingdom</option>
+        <option value="au">Australia</option>
+      </select>
+    </div>
+  )
+}
+```
+
+### Label with Textarea
+
+```tsx
+import { Label } from "@/components/ui/label"
+
+export default function LabelWithTextarea() {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-1.5">
+      <Label htmlFor="message">Message</Label>
+      <textarea
+        id="message"
+        placeholder="Enter your message"
+        className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+      />
+    </div>
+  )
+}
+```
+
+### Custom Styled Label
+
+```tsx
+import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
+
+export default function CustomStyledLabel() {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-1.5">
+      <Label 
+        htmlFor="custom" 
+        className="text-lg font-semibold text-blue-600 dark:text-blue-400"
+      >
+        Custom Styled Label
+      </Label>
+      <Input id="custom" placeholder="Custom input" />
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### Label
+
+The main label component.
+
+```tsx
+import { Label } from "@/components/ui/label"
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `htmlFor` | `string` | - | The ID of the form control that the label is associated with. |
+| `asChild` | `boolean` | `false` | Change the default rendered element for the one passed as a child, merging their props and behavior. |
+
+### Label Variants
+
+The Label component supports different styling variants through the `labelVariants` function:
+
+```tsx
+import { labelVariants } from "@/components/ui/label"
+
+const labelClasses = labelVariants()
+```
+
+## Styling
+
+The Label component uses Tailwind CSS classes for styling:
+
+- **Typography**: `text-sm font-medium leading-none`
+- **Color**: Inherits from parent or uses `text-foreground`
+- **Disabled**: `peer-disabled:cursor-not-allowed peer-disabled:opacity-70`
+- **Spacing**: Consistent with form layout
+
+You can customize the appearance by:
+
+1. **Overriding classes**: Add your own Tailwind classes
+2. **CSS variables**: Modify the label color variables
+3. **Custom variants**: Create your own label variants
+
+## Accessibility
+
+The Label component includes:
+
+- Proper association with form controls via `htmlFor`
+- Screen reader support
+- Keyboard navigation support
+- Disabled state handling
+- Required field indicators
+
+### Best Practices
+
+1. **Always use `htmlFor`**: Associate labels with their form controls
+2. **Be descriptive**: Use clear, concise text that describes the input
+3. **Include required indicators**: Use asterisks or other visual cues for required fields
+4. **Group related labels**: Use fieldset and legend for groups of related inputs
+5. **Provide context**: Add descriptions when needed for complex inputs
+
+## Dependencies
+
+This component depends on:
+
+- `@radix-ui/react-label` - For the label functionality
+- `class-variance-authority` - For variant-based styling
+- `clsx` - For conditional class names
+- `tailwind-merge` - For merging Tailwind classes

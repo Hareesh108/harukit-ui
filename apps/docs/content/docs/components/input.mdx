@@ -1,0 +1,342 @@
+---
+title: "Input"
+description: "A flexible input component with built-in styling and accessibility features."
+---
+
+## Installation
+
+### npm
+
+```bash
+npx harukit@latest add input
+```
+
+### pnpm
+
+```bash
+pnpm dlx harukit@latest add input
+```
+
+### yarn
+
+```bash
+yarn harukit@latest add input
+```
+
+### bun
+
+```bash
+bunx --bun harukit@latest add input
+```
+
+## Usage
+
+```tsx
+import { Input } from "@/components/ui/input"
+
+export default function InputDemo() {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-1.5">
+      <label htmlFor="email">Email</label>
+      <Input type="email" id="email" placeholder="Enter your email" />
+    </div>
+  )
+}
+```
+
+## Examples
+
+### Basic Input
+
+```tsx
+import { Input } from "@/components/ui/input"
+
+export default function BasicInput() {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-1.5">
+      <label htmlFor="name">Name</label>
+      <Input type="text" id="name" placeholder="Enter your name" />
+    </div>
+  )
+}
+```
+
+### Input Types
+
+```tsx
+import { Input } from "@/components/ui/input"
+
+export default function InputTypes() {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-4">
+      <div className="grid gap-1.5">
+        <label htmlFor="text">Text</label>
+        <Input type="text" id="text" placeholder="Text input" />
+      </div>
+      
+      <div className="grid gap-1.5">
+        <label htmlFor="email">Email</label>
+        <Input type="email" id="email" placeholder="Email input" />
+      </div>
+      
+      <div className="grid gap-1.5">
+        <label htmlFor="password">Password</label>
+        <Input type="password" id="password" placeholder="Password input" />
+      </div>
+      
+      <div className="grid gap-1.5">
+        <label htmlFor="number">Number</label>
+        <Input type="number" id="number" placeholder="Number input" />
+      </div>
+      
+      <div className="grid gap-1.5">
+        <label htmlFor="url">URL</label>
+        <Input type="url" id="url" placeholder="URL input" />
+      </div>
+      
+      <div className="grid gap-1.5">
+        <label htmlFor="tel">Phone</label>
+        <Input type="tel" id="tel" placeholder="Phone input" />
+      </div>
+    </div>
+  )
+}
+```
+
+### Input with Icons
+
+```tsx
+import { Input } from "@/components/ui/input"
+import { Search, Mail, Lock } from "lucide-react"
+
+export default function InputWithIcons() {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-4">
+      <div className="relative">
+        <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+        <Input placeholder="Search..." className="pl-8" />
+      </div>
+      
+      <div className="relative">
+        <Mail className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+        <Input type="email" placeholder="Email" className="pl-8" />
+      </div>
+      
+      <div className="relative">
+        <Lock className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+        <Input type="password" placeholder="Password" className="pl-8" />
+      </div>
+    </div>
+  )
+}
+```
+
+### Input States
+
+```tsx
+import { Input } from "@/components/ui/input"
+
+export default function InputStates() {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-4">
+      <div className="grid gap-1.5">
+        <label htmlFor="default">Default</label>
+        <Input id="default" placeholder="Default input" />
+      </div>
+      
+      <div className="grid gap-1.5">
+        <label htmlFor="disabled">Disabled</label>
+        <Input id="disabled" placeholder="Disabled input" disabled />
+      </div>
+      
+      <div className="grid gap-1.5">
+        <label htmlFor="readonly">Read Only</label>
+        <Input id="readonly" value="Read only value" readOnly />
+      </div>
+      
+      <div className="grid gap-1.5">
+        <label htmlFor="required">Required</label>
+        <Input id="required" placeholder="Required input" required />
+      </div>
+    </div>
+  )
+}
+```
+
+### Input with Validation
+
+```tsx
+import { Input } from "@/components/ui/input"
+import { useState } from "react"
+
+export default function InputWithValidation() {
+  const [email, setEmail] = useState("")
+  const [isValid, setIsValid] = useState(true)
+
+  const validateEmail = (value: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(value)
+  }
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setEmail(value)
+    setIsValid(value === "" || validateEmail(value))
+  }
+
+  return (
+    <div className="grid w-full max-w-sm items-center gap-1.5">
+      <label htmlFor="email">Email</label>
+      <Input
+        type="email"
+        id="email"
+        value={email}
+        onChange={handleEmailChange}
+        placeholder="Enter your email"
+        className={!isValid ? "border-red-500 focus-visible:ring-red-500" : ""}
+      />
+      {!isValid && (
+        <p className="text-sm text-red-500">Please enter a valid email address</p>
+      )}
+    </div>
+  )
+}
+```
+
+### Input Sizes
+
+```tsx
+import { Input } from "@/components/ui/input"
+
+export default function InputSizes() {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-4">
+      <div className="grid gap-1.5">
+        <label htmlFor="small">Small</label>
+        <Input id="small" placeholder="Small input" className="h-8 text-sm" />
+      </div>
+      
+      <div className="grid gap-1.5">
+        <label htmlFor="default">Default</label>
+        <Input id="default" placeholder="Default input" />
+      </div>
+      
+      <div className="grid gap-1.5">
+        <label htmlFor="large">Large</label>
+        <Input id="large" placeholder="Large input" className="h-12 text-lg" />
+      </div>
+    </div>
+  )
+}
+```
+
+### Form with Inputs
+
+```tsx
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+
+export default function FormWithInputs() {
+  return (
+    <form className="grid w-full max-w-sm items-center gap-4">
+      <div className="grid gap-1.5">
+        <label htmlFor="firstName">First Name</label>
+        <Input id="firstName" placeholder="Enter your first name" required />
+      </div>
+      
+      <div className="grid gap-1.5">
+        <label htmlFor="lastName">Last Name</label>
+        <Input id="lastName" placeholder="Enter your last name" required />
+      </div>
+      
+      <div className="grid gap-1.5">
+        <label htmlFor="email">Email</label>
+        <Input type="email" id="email" placeholder="Enter your email" required />
+      </div>
+      
+      <div className="grid gap-1.5">
+        <label htmlFor="password">Password</label>
+        <Input type="password" id="password" placeholder="Enter your password" required />
+      </div>
+      
+      <Button type="submit">Submit</Button>
+    </form>
+  )
+}
+```
+
+## API Reference
+
+### Input
+
+The main input component.
+
+```tsx
+import { Input } from "@/components/ui/input"
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `type` | `string` | `"text"` | The type of input. |
+| `placeholder` | `string` | - | Placeholder text for the input. |
+| `disabled` | `boolean` | `false` | When `true`, prevents the user from interacting with the input. |
+| `readOnly` | `boolean` | `false` | When `true`, the input is read-only. |
+| `required` | `boolean` | `false` | When `true`, the input is required. |
+| `value` | `string` | - | The value of the input. |
+| `onChange` | `(event: ChangeEvent<HTMLInputElement>) => void` | - | Event handler called when the value changes. |
+| `onFocus` | `(event: FocusEvent<HTMLInputElement>) => void` | - | Event handler called when the input receives focus. |
+| `onBlur` | `(event: FocusEvent<HTMLInputElement>) => void` | - | Event handler called when the input loses focus. |
+
+### Input Types
+
+The Input component supports all standard HTML input types:
+
+- `text` - Text input
+- `email` - Email input with validation
+- `password` - Password input (hidden text)
+- `number` - Numeric input
+- `url` - URL input
+- `tel` - Telephone input
+- `search` - Search input
+- `date` - Date picker
+- `time` - Time picker
+- `datetime-local` - Date and time picker
+- `file` - File upload
+- `color` - Color picker
+- `range` - Range slider
+
+## Styling
+
+The Input component uses Tailwind CSS classes for styling:
+
+- **Background**: `bg-background` with `text-foreground`
+- **Border**: `border-input` with focus states
+- **Focus**: `focus-visible:ring-2` with `focus-visible:ring-ring`
+- **Disabled**: `disabled:opacity-50` and `disabled:cursor-not-allowed`
+- **Placeholder**: `placeholder:text-muted-foreground`
+
+You can customize the appearance by:
+
+1. **Overriding classes**: Add your own Tailwind classes
+2. **CSS variables**: Modify the input color variables
+3. **Custom variants**: Create your own input variants
+
+## Accessibility
+
+The Input component includes:
+
+- Proper ARIA attributes
+- Keyboard navigation support
+- Focus management
+- Screen reader support
+- Disabled state handling
+- Required field indicators
+
+## Dependencies
+
+This component depends on:
+
+- `clsx` - For conditional class names
+- `tailwind-merge` - For merging Tailwind classes

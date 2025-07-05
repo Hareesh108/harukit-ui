@@ -307,9 +307,9 @@ Harukit automatically detects your package manager and uses it for dependency in
 
 1. **CLI Package Manager**: Detects the package manager used to run the CLI
    - `npx` → npm
-   - `yarn dlx` → yarn
+   - `yarn` → yarn
    - `pnpm dlx` → pnpm
-   - `bunx` → bun
+   - `bunx --bun` → bun
 
 2. **Project Lock Files**: Falls back to the package manager indicated by lock files
    - `package-lock.json` → npm
@@ -328,13 +328,13 @@ You can manually specify the package manager using environment variables:
 PACKAGE_MANAGER=npm npx harukit@latest init
 
 # Force yarn
-PACKAGE_MANAGER=yarn npx harukit@latest init
+PACKAGE_MANAGER=yarn yarn harukit@latest init
 
 # Force pnpm
-PACKAGE_MANAGER=pnpm npx harukit@latest init
+PACKAGE_MANAGER=pnpm pnpm dlx harukit@latest init
 
 # Force bun
-PACKAGE_MANAGER=bun npx harukit@latest init
+PACKAGE_MANAGER=bun bunx --bun harukit@latest init
 ```
 
 ## Configuration File
@@ -459,6 +459,72 @@ npx harukit@latest add button --verbose
 3. **Use overwrite carefully**: The `--overwrite` flag will replace existing components
 4. **Keep dependencies updated**: Regularly run `npx harukit@latest update` to check for updates
 5. **Use consistent package manager**: Stick to one package manager throughout your project
+
+## Examples by Package Manager
+
+### npm
+
+```bash
+# Initialize project
+npx harukit@latest init
+
+# Add components
+npx harukit@latest add button card
+
+# List components
+npx harukit@latest list
+
+# Remove components
+npx harukit@latest remove button
+```
+
+### yarn
+
+```bash
+# Initialize project
+yarn harukit@latest init
+
+# Add components
+yarn harukit@latest add button card
+
+# List components
+yarn harukit@latest list
+
+# Remove components
+yarn harukit@latest remove button
+```
+
+### pnpm
+
+```bash
+# Initialize project
+pnpm dlx harukit@latest init
+
+# Add components
+pnpm dlx harukit@latest add button card
+
+# List components
+pnpm dlx harukit@latest list
+
+# Remove components
+pnpm dlx harukit@latest remove button
+```
+
+### bun
+
+```bash
+# Initialize project
+bunx --bun harukit@latest init
+
+# Add components
+bunx --bun harukit@latest add button card
+
+# List components
+bunx --bun harukit@latest list
+
+# Remove components
+bunx --bun harukit@latest remove button
+```
 
 ## Support
 

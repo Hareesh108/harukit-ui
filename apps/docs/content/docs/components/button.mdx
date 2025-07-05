@@ -1,0 +1,240 @@
+---
+title: "Button"
+description: "A versatile button component with multiple variants and sizes."
+---
+
+## Installation
+
+### npm
+
+```bash
+npx harukit@latest add button
+```
+
+### pnpm
+
+```bash
+pnpm dlx harukit@latest add button
+```
+
+### yarn
+
+```bash
+yarn harukit@latest add button
+```
+
+### bun
+
+```bash
+bunx --bun harukit@latest add button
+```
+
+## Usage
+
+```tsx
+import { Button } from "@/components/ui/button"
+
+export default function ButtonDemo() {
+  return (
+    <div className="flex flex-wrap gap-4">
+      <Button>Default</Button>
+      <Button variant="destructive">Delete</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
+    </div>
+  )
+}
+```
+
+## Examples
+
+### Button Variants
+
+```tsx
+import { Button } from "@/components/ui/button"
+
+export default function ButtonVariants() {
+  return (
+    <div className="flex flex-wrap gap-4">
+      <Button variant="default">Default</Button>
+      <Button variant="destructive">Destructive</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
+    </div>
+  )
+}
+```
+
+### Button Sizes
+
+```tsx
+import { Button } from "@/components/ui/button"
+
+export default function ButtonSizes() {
+  return (
+    <div className="flex items-center gap-4">
+      <Button size="sm">Small</Button>
+      <Button size="default">Default</Button>
+      <Button size="lg">Large</Button>
+      <Button size="icon">🚀</Button>
+    </div>
+  )
+}
+```
+
+### Button with Icons
+
+```tsx
+import { Button } from "@/components/ui/button"
+import { Download, Heart, Share2 } from "lucide-react"
+
+export default function ButtonWithIcons() {
+  return (
+    <div className="flex flex-wrap gap-4">
+      <Button>
+        <Download className="mr-2 h-4 w-4" />
+        Download
+      </Button>
+      <Button variant="outline">
+        <Heart className="mr-2 h-4 w-4" />
+        Like
+      </Button>
+      <Button variant="ghost" size="icon">
+        <Share2 className="h-4 w-4" />
+      </Button>
+    </div>
+  )
+}
+```
+
+### Button as Child
+
+```tsx
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+
+export default function ButtonAsChild() {
+  return (
+    <div className="flex gap-4">
+      <Button asChild>
+        <Link href="/dashboard">Go to Dashboard</Link>
+      </Button>
+      <Button asChild variant="outline">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+          Visit GitHub
+        </a>
+      </Button>
+    </div>
+  )
+}
+```
+
+### Loading State
+
+```tsx
+import { Button } from "@/components/ui/button"
+import { Loader2 } from "lucide-react"
+
+export default function LoadingButton() {
+  return (
+    <div className="flex gap-4">
+      <Button disabled>
+        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+        Loading...
+      </Button>
+      <Button variant="outline" disabled>
+        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+        Processing
+      </Button>
+    </div>
+  )
+}
+```
+
+### Form Buttons
+
+```tsx
+import { Button } from "@/components/ui/button"
+
+export default function FormButtons() {
+  return (
+    <form className="space-y-4">
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium">
+          Email
+        </label>
+        <input
+          id="email"
+          type="email"
+          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+          placeholder="Enter your email"
+        />
+      </div>
+      <div className="flex gap-2">
+        <Button type="submit">Submit</Button>
+        <Button type="button" variant="outline">
+          Cancel
+        </Button>
+      </div>
+    </form>
+  )
+}
+```
+
+## API Reference
+
+### Button
+
+The main button component.
+
+```tsx
+import { Button } from "@/components/ui/button"
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link"` | `"default"` | The visual style of the button. |
+| `size` | `"default" \| "sm" \| "lg" \| "icon"` | `"default"` | The size of the button. |
+| `asChild` | `boolean` | `false` | Change the default rendered element for the one passed as a child, merging their props and behavior. |
+| `disabled` | `boolean` | `false` | When `true`, prevents the user from interacting with the button. |
+
+### Variants
+
+- **default**: Primary button with solid background
+- **destructive**: Red button for destructive actions
+- **outline**: Button with border and transparent background
+- **secondary**: Secondary button with muted background
+- **ghost**: Button with no background or border
+- **link**: Button that looks like a link
+
+### Sizes
+
+- **default**: Standard button size (h-10 px-4 py-2)
+- **sm**: Small button (h-9 px-3)
+- **lg**: Large button (h-11 px-8)
+- **icon**: Square button for icons (h-10 w-10)
+
+## Accessibility
+
+The Button component includes:
+
+- Proper ARIA attributes
+- Keyboard navigation support
+- Focus management
+- Screen reader announcements
+- Disabled state handling
+
+## Dependencies
+
+This component depends on:
+
+- `@radix-ui/react-slot` - For the `asChild` prop functionality
+- `class-variance-authority` - For variant-based styling
+- `clsx` - For conditional class names
+- `tailwind-merge` - For merging Tailwind classes
