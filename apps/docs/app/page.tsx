@@ -47,9 +47,9 @@ export default function HomePage() {
                 <span className="font-bold text-xl bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
                   Harukit UI
                 </span>
-                <span className="text-xs text-gray-500 font-medium">
+                {/* <span className="text-xs text-gray-500 font-medium">
                   React Components
-                </span>
+                </span> */}
               </div>
             </div>
 
