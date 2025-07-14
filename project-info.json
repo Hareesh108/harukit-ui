@@ -1,0 +1,22 @@
+{
+    "id": 1,
+    "name": "Harukit UI",
+    "image": "/assets/project/harukit-ui.png",
+    "description": "A modern, accessible React component library built with TypeScript and Tailwind CSS. Features a comprehensive CLI tool for component generation, interactive documentation, and a monorepo architecture for efficient development.",
+    "link": "https://github.com/Hareesh108/harukit-ui",
+    "live": "https://harukit-ui-docs.vercel.app",
+    "bullets": [
+        "Modern React 19 components with full TypeScript support",
+        "CLI tool for automated component generation",
+        "Interactive documentation with Fumadocs and MDX",
+        "Accessibility-first design following WCAG guidelines"
+    ],
+    "tech": [
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Next.js",
+        "Turborepo",
+        "pnpm"
+    ]
+}
