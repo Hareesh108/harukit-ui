@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Package as LucidePackage } from "lucide-react";
 
 export default function HomePage() {
   const [copied, setCopied] = useState(false);
@@ -55,15 +56,12 @@ export default function HomePage() {
               <div className="flex flex-col">
                 <span className="font-bold text-xl bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
                   Harukit UI
-                </span>
-                {/* <span className="text-xs text-gray-500 font-medium">
-                  React Components
-                </span> */}
+                </span>{" "}
               </div>
             </div>
 
             {/* Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav className="hidden md:flex items-center space-x-6">
               <Link
                 href="/docs"
                 className="flex items-center px-4 py-3 text-gray-700 hover:text-yellow-600 hover:bg-yellow-50/50 rounded-lg font-medium transition-all duration-200 group"
@@ -82,6 +80,17 @@ export default function HomePage() {
                   />
                 </svg>
                 Docs
+              </Link>
+
+              <Link
+                href="https://www.npmjs.com/package/harukit"
+                target="_blank"
+                className="flex items-center px-2 py-3 text-gray-700 hover:text-yellow-600 hover:bg-yellow-50/50 rounded-lg font-medium transition-all duration-200 group"
+              >
+                <span className="mr-3 group-hover:text-yellow-500 transition-colors duration-200">
+                  <LucidePackage className="w-5 h-5" />
+                </span>{" "}
+                NPM
               </Link>
 
               {/* <Link
