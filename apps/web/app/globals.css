@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -17,8 +19,7 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  @apply text-foreground bg-background;
 }
 
 * {
