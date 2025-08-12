@@ -49,6 +49,8 @@ export default function Home() {
         </Button>
       </section>
 
+      <button className="text-red p-10">Hello</button>
+
       {/* Footer */}
       <Footer />
     </div>
