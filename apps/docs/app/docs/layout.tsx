@@ -7,7 +7,7 @@ import { RootProvider } from "fumadocs-ui/provider";
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="">
-      <RootProvider dir="rtl">
+      <RootProvider dir="ltr">
         <DocsLayout tree={source.pageTree} {...baseOptions}>
           {children}
         </DocsLayout>
