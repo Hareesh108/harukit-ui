@@ -5,28 +5,38 @@ description: "A flexible input component with built-in styling and accessibility
 
 ## Installation
 
-### npm
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
-```bash
-npx harukit@latest add input
-```
+<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
+  <Tab value="bun">
 
-### pnpm
+  ```bash
+  bunx --bun harukit@latest add input
+  ```
 
-```bash
-pnpm dlx harukit@latest add input
-```
+  </Tab>
+  <Tab value="npm">
 
-### yarn
+  ```bash
+  npx harukit@latest add input
+  ```
 
-```bash
-yarn harukit@latest add input
-```
+  </Tab>
+  <Tab value="pnpm">
 
-### bun
+  ```bash
+  pnpm dlx harukit@latest add input
+  ```
 
-```bash
-bunx --bun harukit@latest add input
+  </Tab>
+  <Tab value="yarn">
+
+  ```bash
+  yarn harukit@latest add input
+  ```
+
+  </Tab>
+</Tabs>
 ```
 
 ## Usage

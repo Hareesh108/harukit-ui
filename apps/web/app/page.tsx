@@ -2,9 +2,9 @@
 
 import { Button } from "@repo/ui/button";
 import { Rocket, Code, Zap } from "lucide-react";
-import { Hero } from "./components/hero";
-import { FeatureCard } from "./components/feature-card";
-import { Footer } from "./components/footer";
+import { Hero } from "../components/hero";
+import { FeatureCard } from "../components/feature-card";
+import { Footer } from "../components/footer";
 
 export default function Home() {
   return (
@@ -48,8 +48,6 @@ export default function Home() {
           Get Started
         </Button>
       </section>
-
-      <button className="text-red p-10">Hello</button>
 
       {/* Footer */}
       <Footer />
