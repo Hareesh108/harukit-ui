@@ -2,9 +2,9 @@
 
 import { Button } from "@repo/ui/button";
 import { Rocket, Code, Zap } from "lucide-react";
-import { Hero } from "./components/ui/hero";
-import { FeatureCard } from "./components/ui/feature-card";
-import { Footer } from "./components/ui/footer";
+import { Hero } from "./components/hero";
+import { FeatureCard } from "./components/feature-card";
+import { Footer } from "./components/footer";
 
 export default function Home() {
   return (
