@@ -5,25 +5,39 @@ description: "A form label component with accessibility features."
 
 ## Installation
 
-### npm
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+import { Input } from "@/components/ui/input";
+
+<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
+  <Tab value="bun">
+
+```bash
+bunx --bun harukit@latest add label
+```
+
+  </Tab>
+  <Tab value="npm">
 
 ```bash
 npx harukit@latest add label
 ```
 
-### pnpm
+  </Tab>
+  <Tab value="pnpm">
 
 ```bash
 pnpm dlx harukit@latest add label
 ```
 
-### yarn
+  </Tab>
+  <Tab value="yarn">
 
 ```bash
-yarn harukit@latest add label
+yarn harukit@latest add input
 ```
 
-### bun
+  </Tab>
+</Tabs>
 
 ```bash
 bunx --bun harukit@latest add label
@@ -32,8 +46,8 @@ bunx --bun harukit@latest add label
 ## Usage
 
 ```tsx
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 export default function LabelDemo() {
   return (
@@ -41,7 +55,7 @@ export default function LabelDemo() {
       <Label htmlFor="email">Email</Label>
       <Input type="email" id="email" placeholder="Enter your email" />
     </div>
-  )
+  );
 }
 ```
 
@@ -50,8 +64,8 @@ export default function LabelDemo() {
 ### Basic Label
 
 ```tsx
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 export default function BasicLabel() {
   return (
@@ -59,15 +73,15 @@ export default function BasicLabel() {
       <Label htmlFor="name">Name</Label>
       <Input type="text" id="name" placeholder="Enter your name" />
     </div>
-  )
+  );
 }
 ```
 
 ### Label with Required Indicator
 
 ```tsx
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 export default function RequiredLabel() {
   return (
@@ -77,15 +91,15 @@ export default function RequiredLabel() {
       </Label>
       <Input type="email" id="email" placeholder="Enter your email" required />
     </div>
-  )
+  );
 }
 ```
 
 ### Label with Description
 
 ```tsx
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 export default function LabelWithDescription() {
   return (
@@ -98,15 +112,15 @@ export default function LabelWithDescription() {
       </div>
       <Input type="password" id="password" placeholder="Enter your password" />
     </div>
-  )
+  );
 }
 ```
 
 ### Multiple Labels
 
 ```tsx
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 export default function MultipleLabels() {
   return (
@@ -115,30 +129,30 @@ export default function MultipleLabels() {
         <Label htmlFor="firstName">First Name</Label>
         <Input id="firstName" placeholder="Enter your first name" />
       </div>
-      
+
       <div className="grid gap-1.5">
         <Label htmlFor="lastName">Last Name</Label>
         <Input id="lastName" placeholder="Enter your last name" />
       </div>
-      
+
       <div className="grid gap-1.5">
         <Label htmlFor="email">Email Address</Label>
         <Input type="email" id="email" placeholder="Enter your email" />
       </div>
-      
+
       <div className="grid gap-1.5">
         <Label htmlFor="phone">Phone Number</Label>
         <Input type="tel" id="phone" placeholder="Enter your phone number" />
       </div>
     </div>
-  )
+  );
 }
 ```
 
 ### Label with Checkbox
 
 ```tsx
-import { Label } from "@/components/ui/label"
+import { Label } from "@/components/ui/label";
 
 export default function LabelWithCheckbox() {
   return (
@@ -152,20 +166,20 @@ export default function LabelWithCheckbox() {
         I agree to the terms and conditions
       </Label>
     </div>
-  )
+  );
 }
 ```
 
 ### Label with Radio Buttons
 
 ```tsx
-import { Label } from "@/components/ui/label"
+import { Label } from "@/components/ui/label";
 
 export default function LabelWithRadio() {
   return (
     <div className="space-y-2">
       <Label className="text-base font-medium">Select your preference:</Label>
-      
+
       <div className="space-y-2">
         <div className="flex items-center space-x-2">
           <input
@@ -179,7 +193,7 @@ export default function LabelWithRadio() {
             Option 1
           </Label>
         </div>
-        
+
         <div className="flex items-center space-x-2">
           <input
             type="radio"
@@ -192,7 +206,7 @@ export default function LabelWithRadio() {
             Option 2
           </Label>
         </div>
-        
+
         <div className="flex items-center space-x-2">
           <input
             type="radio"
@@ -207,14 +221,14 @@ export default function LabelWithRadio() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 ```
 
 ### Label with Select
 
 ```tsx
-import { Label } from "@/components/ui/label"
+import { Label } from "@/components/ui/label";
 
 export default function LabelWithSelect() {
   return (
@@ -231,14 +245,14 @@ export default function LabelWithSelect() {
         <option value="au">Australia</option>
       </select>
     </div>
-  )
+  );
 }
 ```
 
 ### Label with Textarea
 
 ```tsx
-import { Label } from "@/components/ui/label"
+import { Label } from "@/components/ui/label";
 
 export default function LabelWithTextarea() {
   return (
@@ -250,28 +264,28 @@ export default function LabelWithTextarea() {
         className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
       />
     </div>
-  )
+  );
 }
 ```
 
 ### Custom Styled Label
 
 ```tsx
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 export default function CustomStyledLabel() {
   return (
     <div className="grid w-full max-w-sm items-center gap-1.5">
-      <Label 
-        htmlFor="custom" 
+      <Label
+        htmlFor="custom"
         className="text-lg font-semibold text-blue-600 dark:text-blue-400"
       >
         Custom Styled Label
       </Label>
       <Input id="custom" placeholder="Custom input" />
     </div>
-  )
+  );
 }
 ```
 
@@ -282,14 +296,14 @@ export default function CustomStyledLabel() {
 The main label component.
 
 ```tsx
-import { Label } from "@/components/ui/label"
+import { Label } from "@/components/ui/label";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `htmlFor` | `string` | - | The ID of the form control that the label is associated with. |
+| Prop      | Type      | Default | Description                                                                                          |
+| --------- | --------- | ------- | ---------------------------------------------------------------------------------------------------- |
+| `htmlFor` | `string`  | -       | The ID of the form control that the label is associated with.                                        |
 | `asChild` | `boolean` | `false` | Change the default rendered element for the one passed as a child, merging their props and behavior. |
 
 ### Label Variants
@@ -297,9 +311,9 @@ import { Label } from "@/components/ui/label"
 The Label component supports different styling variants through the `labelVariants` function:
 
 ```tsx
-import { labelVariants } from "@/components/ui/label"
+import { labelVariants } from "@/components/ui/label";
 
-const labelClasses = labelVariants()
+const labelClasses = labelVariants();
 ```
 
 ## Styling
