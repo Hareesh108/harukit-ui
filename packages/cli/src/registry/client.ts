@@ -1,78 +1,103 @@
-import { ComponentMeta, RegistryResponse } from "./types";
+import { ComponentMeta, RegistryResponse, ComponentFile } from "./types";
 
-// Local component data - no external registry needed
+// Helper: Convert GitHub "blob" URL → Raw URL
+function toRawGithubUrl(url: string) {
+  return url
+    .replace("https://github.com/", "https://raw.githubusercontent.com/")
+    .replace("/blob/", "/");
+}
+
+const githubBase =
+  "https://github.com/Hareesh108/harukit-ui/blob/main/apps/web/components/ui";
+
+function makeFile(name: string, type: ComponentFile["type"]): ComponentFile {
+  const blobUrl = `${githubBase}/${name}`;
+  return {
+    name,
+    content: "", // Leave empty, fetch on demand in CLI
+    path: toRawGithubUrl(blobUrl),
+    type,
+  };
+}
+
 const localComponents: ComponentMeta[] = [
   {
-    name: 'accordion',
-    description: 'Collapsible content sections',
-    category: 'Layout',
-    version: '0.1.0',
-    tags: ['layout', 'collapsible', 'accessible'],
-    dependencies: ['@radix-ui/react-accordion'],
+    name: "accordion",
+    description: "Collapsible content sections",
+    category: "Layout",
+    version: "0.1.0",
+    tags: ["layout", "collapsible", "accessible"],
+    dependencies: ["@radix-ui/react-accordion"],
     devDependencies: [],
-    files: [],
-    author: 'Harukit Team',
-    license: 'MIT',
+    files: [makeFile("accordion.tsx", "component")],
+    author: "Harukit Team",
+    license: "MIT",
+    repository: "https://github.com/Hareesh108/harukit-ui",
   },
   {
-    name: 'button',
-    description: 'Versatile button with multiple variants',
-    category: 'Form',
-    version: '0.1.0',
-    tags: ['form', 'interactive', 'accessible'],
-    dependencies: ['@radix-ui/react-slot', 'class-variance-authority'],
+    name: "button",
+    description: "Versatile button with multiple variants",
+    category: "Form",
+    version: "0.1.0",
+    tags: ["form", "interactive", "accessible"],
+    dependencies: ["class-variance-authority"],
     devDependencies: [],
-    files: [],
-    author: 'Harukit Team',
-    license: 'MIT',
+    files: [makeFile("button.tsx", "component")],
+    author: "Harukit Team",
+    license: "MIT",
+    repository: "https://github.com/Hareesh108/harukit-ui",
   },
   {
-    name: 'card',
-    description: 'Container for content with header, content, and footer',
-    category: 'Layout',
-    version: '0.1.0',
-    tags: ['layout', 'container', 'content'],
+    name: "card",
+    description: "Container for content with header, content, and footer",
+    category: "Layout",
+    version: "0.1.0",
+    tags: ["layout", "container", "content"],
     dependencies: [],
     devDependencies: [],
-    files: [],
-    author: 'Harukit Team',
-    license: 'MIT',
+    files: [makeFile("card.tsx", "component")],
+    author: "Harukit Team",
+    license: "MIT",
+    repository: "https://github.com/Hareesh108/harukit-ui",
   },
   {
-    name: 'input',
-    description: 'Form input field',
-    category: 'Form',
-    version: '0.1.0',
-    tags: ['form', 'input', 'accessible'],
+    name: "input",
+    description: "Form input field",
+    category: "Form",
+    version: "0.1.0",
+    tags: ["form", "input", "accessible"],
     dependencies: [],
     devDependencies: [],
-    files: [],
-    author: 'Harukit Team',
-    license: 'MIT',
+    files: [makeFile("input.tsx", "component")],
+    author: "Harukit Team",
+    license: "MIT",
+    repository: "https://github.com/Hareesh108/harukit-ui",
   },
   {
-    name: 'label',
-    description: 'Form label with accessibility features',
-    category: 'Form',
-    version: '0.1.0',
-    tags: ['form', 'label', 'accessible'],
-    dependencies: ['@radix-ui/react-label'],
+    name: "label",
+    description: "Form label with accessibility features",
+    category: "Form",
+    version: "0.1.0",
+    tags: ["form", "label", "accessible"],
+    dependencies: ["@radix-ui/react-label"],
     devDependencies: [],
-    files: [],
-    author: 'Harukit Team',
-    license: 'MIT',
+    files: [makeFile("label.tsx", "component")],
+    author: "Harukit Team",
+    license: "MIT",
+    repository: "https://github.com/Hareesh108/harukit-ui",
   },
   {
-    name: 'tooltip',
-    description: 'Hover tooltips',
-    category: 'Feedback',
-    version: '0.1.0',
-    tags: ['feedback', 'tooltip', 'accessible'],
-    dependencies: ['@radix-ui/react-tooltip'],
+    name: "tooltip",
+    description: "Hover tooltips",
+    category: "Feedback",
+    version: "0.1.0",
+    tags: ["feedback", "tooltip", "accessible"],
+    dependencies: ["@radix-ui/react-tooltip"],
     devDependencies: [],
-    files: [],
-    author: 'Harukit Team',
-    license: 'MIT',
+    files: [makeFile("tooltip.tsx", "component")],
+    author: "Harukit Team",
+    license: "MIT",
+    repository: "https://github.com/Hareesh108/harukit-ui",
   },
 ];
 
@@ -101,12 +126,14 @@ export class RegistryClient {
   async searchComponents(query: string): Promise<ComponentMeta[]> {
     const components = Array.from(this.cache.values());
     const searchTerm = query.toLowerCase();
-    
+
     return components.filter((component) => {
       return (
         component.name.toLowerCase().includes(searchTerm) ||
         component.description.toLowerCase().includes(searchTerm) ||
-        component.tags.some((tag: string) => tag.toLowerCase().includes(searchTerm)) ||
+        component.tags.some((tag: string) =>
+          tag.toLowerCase().includes(searchTerm)
+        ) ||
         component.category.toLowerCase().includes(searchTerm)
       );
     });
@@ -123,7 +150,10 @@ export class RegistryClient {
     return Array.from(categories).sort();
   }
 
-  async getRegistry(page: number = 1, limit: number = 20): Promise<RegistryResponse> {
+  async getRegistry(
+    page: number = 1,
+    limit: number = 20
+  ): Promise<RegistryResponse> {
     const components = Array.from(this.cache.values());
     const start = (page - 1) * limit;
     const end = start + limit;
@@ -136,4 +166,4 @@ export class RegistryClient {
       limit,
     };
   }
-} 
+}
