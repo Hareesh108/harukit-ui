@@ -6,6 +6,13 @@ description: "A flexible card component with header, content, and footer section
 ## Installation
 
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 
 <Tabs items={["bun", "npm", "pnpm", "yarn"]}>
   <Tab value="bun">
@@ -37,52 +44,11 @@ yarn harukit@latest add card
 
   </Tab>
 </Tabs>
-## Usage
 
-```tsx
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+## Example
 
-export default function CardDemo() {
-  return (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle>Create project</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>Card Content</p>
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <button className="text-sm text-gray-500">Cancel</button>
-        <button className="text-sm">Deploy</button>
-      </CardFooter>
-    </Card>
-  );
-}
-```
-
-## Examples
-
-### Basic Card
-
-```tsx
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-
-export default function BasicCard() {
-  return (
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
     <Card>
       <CardHeader>
         <CardTitle>Card Title</CardTitle>
@@ -92,161 +58,34 @@ export default function BasicCard() {
         <p>This is the main content of the card.</p>
       </CardContent>
     </Card>
-  );
-}
-```
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import {
+      Card,
+      CardContent,
+      CardHeader,
+      CardTitle,
+      CardDescription,
+    } from "@/components/ui/card";
 
-### Card with Footer
+    export function BasicCard() {
+      return (
+        <Card>
+          <CardHeader>
+            <CardTitle>Card Title</CardTitle>
+            <CardDescription>Card Description</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p>This is the main content of the card.</p>
+          </CardContent>
+        </Card>
+      );
+    }
+    ```
 
-```tsx
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-
-export default function CardWithFooter() {
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Account Settings</CardTitle>
-        <CardDescription>
-          Manage your account settings and preferences.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>Your account settings content goes here.</p>
-      </CardContent>
-      <CardFooter>
-        <Button>Save Changes</Button>
-      </CardFooter>
-    </Card>
-  );
-}
-```
-
-### Card Grid
-
-```tsx
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-
-export default function CardGrid() {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <Card>
-        <CardHeader>
-          <CardTitle>Analytics</CardTitle>
-          <CardDescription>View your analytics data</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p>Analytics content</p>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Reports</CardTitle>
-          <CardDescription>Generate detailed reports</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p>Reports content</p>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Settings</CardTitle>
-          <CardDescription>Manage your preferences</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p>Settings content</p>
-        </CardContent>
-      </Card>
-    </div>
-  );
-}
-```
-
-### Interactive Card
-
-```tsx
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-
-export default function InteractiveCard() {
-  return (
-    <Card className="cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1">
-      <CardHeader>
-        <CardTitle>Interactive Card</CardTitle>
-        <CardDescription>
-          Hover over this card to see the effect
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>This card has hover effects and can be clicked.</p>
-      </CardContent>
-    </Card>
-  );
-}
-```
-
-### Card with Image
-
-```tsx
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-
-export default function CardWithImage() {
-  return (
-    <Card className="overflow-hidden">
-      <div className="aspect-video bg-gradient-to-br from-blue-500 to-purple-600" />
-      <CardHeader>
-        <CardTitle>Card with Image</CardTitle>
-        <CardDescription>This card has an image placeholder</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>Content below the image.</p>
-      </CardContent>
-    </Card>
-  );
-}
-```
-
-### Minimal Card
-
-```tsx
-import { Card, CardContent } from "@/components/ui/card";
-
-export default function MinimalCard() {
-  return (
-    <Card>
-      <CardContent className="p-6">
-        <p>This is a minimal card with just content.</p>
-      </CardContent>
-    </Card>
-  );
-}
-```
+  </Tab>
+</Tabs>
 
 ## API Reference
 
@@ -348,19 +187,3 @@ You can customize the appearance by:
 1. **Overriding classes**: Add your own Tailwind classes
 2. **CSS variables**: Modify the card color variables
 3. **Custom components**: Create your own card variants
-
-## Accessibility
-
-The Card component includes:
-
-- Semantic HTML structure
-- Proper heading hierarchy
-- Screen reader support
-- Focus management
-
-## Dependencies
-
-This component depends on:
-
-- `clsx` - For conditional class names
-- `tailwind-merge` - For merging Tailwind classes

@@ -6,46 +6,43 @@ description: "A versatile button component with multiple variants and sizes."
 ## Installation
 
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 <Tabs items={["bun", "npm", "pnpm", "yarn"]}>
   <Tab value="bun">
 
 ```bash
-bunx --bun harukit@latest add input
+bunx --bun harukit@latest add button
 ```
 
   </Tab>
   <Tab value="npm">
 
 ```bash
-npx harukit@latest add input
+npx harukit@latest add button
 ```
 
   </Tab>
   <Tab value="pnpm">
 
 ```bash
-pnpm dlx harukit@latest add input
+pnpm dlx harukit@latest add button
 ```
 
   </Tab>
   <Tab value="yarn">
 
 ```bash
-yarn harukit@latest add input
+yarn harukit@latest add button
 ```
 
   </Tab>
 </Tabs>
 
-## Usage
+## Example
 
-```tsx
-import { Button } from "@/components/ui/button";
-
-export default function ButtonDemo() {
-  return (
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
     <div className="flex flex-wrap gap-4">
       <Button>Default</Button>
       <Button variant="destructive">Delete</Button>
@@ -54,145 +51,40 @@ export default function ButtonDemo() {
       <Button variant="ghost">Ghost</Button>
       <Button variant="link">Link</Button>
     </div>
-  );
-}
-```
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { Button } from "@/components/ui/button"
 
-## Examples
+    export function ButtonDemo() {
+      return (
+        <div className="flex flex-wrap gap-4">
+          <Button>Default</Button>
+          <Button variant="destructive">Delete</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="ghost">Ghost</Button>
+          <Button variant="link">Link</Button>
+        </div>
+      )
+    }
+    ```
 
-### Button Variants
+  </Tab>
+</Tabs>
 
-```tsx
-import { Button } from "@/components/ui/button";
+## Usage
 
-export default function ButtonVariants() {
-  return (
-    <div className="flex flex-wrap gap-4">
-      <Button variant="default">Default</Button>
-      <Button variant="destructive">Destructive</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="link">Link</Button>
-    </div>
-  );
-}
-```
-
-### Button Sizes
-
-```tsx
-import { Button } from "@/components/ui/button";
-
-export default function ButtonSizes() {
-  return (
-    <div className="flex items-center gap-4">
-      <Button size="sm">Small</Button>
-      <Button size="default">Default</Button>
-      <Button size="lg">Large</Button>
-      <Button size="icon">🚀</Button>
-    </div>
-  );
-}
-```
-
-### Button with Icons
+### Import
 
 ```tsx
 import { Button } from "@/components/ui/button";
-import { Download, Heart, Share2 } from "lucide-react";
-
-export default function ButtonWithIcons() {
-  return (
-    <div className="flex flex-wrap gap-4">
-      <Button>
-        <Download className="mr-2 h-4 w-4" />
-        Download
-      </Button>
-      <Button variant="outline">
-        <Heart className="mr-2 h-4 w-4" />
-        Like
-      </Button>
-      <Button variant="ghost" size="icon">
-        <Share2 className="h-4 w-4" />
-      </Button>
-    </div>
-  );
-}
 ```
 
-### Button as Child
+### Code
 
 ```tsx
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-
-export default function ButtonAsChild() {
-  return (
-    <div className="flex gap-4">
-      <Button asChild>
-        <Link href="/dashboard">Go to Dashboard</Link>
-      </Button>
-      <Button asChild variant="outline">
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-          Visit GitHub
-        </a>
-      </Button>
-    </div>
-  );
-}
-```
-
-### Loading State
-
-```tsx
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-
-export default function LoadingButton() {
-  return (
-    <div className="flex gap-4">
-      <Button disabled>
-        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-        Loading...
-      </Button>
-      <Button variant="outline" disabled>
-        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-        Processing
-      </Button>
-    </div>
-  );
-}
-```
-
-### Form Buttons
-
-```tsx
-import { Button } from "@/components/ui/button";
-
-export default function FormButtons() {
-  return (
-    <form className="space-y-4">
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium">
-          Email
-        </label>
-        <input
-          id="email"
-          type="email"
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
-          placeholder="Enter your email"
-        />
-      </div>
-      <div className="flex gap-2">
-        <Button type="submit">Submit</Button>
-        <Button type="button" variant="outline">
-          Cancel
-        </Button>
-      </div>
-    </form>
-  );
-}
+<Button>Click me</Button>
 ```
 
 ## API Reference

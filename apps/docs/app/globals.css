@@ -1,9 +1,63 @@
 @import "tailwindcss";
+@import "fumadocs-ui/css/dusk.css";
+@import "fumadocs-ui/css/preset.css";
 
-@import 'fumadocs-ui/css/dusk.css';
-@import 'fumadocs-ui/css/preset.css';
-
-:root {
+/* Layout width */
+/* :root {
   --fd-layout-width: 1400px;
+} */
+
+/* Light Theme */
+:root {
+    --fd-layout-width: 1400px;
+
+  --background: 0 0% 100%;
+  --foreground: 20 14.3% 4.1%;
+
+  /* Yellow brand */
+  --primary: 50 98% 50%; /* Tailwind yellow-400 */
+  --primary-foreground: 20 14.3% 4.1%;
+
+  --secondary: 240 5% 96%;
+  --secondary-foreground: 240 5% 20%;
+
+  --muted: 240 5% 96%;
+  --muted-foreground: 240 5% 40%;
+
+  --accent: 50 98% 50%;
+  --accent-foreground: 20 14.3% 4.1%;
+
+  --destructive: 0 85% 60%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 240 5% 90%;
+  --input: 240 5% 90%;
+  --ring: 50 98% 50%;
+
+  --radius: 0.5rem;
 }
 
+/* Dark Theme */
+.dark {
+  --background: 20 14.3% 4.1%;
+  --foreground: 0 0% 98%;
+
+  --primary: 50 98% 50%; /* stays yellow in dark mode */
+  --primary-foreground: 20 14.3% 4.1%;
+
+  --secondary: 240 4% 16%;
+  --secondary-foreground: 0 0% 98%;
+
+  --muted: 240 4% 16%;
+  --muted-foreground: 240 5% 64%;
+
+  --accent: 50 98% 50%;
+  --accent-foreground: 20 14.3% 4.1%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 240 4% 16%;
+  --input: 240 4% 16%;
+  --ring: 50 98% 50%;
+}
