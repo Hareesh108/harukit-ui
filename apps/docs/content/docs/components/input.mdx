@@ -6,7 +6,7 @@ description: "A flexible input component with built-in styling and accessibility
 ## Installation
 
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 <Tabs items={["bun", "npm", "pnpm", "yarn"]}>
   <Tab value="bun">
@@ -43,18 +43,33 @@ yarn harukit@latest add input
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <div className="grid w-full max-w-sm items-center gap-1.5">
-      <label htmlFor="email">Email</label>
-      <Input type="email" id="email" placeholder="Enter your email" />
+    <div className="flex flex-wrap gap-4">
+      <Button>Default</Button>
+      <Button variant="destructive">Delete</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
     </div>
   </Tab>
   <Tab value="Code">
-    ```tsx 
-    import { Input } from "@/components/ui/input"
-    export function InputDemo() {
-      return <Input type="email" placeholder="Email" />
+    ```tsx
+    import { Button } from "@/components/ui/button"
+
+    export function ButtonDemo() {
+      return (
+        <div className="flex flex-wrap gap-4">
+          <Button>Default</Button>
+          <Button variant="destructive">Delete</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="ghost">Ghost</Button>
+          <Button variant="link">Link</Button>
+        </div>
+      )
     }
     ```
+
   </Tab>
 </Tabs>
 

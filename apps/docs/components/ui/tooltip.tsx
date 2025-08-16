@@ -1,60 +1,124 @@
 "use client";
 
 import * as React from "react";
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { cn } from "@/lib/utils";
 
-function TooltipProvider({
-  delayDuration = 0,
-  ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Provider>) {
-  return (
-    <TooltipPrimitive.Provider
-      data-slot="tooltip-provider"
-      delayDuration={delayDuration}
-      {...props}
-    />
+interface TooltipContextProps {
+  triggerRef: React.RefObject<HTMLElement | null>;
+  visible: boolean;
+  setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const TooltipContext = React.createContext<TooltipContextProps | null>(null);
+
+// ---------------- Provider ----------------
+const TooltipProvider = ({ children }: { children: React.ReactNode }) => (
+  <>{children}</>
+);
+
+const Tooltip = ({ children }: { children: React.ReactNode }) => {
+  const [visible, setVisible] = React.useState(false);
+  const triggerRef = React.useRef<HTMLElement | null>(null);
+
+  const value = React.useMemo(
+    () => ({ triggerRef, visible, setVisible }),
+    [visible]
   );
-}
 
-function Tooltip({
-  ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Root>) {
   return (
-    <TooltipProvider>
-      <TooltipPrimitive.Root data-slot="tooltip" {...props} />
-    </TooltipProvider>
+    <TooltipContext.Provider value={value}>
+      <div className="relative inline-block">{children}</div>
+    </TooltipContext.Provider>
   );
+};
+
+interface TooltipTriggerProps extends React.HTMLAttributes<HTMLSpanElement> {
+  children: React.ReactNode;
 }
 
-function TooltipTrigger({
-  ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Trigger>) {
-  return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
+const TooltipTrigger = React.forwardRef<HTMLSpanElement, TooltipTriggerProps>(
+  ({ children, ...props }, ref) => {
+    const context = React.useContext(TooltipContext);
+    if (!context) throw new Error("TooltipTrigger must be inside Tooltip");
+
+    const { triggerRef, setVisible } = context;
+
+    return (
+      <span
+        ref={(node) => {
+          triggerRef.current = node as HTMLElement;
+          if (typeof ref === "function") ref(node as HTMLSpanElement);
+          else if (ref)
+            (ref as React.MutableRefObject<HTMLSpanElement | null>).current =
+              node;
+        }}
+        onMouseEnter={() => setVisible(true)}
+        onMouseLeave={() => setVisible(false)}
+        onFocus={() => setVisible(true)}
+        onBlur={() => setVisible(false)}
+        tabIndex={0} // ✅ keyboard accessibility
+        data-tooltip-trigger=""
+        {...props}
+      >
+        {children}
+      </span>
+    );
+  }
+);
+TooltipTrigger.displayName = "TooltipTrigger";
+
+interface TooltipContentProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "content"> {
+  children: React.ReactNode;
+  side?: "top" | "bottom" | "left" | "right";
+  sideOffset?: number;
 }
 
-function TooltipContent({
-  className,
-  sideOffset = 0,
-  children,
-  ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Content>) {
-  return (
-    <TooltipPrimitive.Portal>
-      <TooltipPrimitive.Content
-        data-slot="tooltip-content"
-        sideOffset={sideOffset}
+const TooltipContent = React.forwardRef<HTMLDivElement, TooltipContentProps>(
+  ({ children, side = "top", sideOffset = 6, className, ...props }, ref) => {
+    const context = React.useContext(TooltipContext);
+    if (!context) throw new Error("TooltipContent must be inside Tooltip");
+
+    const { triggerRef, visible } = context;
+    if (!visible || !triggerRef.current) return null;
+
+    const sideClasses = {
+      top: "bottom-full left-1/2 -translate-x-1/2",
+      bottom: "top-full left-1/2 -translate-x-1/2",
+      left: "right-full top-1/2 -translate-y-1/2",
+      right: "left-full top-1/2 -translate-y-1/2",
+    }[side];
+
+    const offsetStyle =
+      side === "top"
+        ? { marginBottom: sideOffset }
+        : side === "bottom"
+          ? { marginTop: sideOffset }
+          : side === "left"
+            ? { marginRight: sideOffset }
+            : { marginLeft: sideOffset };
+
+    return (
+      <div
+        ref={ref}
+        role="tooltip"
+        style={offsetStyle}
         className={cn(
-          "bg-primary text-primary-foreground animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 w-fit origin-(--radix-tooltip-content-transform-origin) rounded-md px-3 py-1.5 text-xs text-balance",
+          "absolute z-50 whitespace-nowrap rounded-lg border bg-gray-900 text-white text-xs px-3 py-1.5 shadow-lg",
+          visible
+            ? "opacity-100 scale-100 transition-all duration-150"
+            : "opacity-0 scale-95",
+          sideClasses,
           className
         )}
         {...props}
       >
         {children}
-        <TooltipPrimitive.Arrow className="bg-primary fill-primary z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]" />
-      </TooltipPrimitive.Content>
-    </TooltipPrimitive.Portal>
-  );
-}
+      </div>
+    );
+  }
+);
+
+TooltipContent.displayName = "TooltipContent";
 
 export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider };

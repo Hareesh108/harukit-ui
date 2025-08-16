@@ -6,33 +6,34 @@ description: "A versatile button component with multiple variants and sizes."
 ## Installation
 
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+import { Input } from "@/components/ui/input";
 
 <Tabs items={["bun", "npm", "pnpm", "yarn"]}>
   <Tab value="bun">
 
 ```bash
-bunx --bun harukit@latest add button
+bunx --bun harukit@latest add input
 ```
 
   </Tab>
   <Tab value="npm">
 
 ```bash
-npx harukit@latest add button
+npx harukit@latest add input
 ```
 
   </Tab>
   <Tab value="pnpm">
 
 ```bash
-pnpm dlx harukit@latest add button
+pnpm dlx harukit@latest add input
 ```
 
   </Tab>
   <Tab value="yarn">
 
 ```bash
-yarn harukit@latest add button
+yarn harukit@latest add input
 ```
 
   </Tab>
@@ -228,22 +229,3 @@ import { Button } from "@/components/ui/button";
 - **sm**: Small button (h-9 px-3)
 - **lg**: Large button (h-11 px-8)
 - **icon**: Square button for icons (h-10 w-10)
-
-## Accessibility
-
-The Button component includes:
-
-- Proper ARIA attributes
-- Keyboard navigation support
-- Focus management
-- Screen reader announcements
-- Disabled state handling
-
-## Dependencies
-
-This component depends on:
-
-- `@radix-ui/react-slot` - For the `asChild` prop functionality
-- `class-variance-authority` - For variant-based styling
-- `clsx` - For conditional class names
-- `tailwind-merge` - For merging Tailwind classes
