@@ -1,6 +1,6 @@
 {
     "name": "harukit",
-    "version": "1.0.12",
+    "version": "1.1.0",
     "description": "CLI tool for Harukit UI components",
     "main": "dist/index.js",
     "bin": {
@@ -48,6 +48,14 @@
         "tsup": "^8.0.1",
         "typescript": "^5.8.3"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Hareesh108/harukit-ui.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Hareesh108/harukit-ui/issues"
+    },
+    "homepage": "https://harukit-ui-docs.vercel.app",
     "engines": {
         "node": ">=18.0.0"
     }
