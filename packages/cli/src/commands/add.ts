@@ -6,6 +6,7 @@ import { ConfigManager } from '../config/manager'
 import { getTemplatePath } from '../utils/template-resolver'
 import { PackageManager } from '../utils/package-manager'
 import { RegistryClient } from '../registry/client'
+import fetch from "node-fetch" // add this at top of file
 
 export async function add(components: string[], options: any) {
   const spinner = ora('Adding components...').start()
@@ -97,23 +98,47 @@ export async function add(components: string[], options: any) {
     }
 
     // Copy components
-    for (const componentMeta of componentMetas) {
-      const templatePath = getTemplatePath(`components/${componentMeta.name}.tsx`)
-      const destPath = path.join(componentsDir, `${componentMeta.name}.tsx`)
+// Copy components from GitHub instead of local templates
+for (const componentMeta of componentMetas) {
+  for (const file of componentMeta.files) {
+    // Decide where to put it
+    const destDir = file.type === "utility" ? libDir : componentsDir
+    const destPath = path.join(destDir, file.name)
 
-      if (await fs.pathExists(destPath) && !options.overwrite) {
-        console.log(chalk.yellow(`⚠️  ${componentMeta.name}.tsx already exists. Use --overwrite to replace.`))
-        continue
-      }
-
-      await fs.copy(templatePath, destPath)
-      console.log(chalk.green(`✅ Added ${componentMeta.name}.tsx`))
-      
-      // Show dependencies for this component
-      if (componentMeta.dependencies.length > 0) {
-        console.log(chalk.blue(`   Dependencies: ${componentMeta.dependencies.join(', ')}`))
-      }
+    if (await fs.pathExists(destPath) && !options.overwrite) {
+      console.log(
+        chalk.yellow(`⚠️  ${file.name} already exists. Use --overwrite to replace.`)
+      )
+      continue
     }
+
+    try {
+      spinner.text = `Downloading ${file.name}...`
+      const res = await fetch(file.path)
+      if (!res.ok) {
+        throw new Error(`Failed to fetch ${file.path}: ${res.statusText}`)
+      }
+      const content = await res.text()
+      await fs.outputFile(destPath, content)
+      console.log(chalk.green(`✅ Added ${file.name}`))
+    } catch (err) {
+      console.log(chalk.red(`❌ Failed to add ${file.name}: ${getErrorMessage(err)}`))
+    }
+  }
+
+  // Show dependencies for this component
+  if (componentMeta.dependencies.length > 0) {
+    console.log(
+      chalk.blue(`   Dependencies: ${componentMeta.dependencies.join(", ")}`)
+    )
+  }
+}
+
+function getErrorMessage(err: unknown): string {
+  if (err instanceof Error) return err.message;
+  return String(err);
+}
+
 
     // Ensure utils file exists
     const utilsTemplate = getTemplatePath('lib/utils.ts')

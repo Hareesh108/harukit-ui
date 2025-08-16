@@ -10,14 +10,16 @@ function toRawGithubUrl(url: string) {
 const githubBase =
   "https://github.com/Hareesh108/harukit-ui/blob/main/apps/web/components/ui";
 
-function makeFile(name: string, type: ComponentFile["type"]): ComponentFile {
-  const blobUrl = `${githubBase}/${name}`;
-  return {
-    name,
-    content: "", // Leave empty, fetch on demand in CLI
-    path: toRawGithubUrl(blobUrl),
-    type,
-  };
+  
+  function makeFile(name: string, type: ComponentFile["type"]): ComponentFile {
+    const blobUrl = `${githubBase}/${name}`;
+    console.log("url",blobUrl);
+    return {
+      name,
+      content: "", // Leave empty, fetch on demand in CLI
+      path: toRawGithubUrl(blobUrl),
+      type,
+    };
 }
 
 const localComponents: ComponentMeta[] = [
