@@ -1,4 +1,12 @@
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -10,7 +18,7 @@ import {
 
 export default function page() {
   return (
-    <div className="flex flex-col gap-6 items-center justify-center">
+    <div className="flex flex-col gap-6 items-center h-full scroll-smooth overflow-y-auto justify-center">
       <Button variant="outline">Hover me</Button>
       <div className="flex flex-col gap-3">
         <Label htmlFor="name">Name</Label>
@@ -38,6 +46,22 @@ export default function page() {
           </Tooltip>
         </div>
       </TooltipProvider>
+
+      <Card className="w-[350px]">
+        <CardHeader>
+          <CardTitle>Jane Doe</CardTitle>
+          <CardDescription>Frontend Developer @ TechCorp</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-muted-foreground">
+            Passionate about building accessible and beautiful web experiences.
+            Loves React, Tailwind, and everything UI.
+          </p>
+        </CardContent>
+        <CardFooter>
+          <Button className="ml-auto">Follow</Button>
+        </CardFooter>
+      </Card>
     </div>
   );
 }
