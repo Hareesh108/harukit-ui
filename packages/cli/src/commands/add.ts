@@ -4,7 +4,6 @@ import path from "path";
 import chalk from "chalk";
 import ora from "ora";
 import { ConfigManager } from "../config/manager";
-import { getTemplatePath } from "../utils/template-resolver";
 import { PackageManager } from "../utils/package-manager";
 import { RegistryClient } from "../registry/client";
 import { getRemoteUtilsFile } from "../utils/get-utils-path";
