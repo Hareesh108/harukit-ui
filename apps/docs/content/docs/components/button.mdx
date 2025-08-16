@@ -5,34 +5,43 @@ description: "A versatile button component with multiple variants and sizes."
 
 ## Installation
 
-### npm
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
-```bash
-npx harukit@latest add button
-```
-
-### pnpm
-
-```bash
-pnpm dlx harukit@latest add button
-```
-
-### yarn
-
-```bash
-yarn harukit@latest add button
-```
-
-### bun
+<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
+  <Tab value="bun">
 
 ```bash
 bunx --bun harukit@latest add button
 ```
 
+  </Tab>
+  <Tab value="npm">
+
+```bash
+npx harukit@latest add button
+```
+
+  </Tab>
+  <Tab value="pnpm">
+
+```bash
+pnpm dlx harukit@latest add button
+```
+
+  </Tab>
+  <Tab value="yarn">
+
+```bash
+yarn harukit@latest add button
+```
+
+  </Tab>
+</Tabs>
+
 ## Usage
 
 ```tsx
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 export default function ButtonDemo() {
   return (
@@ -44,7 +53,7 @@ export default function ButtonDemo() {
       <Button variant="ghost">Ghost</Button>
       <Button variant="link">Link</Button>
     </div>
-  )
+  );
 }
 ```
 
@@ -53,7 +62,7 @@ export default function ButtonDemo() {
 ### Button Variants
 
 ```tsx
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 export default function ButtonVariants() {
   return (
@@ -65,14 +74,14 @@ export default function ButtonVariants() {
       <Button variant="ghost">Ghost</Button>
       <Button variant="link">Link</Button>
     </div>
-  )
+  );
 }
 ```
 
 ### Button Sizes
 
 ```tsx
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 export default function ButtonSizes() {
   return (
@@ -82,15 +91,15 @@ export default function ButtonSizes() {
       <Button size="lg">Large</Button>
       <Button size="icon">🚀</Button>
     </div>
-  )
+  );
 }
 ```
 
 ### Button with Icons
 
 ```tsx
-import { Button } from "@/components/ui/button"
-import { Download, Heart, Share2 } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { Download, Heart, Share2 } from "lucide-react";
 
 export default function ButtonWithIcons() {
   return (
@@ -107,15 +116,15 @@ export default function ButtonWithIcons() {
         <Share2 className="h-4 w-4" />
       </Button>
     </div>
-  )
+  );
 }
 ```
 
 ### Button as Child
 
 ```tsx
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function ButtonAsChild() {
   return (
@@ -129,15 +138,15 @@ export default function ButtonAsChild() {
         </a>
       </Button>
     </div>
-  )
+  );
 }
 ```
 
 ### Loading State
 
 ```tsx
-import { Button } from "@/components/ui/button"
-import { Loader2 } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 
 export default function LoadingButton() {
   return (
@@ -151,14 +160,14 @@ export default function LoadingButton() {
         Processing
       </Button>
     </div>
-  )
+  );
 }
 ```
 
 ### Form Buttons
 
 ```tsx
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 export default function FormButtons() {
   return (
@@ -181,7 +190,7 @@ export default function FormButtons() {
         </Button>
       </div>
     </form>
-  )
+  );
 }
 ```
 
@@ -192,17 +201,17 @@ export default function FormButtons() {
 The main button component.
 
 ```tsx
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link"` | `"default"` | The visual style of the button. |
-| `size` | `"default" \| "sm" \| "lg" \| "icon"` | `"default"` | The size of the button. |
-| `asChild` | `boolean` | `false` | Change the default rendered element for the one passed as a child, merging their props and behavior. |
-| `disabled` | `boolean` | `false` | When `true`, prevents the user from interacting with the button. |
+| Prop       | Type                                                                          | Default     | Description                                                                                          |
+| ---------- | ----------------------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------- |
+| `variant`  | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link"` | `"default"` | The visual style of the button.                                                                      |
+| `size`     | `"default" \| "sm" \| "lg" \| "icon"`                                         | `"default"` | The size of the button.                                                                              |
+| `asChild`  | `boolean`                                                                     | `false`     | Change the default rendered element for the one passed as a child, merging their props and behavior. |
+| `disabled` | `boolean`                                                                     | `false`     | When `true`, prevents the user from interacting with the button.                                     |
 
 ### Variants
 

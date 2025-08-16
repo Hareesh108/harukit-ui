@@ -5,30 +5,38 @@ description: "A flexible card component with header, content, and footer section
 
 ## Installation
 
-### npm
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
-```bash
-npx harukit@latest add card
-```
-
-### pnpm
-
-```bash
-pnpm dlx harukit@latest add card
-```
-
-### yarn
-
-```bash
-yarn harukit@latest add card
-```
-
-### bun
+<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
+  <Tab value="bun">
 
 ```bash
 bunx --bun harukit@latest add card
 ```
 
+  </Tab>
+  <Tab value="npm">
+
+```bash
+npx harukit@latest add card
+```
+
+  </Tab>
+  <Tab value="pnpm">
+
+```bash
+pnpm dlx harukit@latest add card
+```
+
+  </Tab>
+  <Tab value="yarn">
+
+```bash
+yarn harukit@latest add card
+```
+
+  </Tab>
+</Tabs>
 ## Usage
 
 ```tsx
@@ -39,7 +47,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
 export default function CardDemo() {
   return (
@@ -56,7 +64,7 @@ export default function CardDemo() {
         <button className="text-sm">Deploy</button>
       </CardFooter>
     </Card>
-  )
+  );
 }
 ```
 
@@ -71,7 +79,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
 export default function BasicCard() {
   return (
@@ -84,7 +92,7 @@ export default function BasicCard() {
         <p>This is the main content of the card.</p>
       </CardContent>
     </Card>
-  )
+  );
 }
 ```
 
@@ -98,8 +106,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function CardWithFooter() {
   return (
@@ -117,7 +125,7 @@ export default function CardWithFooter() {
         <Button>Save Changes</Button>
       </CardFooter>
     </Card>
-  )
+  );
 }
 ```
 
@@ -130,7 +138,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
 export default function CardGrid() {
   return (
@@ -144,7 +152,7 @@ export default function CardGrid() {
           <p>Analytics content</p>
         </CardContent>
       </Card>
-      
+
       <Card>
         <CardHeader>
           <CardTitle>Reports</CardTitle>
@@ -154,7 +162,7 @@ export default function CardGrid() {
           <p>Reports content</p>
         </CardContent>
       </Card>
-      
+
       <Card>
         <CardHeader>
           <CardTitle>Settings</CardTitle>
@@ -165,7 +173,7 @@ export default function CardGrid() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
 ```
 
@@ -178,20 +186,22 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
 export default function InteractiveCard() {
   return (
     <Card className="cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1">
       <CardHeader>
         <CardTitle>Interactive Card</CardTitle>
-        <CardDescription>Hover over this card to see the effect</CardDescription>
+        <CardDescription>
+          Hover over this card to see the effect
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <p>This card has hover effects and can be clicked.</p>
       </CardContent>
     </Card>
-  )
+  );
 }
 ```
 
@@ -204,7 +214,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
 export default function CardWithImage() {
   return (
@@ -218,14 +228,14 @@ export default function CardWithImage() {
         <p>Content below the image.</p>
       </CardContent>
     </Card>
-  )
+  );
 }
 ```
 
 ### Minimal Card
 
 ```tsx
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function MinimalCard() {
   return (
@@ -234,7 +244,7 @@ export default function MinimalCard() {
         <p>This is a minimal card with just content.</p>
       </CardContent>
     </Card>
-  )
+  );
 }
 ```
 
@@ -245,13 +255,13 @@ export default function MinimalCard() {
 The main card container component.
 
 ```tsx
-import { Card } from "@/components/ui/card"
+import { Card } from "@/components/ui/card";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop      | Type      | Default | Description                                                                                          |
+| --------- | --------- | ------- | ---------------------------------------------------------------------------------------------------- |
 | `asChild` | `boolean` | `false` | Change the default rendered element for the one passed as a child, merging their props and behavior. |
 
 ### CardHeader
@@ -259,13 +269,13 @@ import { Card } from "@/components/ui/card"
 The header section of the card.
 
 ```tsx
-import { CardHeader } from "@/components/ui/card"
+import { CardHeader } from "@/components/ui/card";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop      | Type      | Default | Description                                                                                          |
+| --------- | --------- | ------- | ---------------------------------------------------------------------------------------------------- |
 | `asChild` | `boolean` | `false` | Change the default rendered element for the one passed as a child, merging their props and behavior. |
 
 ### CardTitle
@@ -273,13 +283,13 @@ import { CardHeader } from "@/components/ui/card"
 The title component for the card header.
 
 ```tsx
-import { CardTitle } from "@/components/ui/card"
+import { CardTitle } from "@/components/ui/card";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop      | Type      | Default | Description                                                                                          |
+| --------- | --------- | ------- | ---------------------------------------------------------------------------------------------------- |
 | `asChild` | `boolean` | `false` | Change the default rendered element for the one passed as a child, merging their props and behavior. |
 
 ### CardDescription
@@ -287,13 +297,13 @@ import { CardTitle } from "@/components/ui/card"
 The description component for the card header.
 
 ```tsx
-import { CardDescription } from "@/components/ui/card"
+import { CardDescription } from "@/components/ui/card";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop      | Type      | Default | Description                                                                                          |
+| --------- | --------- | ------- | ---------------------------------------------------------------------------------------------------- |
 | `asChild` | `boolean` | `false` | Change the default rendered element for the one passed as a child, merging their props and behavior. |
 
 ### CardContent
@@ -301,13 +311,13 @@ import { CardDescription } from "@/components/ui/card"
 The main content area of the card.
 
 ```tsx
-import { CardContent } from "@/components/ui/card"
+import { CardContent } from "@/components/ui/card";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop      | Type      | Default | Description                                                                                          |
+| --------- | --------- | ------- | ---------------------------------------------------------------------------------------------------- |
 | `asChild` | `boolean` | `false` | Change the default rendered element for the one passed as a child, merging their props and behavior. |
 
 ### CardFooter
@@ -315,13 +325,13 @@ import { CardContent } from "@/components/ui/card"
 The footer section of the card.
 
 ```tsx
-import { CardFooter } from "@/components/ui/card"
+import { CardFooter } from "@/components/ui/card";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop      | Type      | Default | Description                                                                                          |
+| --------- | --------- | ------- | ---------------------------------------------------------------------------------------------------- |
 | `asChild` | `boolean` | `false` | Change the default rendered element for the one passed as a child, merging their props and behavior. |
 
 ## Styling

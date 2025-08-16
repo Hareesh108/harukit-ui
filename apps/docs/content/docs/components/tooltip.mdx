@@ -5,30 +5,38 @@ description: "A popup that displays information related to an element when the e
 
 ## Installation
 
-### npm
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
-```bash
-npx harukit@latest add tooltip
-```
-
-### pnpm
-
-```bash
-pnpm dlx harukit@latest add tooltip
-```
-
-### yarn
-
-```bash
-yarn harukit@latest add tooltip
-```
-
-### bun
+<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
+  <Tab value="bun">
 
 ```bash
 bunx --bun harukit@latest add tooltip
 ```
 
+  </Tab>
+  <Tab value="npm">
+
+```bash
+npx harukit@latest add tooltip
+```
+
+  </Tab>
+  <Tab value="pnpm">
+
+```bash
+pnpm dlx harukit@latest add tooltip
+```
+
+  </Tab>
+  <Tab value="yarn">
+
+```bash
+yarn harukit@latest add tooltip
+```
+
+  </Tab>
+</Tabs>
 ## Usage
 
 ```tsx
@@ -37,7 +45,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
+} from "@/components/ui/tooltip";
 
 export default function TooltipDemo() {
   return (
@@ -49,7 +57,7 @@ export default function TooltipDemo() {
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
-  )
+  );
 }
 ```
 
@@ -63,7 +71,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
+} from "@/components/ui/tooltip";
 
 export default function BasicTooltip() {
   return (
@@ -75,7 +83,7 @@ export default function BasicTooltip() {
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
-  )
+  );
 }
 ```
 
@@ -87,8 +95,8 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { Button } from "@/components/ui/button"
+} from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 
 export default function TooltipWithButton() {
   return (
@@ -102,7 +110,7 @@ export default function TooltipWithButton() {
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
-  )
+  );
 }
 ```
 
@@ -114,8 +122,8 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { Info, HelpCircle, Settings } from "lucide-react"
+} from "@/components/ui/tooltip";
+import { Info, HelpCircle, Settings } from "lucide-react";
 
 export default function TooltipWithIcon() {
   return (
@@ -129,7 +137,7 @@ export default function TooltipWithIcon() {
             <p>Information tooltip</p>
           </TooltipContent>
         </Tooltip>
-        
+
         <Tooltip>
           <TooltipTrigger asChild>
             <HelpCircle className="h-4 w-4 cursor-help" />
@@ -138,7 +146,7 @@ export default function TooltipWithIcon() {
             <p>Help tooltip</p>
           </TooltipContent>
         </Tooltip>
-        
+
         <Tooltip>
           <TooltipTrigger asChild>
             <Settings className="h-4 w-4 cursor-help" />
@@ -149,7 +157,7 @@ export default function TooltipWithIcon() {
         </Tooltip>
       </div>
     </TooltipProvider>
-  )
+  );
 }
 ```
 
@@ -161,8 +169,8 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { Button } from "@/components/ui/button"
+} from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 
 export default function TooltipPositions() {
   return (
@@ -176,7 +184,7 @@ export default function TooltipPositions() {
             <p>Tooltip on top</p>
           </TooltipContent>
         </Tooltip>
-        
+
         <Tooltip>
           <TooltipTrigger asChild>
             <Button variant="outline">Right</Button>
@@ -185,7 +193,7 @@ export default function TooltipPositions() {
             <p>Tooltip on right</p>
           </TooltipContent>
         </Tooltip>
-        
+
         <Tooltip>
           <TooltipTrigger asChild>
             <Button variant="outline">Bottom</Button>
@@ -194,7 +202,7 @@ export default function TooltipPositions() {
             <p>Tooltip on bottom</p>
           </TooltipContent>
         </Tooltip>
-        
+
         <Tooltip>
           <TooltipTrigger asChild>
             <Button variant="outline">Left</Button>
@@ -205,7 +213,7 @@ export default function TooltipPositions() {
         </Tooltip>
       </div>
     </TooltipProvider>
-  )
+  );
 }
 ```
 
@@ -217,8 +225,8 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { Button } from "@/components/ui/button"
+} from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 
 export default function TooltipWithDelay() {
   return (
@@ -232,7 +240,7 @@ export default function TooltipWithDelay() {
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
-  )
+  );
 }
 ```
 
@@ -244,8 +252,8 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { Button } from "@/components/ui/button"
+} from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 
 export default function MultipleTooltips() {
   return (
@@ -259,7 +267,7 @@ export default function MultipleTooltips() {
             <p>Save your changes</p>
           </TooltipContent>
         </Tooltip>
-        
+
         <Tooltip>
           <TooltipTrigger asChild>
             <Button variant="outline">Cancel</Button>
@@ -268,7 +276,7 @@ export default function MultipleTooltips() {
             <p>Cancel and discard changes</p>
           </TooltipContent>
         </Tooltip>
-        
+
         <Tooltip>
           <TooltipTrigger asChild>
             <Button variant="destructive">Delete</Button>
@@ -279,7 +287,7 @@ export default function MultipleTooltips() {
         </Tooltip>
       </div>
     </TooltipProvider>
-  )
+  );
 }
 ```
 
@@ -291,8 +299,8 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { Button } from "@/components/ui/button"
+} from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 
 export default function RichTooltip() {
   return (
@@ -316,7 +324,7 @@ export default function RichTooltip() {
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
-  )
+  );
 }
 ```
 
@@ -328,21 +336,18 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { Button } from "@/components/ui/button"
-import { useState } from "react"
+} from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 export default function ControlledTooltip() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   return (
     <TooltipProvider>
       <Tooltip open={open} onOpenChange={setOpen}>
         <TooltipTrigger asChild>
-          <Button 
-            variant="outline"
-            onClick={() => setOpen(!open)}
-          >
+          <Button variant="outline" onClick={() => setOpen(!open)}>
             Controlled Tooltip
           </Button>
         </TooltipTrigger>
@@ -351,7 +356,7 @@ export default function ControlledTooltip() {
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
-  )
+  );
 }
 ```
 
@@ -362,46 +367,46 @@ export default function ControlledTooltip() {
 The provider component that wraps all tooltips.
 
 ```tsx
-import { TooltipProvider } from "@/components/ui/tooltip"
+import { TooltipProvider } from "@/components/ui/tooltip";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `delayDuration` | `number` | `700` | The duration from when the mouse enters the trigger until the tooltip opens. |
-| `skipDelayDuration` | `number` | `300` | How long the tooltip should remain open after the mouse leaves the trigger when another trigger is being hovered. |
-| `disableHoverableContent` | `boolean` | `false` | When `true`, prevents the tooltip from remaining open when the mouse is moved over the tooltip content. |
+| Prop                      | Type      | Default | Description                                                                                                       |
+| ------------------------- | --------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
+| `delayDuration`           | `number`  | `700`   | The duration from when the mouse enters the trigger until the tooltip opens.                                      |
+| `skipDelayDuration`       | `number`  | `300`   | How long the tooltip should remain open after the mouse leaves the trigger when another trigger is being hovered. |
+| `disableHoverableContent` | `boolean` | `false` | When `true`, prevents the tooltip from remaining open when the mouse is moved over the tooltip content.           |
 
 ### Tooltip
 
 The main tooltip component.
 
 ```tsx
-import { Tooltip } from "@/components/ui/tooltip"
+import { Tooltip } from "@/components/ui/tooltip";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `defaultOpen` | `boolean` | `false` | The default open state when initially rendered. |
-| `open` | `boolean` | - | Controlled open state. |
-| `onOpenChange` | `(open: boolean) => void` | - | Event handler called when the open state changes. |
-| `delayDuration` | `number` | - | Override the delay duration for this tooltip. |
+| Prop            | Type                      | Default | Description                                       |
+| --------------- | ------------------------- | ------- | ------------------------------------------------- |
+| `defaultOpen`   | `boolean`                 | `false` | The default open state when initially rendered.   |
+| `open`          | `boolean`                 | -       | Controlled open state.                            |
+| `onOpenChange`  | `(open: boolean) => void` | -       | Event handler called when the open state changes. |
+| `delayDuration` | `number`                  | -       | Override the delay duration for this tooltip.     |
 
 ### TooltipTrigger
 
 The element that triggers the tooltip.
 
 ```tsx
-import { TooltipTrigger } from "@/components/ui/tooltip"
+import { TooltipTrigger } from "@/components/ui/tooltip";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop      | Type      | Default | Description                                                                                          |
+| --------- | --------- | ------- | ---------------------------------------------------------------------------------------------------- |
 | `asChild` | `boolean` | `false` | Change the default rendered element for the one passed as a child, merging their props and behavior. |
 
 ### TooltipContent
@@ -409,25 +414,25 @@ import { TooltipTrigger } from "@/components/ui/tooltip"
 The content displayed inside the tooltip.
 
 ```tsx
-import { TooltipContent } from "@/components/ui/tooltip"
+import { TooltipContent } from "@/components/ui/tooltip";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"top"` | The side of the trigger to show against. |
-| `sideOffset` | `number` | `4` | The distance in pixels from the trigger. |
-| `align` | `"start" \| "center" \| "end"` | `"center"` | The alignment of the tooltip relative to the trigger. |
-| `alignOffset` | `number` | `0` | The offset in pixels from the start or end alignment. |
-| `avoidCollisions` | `boolean` | `true` | When `true`, overrides the `side` and `align` preferences to prevent the tooltip from overflowing the viewport. |
-| `collisionBoundary` | `Boundary` | `[]` | The element or elements that the tooltip should avoid overlapping. |
-| `collisionPadding` | `number \| Partial<Record<Side, number>>` | `0` | The distance in pixels from the boundary. |
-| `arrowPadding` | `number` | `0` | The padding between the arrow and the edges of the tooltip. |
-| `sticky` | `"partial" \| "always"` | `"partial"` | The sticky behavior on the align axis. |
-| `hideWhenDetached` | `boolean` | `false` | Whether to hide the tooltip when the trigger is outside of the viewport. |
-| `updatePositionStrategy` | `"optimized" \| "always"` | `"optimized"` | The strategy used to determine when to update the position of the tooltip. |
-| `onPlaced` | `() => void` | - | Event handler called when the tooltip has been placed. |
+| Prop                     | Type                                      | Default       | Description                                                                                                     |
+| ------------------------ | ----------------------------------------- | ------------- | --------------------------------------------------------------------------------------------------------------- |
+| `side`                   | `"top" \| "right" \| "bottom" \| "left"`  | `"top"`       | The side of the trigger to show against.                                                                        |
+| `sideOffset`             | `number`                                  | `4`           | The distance in pixels from the trigger.                                                                        |
+| `align`                  | `"start" \| "center" \| "end"`            | `"center"`    | The alignment of the tooltip relative to the trigger.                                                           |
+| `alignOffset`            | `number`                                  | `0`           | The offset in pixels from the start or end alignment.                                                           |
+| `avoidCollisions`        | `boolean`                                 | `true`        | When `true`, overrides the `side` and `align` preferences to prevent the tooltip from overflowing the viewport. |
+| `collisionBoundary`      | `Boundary`                                | `[]`          | The element or elements that the tooltip should avoid overlapping.                                              |
+| `collisionPadding`       | `number \| Partial<Record<Side, number>>` | `0`           | The distance in pixels from the boundary.                                                                       |
+| `arrowPadding`           | `number`                                  | `0`           | The padding between the arrow and the edges of the tooltip.                                                     |
+| `sticky`                 | `"partial" \| "always"`                   | `"partial"`   | The sticky behavior on the align axis.                                                                          |
+| `hideWhenDetached`       | `boolean`                                 | `false`       | Whether to hide the tooltip when the trigger is outside of the viewport.                                        |
+| `updatePositionStrategy` | `"optimized" \| "always"`                 | `"optimized"` | The strategy used to determine when to update the position of the tooltip.                                      |
+| `onPlaced`               | `() => void`                              | -             | Event handler called when the tooltip has been placed.                                                          |
 
 ## Styling
 
