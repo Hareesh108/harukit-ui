@@ -1,10 +1,9 @@
 # Harukit Ui
 
-A modern CLI tool for adding beautiful, accessible UI components to your React projects. Harukit works like shadcn/ui - components are copied to your project, giving you full control over their code and styling.
+A modern CLI tool that makes it effortless to add beautiful, accessible, and customizable UI components to your projects. Instead of locking you into a library, it copies components directly into your codebase, giving you complete freedom to modify, style, and maintain them as your own.
 
 ## Table of Contents
 
-- [Features](#features)
 - [Quick Start](#quick-start)
 - [Getting Started](#getting-started)
 - [Available Components](#available-components)
@@ -13,21 +12,9 @@ A modern CLI tool for adding beautiful, accessible UI components to your React p
 - [Configuration](#configuration)
 - [Using Components](#using-components)
 - [Package Manager Support](#package-manager-support)
-- [Tailwind Configuration](#tailwind-configuration)
-- [TypeScript Support](#typescript-support)
-- [Next.js App Router](#nextjs-app-router)
 - [Migration from shadcn/ui](#migration-from-shadcnui)
 - [Troubleshooting](#troubleshooting)
 - [Support](#support)
-
-## Features
-
-- 🚀 **Zero Runtime**: Components are copied to your project, no runtime dependencies
-- 🎨 **Fully Customizable**: Edit components directly in your codebase
-- ♿ **Accessible**: Built on top of Radix UI primitives
-- 🎯 **TypeScript**: Full TypeScript support out of the box
-- 🎨 **Tailwind CSS**: Styled with Tailwind CSS and CSS variables
-- 📦 **Multiple Package Managers**: Support for npm, yarn, pnpm, and bun (auto-detected)
 
 ## Quick Start
 
@@ -47,15 +34,6 @@ yarn harukit@latest init
 bunx --bun harukit@latest init
 ```
 
-This will:
-
-- Create a `harukit.json` configuration file
-- Set up the necessary directories (`components/`, `lib/`)
-- Create the `utils.ts` file with the `cn` function
-- Add global CSS with Tailwind variables
-- **Automatically install all required dependencies** using your detected package manager (npm, yarn, pnpm, or bun)
-- Show progress for each dependency as it installs
-
 ### 2. Add Components
 
 ```bash
@@ -65,11 +43,7 @@ npx harukit@latest add button
 # Add multiple components
 npx harukit@latest add button card input
 
-# Add all available components
-npx harukit@latest add accordion button card input label tooltip
 ```
-
-> **Note:** Component dependencies are automatically installed. For example, adding the `button` component will install `@radix-ui/react-slot` and `class-variance-authority`.
 
 ## Getting Started
 
@@ -117,7 +91,6 @@ export default function Page() {
 
 | Component | Description | Category |
 |-----------|-------------|----------|
-| `accordion` | Collapsible content sections | Layout |
 | `button` | Versatile button with multiple variants | Form |
 | `card` | Container for content with header, content, and footer | Layout |
 | `input` | Form input field | Form |
@@ -385,119 +358,6 @@ bunx --bun harukit@latest init
 
 # Add components
 bunx --bun harukit@latest add button card
-```
-
-> **Note**: Dependencies are automatically installed using your detected package manager. You don't need to manually install `clsx`, `tailwind-merge`, `class-variance-authority`, or any other dependencies - Harukit handles this for you!
-
-## Tailwind Configuration
-
-Make sure your `tailwind.config.js` includes the necessary paths:
-
-```js
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: ["class"],
-  content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-  ],
-  theme: {
-    extend: {
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-      },
-    },
-  },
-  plugins: [require("tailwindcss-animate")],
-}
-```
-
-## TypeScript Support
-
-All components are fully typed with TypeScript. Make sure your `tsconfig.json` includes the proper path mappings:
-
-```json
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
-}
-```
-
-## Next.js App Router
-
-For Next.js App Router, make sure to import the global CSS in your `app/layout.tsx`:
-
-```tsx
-import './globals.css'
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  )
-}
 ```
 
 ## Migration from shadcn/ui

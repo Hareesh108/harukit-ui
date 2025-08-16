@@ -1,6 +1,5 @@
 import { ComponentMeta, RegistryResponse, ComponentFile } from "./types";
 
-// Helper: Convert GitHub "blob" URL → Raw URL
 function toRawGithubUrl(url: string) {
   return url
     .replace("https://github.com/", "https://raw.githubusercontent.com/")
@@ -13,29 +12,15 @@ const githubBase =
   
   function makeFile(name: string, type: ComponentFile["type"]): ComponentFile {
     const blobUrl = `${githubBase}/${name}`;
-    console.log("url",blobUrl);
     return {
       name,
-      content: "", // Leave empty, fetch on demand in CLI
+      content: "", 
       path: toRawGithubUrl(blobUrl),
       type,
     };
 }
 
 const localComponents: ComponentMeta[] = [
-  {
-    name: "accordion",
-    description: "Collapsible content sections",
-    category: "Layout",
-    version: "0.1.0",
-    tags: ["layout", "collapsible", "accessible"],
-    dependencies: ["@radix-ui/react-accordion"],
-    devDependencies: [],
-    files: [makeFile("accordion.tsx", "component")],
-    author: "Harukit Team",
-    license: "MIT",
-    repository: "https://github.com/Hareesh108/harukit-ui",
-  },
   {
     name: "button",
     description: "Versatile button with multiple variants",
