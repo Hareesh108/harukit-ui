@@ -7,6 +7,7 @@ import { ConfigManager } from "../config/manager";
 import { getTemplatePath } from "../utils/template-resolver";
 import { PackageManager } from "../utils/package-manager";
 import { RegistryClient } from "../registry/client";
+import { getRemoteUtilsFile } from "../utils/get-utils-path";
 
 export async function add(components: string[], options: any) {
   const spinner = ora("Adding components...").start();
@@ -163,14 +164,26 @@ export async function add(components: string[], options: any) {
     }
 
     // Ensure utils file exists
-    const utilsTemplate = getTemplatePath("lib/utils.ts");
-    const utilsDest = path.join(libDir, "utils.ts");
+const utilsFile = getRemoteUtilsFile();
+const utilsDest = path.join(libDir, "utils.ts");
 
-    if (!(await fs.pathExists(utilsDest))) {
-      await fs.copy(utilsTemplate, utilsDest);
-      console.log(chalk.green("✅ Added utils.ts"));
+if (!(await fs.pathExists(utilsDest))) {
+  try {
+    // Fetch utils.ts content from GitHub
+    const response = await fetch(utilsFile.path);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch utils.ts: ${response.status} ${response.statusText}`);
     }
+    const content = await response.text();
 
+    // Write content to destination
+    await fs.outputFile(utilsDest, content);
+    console.log(chalk.green("✅ Added utils.ts from GitHub"));
+  } catch (err) {
+    console.error(chalk.red("❌ Failed to fetch utils.ts:"), err);
+    throw err;
+  }
+}
     spinner.succeed("Components added successfully!");
 
     console.log(chalk.blue("\nNext steps:"));

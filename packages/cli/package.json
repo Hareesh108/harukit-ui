@@ -1,6 +1,6 @@
 {
     "name": "harukit",
-    "version": "1.0.0",
+    "version": "1.0.11",
     "description": "CLI tool for Harukit UI components",
     "main": "dist/index.js",
     "bin": {
