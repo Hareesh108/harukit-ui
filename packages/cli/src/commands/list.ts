@@ -1,27 +1,25 @@
 import chalk from 'chalk';
+import { COMPONENTS } from '../utils/utils';
 
-export async function list(options: any) {
-  const availableComponents = [
-    { name: 'button', description: 'Versatile button with multiple variants' },
-    { name: 'card', description: 'Container for content with header, content, and footer' },
-    { name: 'input', description: 'Form input field' },
-    { name: 'label', description: 'Form label with accessibility features' },
-    { name: 'tooltip', description: 'Hover tooltips' },
-  ]
+export async function list() {
+  console.log(chalk.blue.bold('\n📦 Harukit Components'));
+  console.log(chalk.gray('─'.repeat(50)));
 
-  console.log(chalk.blue('\nAvailable components:'))
-  console.log()
+  COMPONENTS.forEach((component) => {
+    console.log(
+      `${chalk.green.bold('›')} ${chalk.cyan(component.name)} ${chalk.gray(
+        `(${component.category})`
+      )}`
+    );
+    console.log(`   ${chalk.gray(component.description)}\n`);
+  });
 
-  availableComponents.forEach((component) => {
-    console.log(chalk.green(`  • ${component.name}`))
-    console.log(chalk.gray(`    ${component.description}`))
-    console.log()
-  })
+  console.log(chalk.blue.bold('🚀 Usage'));
+  console.log(chalk.gray('─'.repeat(50)));
+  console.log(chalk.green('  npx harukit@latest add <component-name>\n'));
 
-  console.log(chalk.blue('To add a component, run:'))
-  console.log(chalk.green('  npx harukit@latest add <component-name>'))
-  console.log()
-  console.log(chalk.blue('Examples:'))
-  console.log(chalk.green('  npx harukit@latest add button'))
-  console.log(chalk.green('  npx harukit@latest add button card input'))
-} 
+  console.log(chalk.blue.bold('✨ Examples'));
+  console.log(chalk.gray('─'.repeat(50)));
+  console.log(chalk.green('  npx harukit@latest add button'));
+  console.log(chalk.green('  npx harukit@latest add button card input\n'));
+}
