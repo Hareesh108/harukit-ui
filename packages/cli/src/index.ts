@@ -6,13 +6,14 @@ import { remove } from './commands/remove';
 import { list } from './commands/list';
 import { update } from './commands/update';
 import { info } from './commands/info';
+import {version} from "./../package.json"
 
 const program = new Command();
 
 program
   .name('harukit')
   .description('CLI tool for Harukit UI components')
-  .version('0.1.0');
+  .version(version);
 
 // Global options
 program
