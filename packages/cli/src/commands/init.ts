@@ -27,19 +27,13 @@ export async function init(options: any) {
       console.log(chalk.green(`  ${existingConfigPath}`));
       console.log(chalk.blue("\nYou can:"));
       console.log(
-        chalk.green(
-          "  • Add components with: npx harukit@latest add <component>"
-        )
+        chalk.green("  • Add components with: npx harukit@latest add <component>")
       );
       console.log(
-        chalk.green(
-          "  • Remove components with: npx harukit@latest remove <component>"
-        )
+        chalk.green("  • Remove components with: npx harukit@latest remove <component>")
       );
       console.log(
-        chalk.green(
-          "  • List available components with: npx harukit@latest list"
-        )
+        chalk.green("  • List available components with: npx harukit@latest list")
       );
       console.log(
         chalk.green("  • Update components with: npx harukit@latest update")
@@ -64,7 +58,7 @@ export async function init(options: any) {
     // Parse options
     const opts = initSchema.parse(options);
 
-    // Get user preferences
+    // Default preferences
     let preferences = {
       typescript: true,
       tailwind: true,
@@ -73,6 +67,7 @@ export async function init(options: any) {
       importAlias: "@/components",
     };
 
+    // Ask user if not running with --yes
     if (!opts.yes) {
       const answers = await prompts([
         {
@@ -112,10 +107,10 @@ export async function init(options: any) {
       preferences = { ...preferences, ...opts };
     }
 
-    // Start spinner only after prompts are done
+    // Start spinner only after prompts
     const spinner = ora("Initializing Harukit...").start();
 
-    // Install dependencies before writing config
+    // Install dependencies
     const dependencies = [
       "clsx",
       "tailwind-merge",
@@ -159,31 +154,28 @@ export async function init(options: any) {
       },
     };
 
-    // Write configuration file
+    // Write config file
     const configPath = path.join(process.cwd(), "harukit.json");
     await fs.writeJson(configPath, config, { spaces: 2 });
     spinner.succeed("Created harukit.json");
 
-    // Create directories
-    const componentsDir = path.join(
-      process.cwd(),
-      preferences.srcDir ? "src" : "",
-      "components"
-    );
-    const libDir = path.join(
-      process.cwd(),
-      preferences.srcDir ? "src" : "",
-      "lib"
-    );
+    // Ensure baseDir is correct
+    const baseDir = preferences.srcDir
+      ? path.join(process.cwd(), "src")
+      : process.cwd();
+
+    // Create components + lib inside baseDir
+    const componentsDir = path.join(baseDir, "components");
+    const libDir = path.join(baseDir, "lib");
     await fs.ensureDir(componentsDir);
     await fs.ensureDir(libDir);
 
+    // Add utils.ts
     const utilsFile = getRemoteUtilsFile();
     const utilsDest = path.join(libDir, "utils.ts");
 
     if (!(await fs.pathExists(utilsDest))) {
       try {
-        // Fetch content from GitHub
         const response = await fetch(utilsFile.path);
         if (!response.ok) {
           throw new Error(
@@ -191,8 +183,6 @@ export async function init(options: any) {
           );
         }
         const content = await response.text();
-
-        // Write the file to libDir
         await fs.outputFile(utilsDest, content);
         console.log(chalk.green("✅ Added utils.ts from GitHub"));
       } catch (err) {
@@ -200,14 +190,6 @@ export async function init(options: any) {
         throw err;
       }
     }
-
-    // // Copy global CSS if Tailwind is enabled
-    // if (preferences.tailwind) {
-    //   const cssTemplate = getTemplatePath('globals.css');
-    //   const cssDest = path.join(process.cwd(), preferences.srcDir ? 'src' : '', 'app/globals.css');
-    //   await fs.ensureDir(path.dirname(cssDest));
-    //   await fs.copy(cssTemplate, cssDest);
-    // }
 
     spinner.succeed("Harukit initialized successfully!");
     console.log(chalk.blue("\nNext steps:"));

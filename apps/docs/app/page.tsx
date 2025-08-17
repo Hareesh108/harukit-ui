@@ -285,18 +285,18 @@ export default function HomePage() {
 
         <div className="relative z-10">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-            Build Modern React Apps <br /> with{" "}
+            Build Modern React/Nextjs Apps <br /> with{" "}
             <span className="bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-600 bg-clip-text text-transparent">
               Harukit UI
             </span>
           </h1>
           <p className="text-lg md:text-xl text-gray-700 max-w-2xl mb-8 mx-auto">
-            A modern CLI tool & React component library — copy, customize, and
-            control every piece of your UI. Inspired by{" "}
+            A modern CLI tool that makes it effortless to add beautiful,
+            accessible, and customizable UI components to your projects. Instead
+            of
             <code className="bg-gradient-to-r from-gray-100 to-gray-200 px-2 py-1 rounded-md border border-gray-200/50 font-mono text-sm">
-              shadcn/ui
+              locking you into a library
             </code>
-            , built for your workflow.
           </p>
           <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-green-400 text-sm text-left p-4 rounded-xl mb-8 w-full max-w-lg mx-auto shadow-2xl border border-gray-700/50 relative group">
             <div className="flex items-center justify-between mb-2">
