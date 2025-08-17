@@ -10,8 +10,10 @@
         "dist"
     ],
     "scripts": {
+        "dev:test": "tsx src/index.ts",
+        "cli": "tsx src/index.ts --help",
         "build": "tsup",
-        "dev": "tsup --watch",
+        "dev:tsup": "tsup --watch",
         "clean": "rm -rf dist",
         "type-check": "tsc --noEmit",
         "lint": "eslint src --ext .ts",
@@ -46,6 +48,7 @@
         "@types/semver": "^7.5.6",
         "prettier": "^3.6.0",
         "tsup": "^8.0.1",
+        "tsx": "^4.20.4",
         "typescript": "^5.8.3"
     },
     "repository": {
