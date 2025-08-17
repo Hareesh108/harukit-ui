@@ -2,7 +2,6 @@ import chalk from 'chalk';
 
 export async function list(options: any) {
   const availableComponents = [
-    { name: 'accordion', description: 'Collapsible content sections' },
     { name: 'button', description: 'Versatile button with multiple variants' },
     { name: 'card', description: 'Container for content with header, content, and footer' },
     { name: 'input', description: 'Form input field' },

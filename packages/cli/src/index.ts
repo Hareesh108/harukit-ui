@@ -72,9 +72,19 @@ program.exitOverride();
 
 try {
   program.parse();
-} catch (err) {
+} catch (err: any) {
+  if (err.code === 'commander.helpDisplayed') {
+    // Normal behavior: just showing help, no error
+    process.exit(0);
+  }
+
+  if (err.code === 'commander.version') {
+    // Normal behavior: just showing version, no error
+    process.exit(0);
+  }
+
   if (err instanceof Error) {
     console.error(chalk.red('Error:'), err.message);
   }
   process.exit(1);
-} 
+}
