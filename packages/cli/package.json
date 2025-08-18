@@ -13,7 +13,7 @@
         "dev:test": "tsx src/index.ts",
         "cli": "tsx src/index.ts --help",
         "build": "tsup",
-        "dev:tsup": "tsup --watch",
+        "dev": "tsup --watch",
         "clean": "rm -rf dist",
         "type-check": "tsc --noEmit",
         "lint": "eslint src --ext .ts",
