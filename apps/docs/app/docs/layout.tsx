@@ -4,7 +4,9 @@ import { baseOptions } from "@/app/layout.config";
 import { source } from "@/lib/source";
 import { RootProvider } from "fumadocs-ui/provider";
 
-export default function Layout({ children }: { children: ReactNode }) {
+export default function Layout({
+  children,
+}: Readonly<{ children: ReactNode }>) {
   return (
     <div className="">
       <RootProvider dir="ltr">
