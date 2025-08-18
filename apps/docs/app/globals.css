@@ -52,7 +52,7 @@
 }
 
 :root {
-   --fd-layout-width: 1400px;
+  --fd-layout-width: 1400px;
   --radius: 0.625rem;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.13 0.028 261.692);
