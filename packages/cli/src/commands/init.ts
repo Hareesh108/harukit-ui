@@ -9,6 +9,7 @@ import { PackageManager } from "../utils/package-manager";
 import { getRemoteUtilsFile } from "../utils/get-utils-path";
 import { Preferences } from "../registry/types";
 import { buildCssContent } from "../utils/build-css-content";
+import { installDeps } from "../utils/install-dep";
 
 const initSchema = z.object({
   yes: z.boolean().optional(),
@@ -137,30 +138,7 @@ export async function init(options: any) {
     const cssContent = buildCssContent(preferences.baseColor);
     await fs.outputFile(cssPath, cssContent);
 
-    // Install dependencies
-    const dependencies = [
-      "clsx",
-      "tailwind-merge",
-      "class-variance-authority",
-      "lucide-react",
-    ];
-    if (preferences.typescript) {
-      dependencies.push("@types/node");
-    }
-
-    spinner.text = "Installing dependencies...";
-    const pm = new PackageManager(process.cwd());
-    try {
-      console.log(
-        chalk.cyan(`→ Installing dependencies: ${dependencies.join(", ")}`)
-      );
-      await pm.addMultiple(dependencies, false);
-      spinner.succeed("All dependencies installed!");
-    } catch (err) {
-      spinner.fail("Failed to install dependencies.");
-      console.error(err);
-      process.exit(1);
-    }
+    await installDeps({ typescript: preferences.typescript }, spinner);
 
     // Create configuration
     const config = {
@@ -171,14 +149,18 @@ export async function init(options: any) {
       tailwind: {
         config: "tailwind.config.js",
         css: preferences.srcDir ? "src/app/globals.css" : "app/globals.css",
-        baseColor: "slate",
+        baseColor: preferences.baseColor,
         cssVariables: true,
         prefix: "",
       },
       aliases: {
         components: preferences.importAlias,
         utils: "@/lib/utils",
+        ui: "@/components/ui",
+        lib: "@/lib",
+        hooks: "@/hooks",
       },
+      iconLibrary: "lucide",
     };
 
     // Write config file

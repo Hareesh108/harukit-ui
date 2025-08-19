@@ -27,7 +27,7 @@ function toRawGithubUrl(url: string) {
 }
 
 const githubBase =
-  "https://github.com/Hareesh108/harukit-ui/blob/main/apps/web/registry/ui";
+  "https://github.com/Hareesh108/harukit-ui/blob/main/apps/web/registry";
 
 export function makeFile(
   folder: string,
