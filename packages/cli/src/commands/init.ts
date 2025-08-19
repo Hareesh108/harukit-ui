@@ -7,6 +7,8 @@ import ora from "ora";
 import { ProjectDetector } from "../utils/project-detector";
 import { PackageManager } from "../utils/package-manager";
 import { getRemoteUtilsFile } from "../utils/get-utils-path";
+import { Preferences } from "../registry/types";
+import { buildCssContent } from "../utils/build-css-content";
 
 const initSchema = z.object({
   yes: z.boolean().optional(),
@@ -27,13 +29,19 @@ export async function init(options: any) {
       console.log(chalk.green(`  ${existingConfigPath}`));
       console.log(chalk.blue("\nYou can:"));
       console.log(
-        chalk.green("  • Add components with: npx harukit@latest add <component>")
+        chalk.green(
+          "  • Add components with: npx harukit@latest add <component>"
+        )
       );
       console.log(
-        chalk.green("  • Remove components with: npx harukit@latest remove <component>")
+        chalk.green(
+          "  • Remove components with: npx harukit@latest remove <component>"
+        )
       );
       console.log(
-        chalk.green("  • List available components with: npx harukit@latest list")
+        chalk.green(
+          "  • List available components with: npx harukit@latest list"
+        )
       );
       console.log(
         chalk.green("  • Update components with: npx harukit@latest update")
@@ -59,12 +67,13 @@ export async function init(options: any) {
     const opts = initSchema.parse(options);
 
     // Default preferences
-    let preferences = {
+    let preferences: Preferences = {
       typescript: true,
       tailwind: true,
       eslint: true,
       srcDir: false,
       importAlias: "@/components",
+      baseColor: "default",
     };
 
     // Ask user if not running with --yes
@@ -100,6 +109,17 @@ export async function init(options: any) {
           message: "What import alias would you like to use?",
           initial: "@/components",
         },
+        {
+          type: "select",
+          name: "baseColor",
+          message: "Choose a base color theme",
+          choices: [
+            { title: "Default", value: "default" },
+            { title: "Rose", value: "rose" },
+            { title: "Yellow", value: "yellow" },
+          ],
+          initial: 0,
+        },
       ]);
 
       preferences = { ...preferences, ...answers };
@@ -109,6 +129,13 @@ export async function init(options: any) {
 
     // Start spinner only after prompts
     const spinner = ora("Initializing Harukit...").start();
+
+    const cssPath = preferences.srcDir
+      ? path.join(process.cwd(), "src/app/globals.css")
+      : path.join(process.cwd(), "app/globals.css");
+
+    const cssContent = buildCssContent(preferences.baseColor);
+    await fs.outputFile(cssPath, cssContent);
 
     // Install dependencies
     const dependencies = [
@@ -192,6 +219,7 @@ export async function init(options: any) {
     }
 
     spinner.succeed("Harukit initialized successfully!");
+    spinner.succeed("Please check the global.css file. It got overwritten.");
     console.log(chalk.blue("\nNext steps:"));
     console.log(chalk.green("1. Start building your UI!"));
     console.log(

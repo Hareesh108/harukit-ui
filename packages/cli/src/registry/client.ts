@@ -1,35 +1,16 @@
-import { ComponentMeta, RegistryResponse, ComponentFile } from "./types";
+import { makeFile } from "../utils/utils";
+import { ComponentMeta, RegistryResponse } from "./types";
 
-function toRawGithubUrl(url: string) {
-  return url
-    .replace("https://github.com/", "https://raw.githubusercontent.com/")
-    .replace("/blob/", "/");
-}
-
-const githubBase =
-  "https://github.com/Hareesh108/harukit-ui/blob/main/apps/web/components/ui";
-
-  
-  function makeFile(name: string, type: ComponentFile["type"]): ComponentFile {
-    const blobUrl = `${githubBase}/${name}`;
-    return {
-      name,
-      content: "", 
-      path: toRawGithubUrl(blobUrl),
-      type,
-    };
-}
-
-const localComponents: ComponentMeta[] = [
+const harukitComponents: ComponentMeta[] = [
   {
     name: "button",
     description: "Versatile button with multiple variants",
     category: "Form",
     version: "0.1.0",
     tags: ["form", "interactive", "accessible"],
-    dependencies: ["class-variance-authority"],
+    dependencies: [],
     devDependencies: [],
-    files: [makeFile("button.tsx", "component")],
+    files: [makeFile("ui", "button.tsx", "component")],
     author: "Harukit Team",
     license: "MIT",
     repository: "https://github.com/Hareesh108/harukit-ui",
@@ -42,7 +23,7 @@ const localComponents: ComponentMeta[] = [
     tags: ["layout", "container", "content"],
     dependencies: [],
     devDependencies: [],
-    files: [makeFile("card.tsx", "component")],
+    files: [makeFile("ui", "card.tsx", "component")],
     author: "Harukit Team",
     license: "MIT",
     repository: "https://github.com/Hareesh108/harukit-ui",
@@ -55,7 +36,7 @@ const localComponents: ComponentMeta[] = [
     tags: ["form", "input", "accessible"],
     dependencies: [],
     devDependencies: [],
-    files: [makeFile("input.tsx", "component")],
+    files: [makeFile("ui", "input.tsx", "component")],
     author: "Harukit Team",
     license: "MIT",
     repository: "https://github.com/Hareesh108/harukit-ui",
@@ -66,9 +47,9 @@ const localComponents: ComponentMeta[] = [
     category: "Form",
     version: "0.1.0",
     tags: ["form", "label", "accessible"],
-    dependencies: ["@radix-ui/react-label"],
+    dependencies: [],
     devDependencies: [],
-    files: [makeFile("label.tsx", "component")],
+    files: [makeFile("ui", "label.tsx", "component")],
     author: "Harukit Team",
     license: "MIT",
     repository: "https://github.com/Hareesh108/harukit-ui",
@@ -79,9 +60,9 @@ const localComponents: ComponentMeta[] = [
     category: "Feedback",
     version: "0.1.0",
     tags: ["feedback", "tooltip", "accessible"],
-    dependencies: ["@radix-ui/react-tooltip"],
+    dependencies: [],
     devDependencies: [],
-    files: [makeFile("tooltip.tsx", "component")],
+    files: [makeFile("ui", "tooltip.tsx", "component")],
     author: "Harukit Team",
     license: "MIT",
     repository: "https://github.com/Hareesh108/harukit-ui",
@@ -97,7 +78,7 @@ export class RegistryClient {
 
   private updateCache(): void {
     this.cache.clear();
-    localComponents.forEach((component) => {
+    harukitComponents.forEach((component) => {
       this.cache.set(component.name, component);
     });
   }
@@ -133,7 +114,9 @@ export class RegistryClient {
 
   async getCategories(): Promise<string[]> {
     const components = Array.from(this.cache.values());
-    const categories = new Set(components.map((component) => component.category));
+    const categories = new Set(
+      components.map((component) => component.category)
+    );
     return Array.from(categories).sort();
   }
 
