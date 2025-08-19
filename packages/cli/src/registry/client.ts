@@ -10,7 +10,7 @@ const harukitComponents: ComponentMeta[] = [
     tags: ["form", "interactive", "accessible"],
     dependencies: [],
     devDependencies: [],
-    files: [makeFile("ui","button.tsx", "component")],
+    files: [makeFile("ui", "button.tsx", "component")],
     author: "Harukit Team",
     license: "MIT",
     repository: "https://github.com/Hareesh108/harukit-ui",
@@ -23,7 +23,7 @@ const harukitComponents: ComponentMeta[] = [
     tags: ["layout", "container", "content"],
     dependencies: [],
     devDependencies: [],
-    files: [makeFile("ui","card.tsx", "component")],
+    files: [makeFile("ui", "card.tsx", "component")],
     author: "Harukit Team",
     license: "MIT",
     repository: "https://github.com/Hareesh108/harukit-ui",
@@ -36,7 +36,7 @@ const harukitComponents: ComponentMeta[] = [
     tags: ["form", "input", "accessible"],
     dependencies: [],
     devDependencies: [],
-    files: [makeFile("ui","input.tsx", "component")],
+    files: [makeFile("ui", "input.tsx", "component")],
     author: "Harukit Team",
     license: "MIT",
     repository: "https://github.com/Hareesh108/harukit-ui",
@@ -49,7 +49,7 @@ const harukitComponents: ComponentMeta[] = [
     tags: ["form", "label", "accessible"],
     dependencies: [],
     devDependencies: [],
-    files: [makeFile("ui","label.tsx", "component")],
+    files: [makeFile("ui", "label.tsx", "component")],
     author: "Harukit Team",
     license: "MIT",
     repository: "https://github.com/Hareesh108/harukit-ui",
@@ -62,7 +62,7 @@ const harukitComponents: ComponentMeta[] = [
     tags: ["feedback", "tooltip", "accessible"],
     dependencies: [],
     devDependencies: [],
-    files: [makeFile("ui","tooltip.tsx", "component")],
+    files: [makeFile("ui", "tooltip.tsx", "component")],
     author: "Harukit Team",
     license: "MIT",
     repository: "https://github.com/Hareesh108/harukit-ui",
@@ -114,7 +114,9 @@ export class RegistryClient {
 
   async getCategories(): Promise<string[]> {
     const components = Array.from(this.cache.values());
-    const categories = new Set(components.map((component) => component.category));
+    const categories = new Set(
+      components.map((component) => component.category)
+    );
     return Array.from(categories).sort();
   }
 

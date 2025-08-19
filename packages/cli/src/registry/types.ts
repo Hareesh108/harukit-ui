@@ -1,3 +1,5 @@
+import { Colors } from "./colors";
+
 export interface ComponentMeta {
   name: string;
   description: string;
@@ -17,7 +19,7 @@ export interface ComponentFile {
   name: string;
   content: string;
   path: string;
-  type: 'component' | 'utility' | 'style' | 'config';
+  type: "component" | "utility" | "style" | "config";
 }
 
 export interface RegistryResponse {
@@ -44,4 +46,13 @@ export interface CacheEntry {
   data: any;
   timestamp: number;
   ttl: number;
-} 
+}
+
+export type Preferences = {
+  typescript: boolean;
+  tailwind: boolean;
+  eslint: boolean;
+  srcDir: boolean;
+  importAlias: string;
+  baseColor: keyof typeof Colors;
+};

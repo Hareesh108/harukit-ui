@@ -163,26 +163,28 @@ export async function add(components: string[], options: any) {
     }
 
     // Ensure utils file exists
-const utilsFile = getRemoteUtilsFile();
-const utilsDest = path.join(libDir, "utils.ts");
+    const utilsFile = getRemoteUtilsFile();
+    const utilsDest = path.join(libDir, "utils.ts");
 
-if (!(await fs.pathExists(utilsDest))) {
-  try {
-    // Fetch utils.ts content from GitHub
-    const response = await fetch(utilsFile.path);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch utils.ts: ${response.status} ${response.statusText}`);
+    if (!(await fs.pathExists(utilsDest))) {
+      try {
+        // Fetch utils.ts content from GitHub
+        const response = await fetch(utilsFile.path);
+        if (!response.ok) {
+          throw new Error(
+            `Failed to fetch utils.ts: ${response.status} ${response.statusText}`
+          );
+        }
+        const content = await response.text();
+
+        // Write content to destination
+        await fs.outputFile(utilsDest, content);
+        console.log(chalk.green("✅ Added utils.ts from GitHub"));
+      } catch (err) {
+        console.error(chalk.red("❌ Failed to fetch utils.ts:"), err);
+        throw err;
+      }
     }
-    const content = await response.text();
-
-    // Write content to destination
-    await fs.outputFile(utilsDest, content);
-    console.log(chalk.green("✅ Added utils.ts from GitHub"));
-  } catch (err) {
-    console.error(chalk.red("❌ Failed to fetch utils.ts:"), err);
-    throw err;
-  }
-}
     spinner.succeed("Components added successfully!");
 
     console.log(chalk.blue("\nNext steps:"));
