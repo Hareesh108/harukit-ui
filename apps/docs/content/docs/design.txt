@@ -1,0 +1,85 @@
+# Design Principles
+
+**Understanding the design philosophy and principles behind Harukit UI**
+
+Harukit UI is built on a foundation of thoughtful design principles that prioritize accessibility, performance, customization, and exceptional developer experience. This guide explores the philosophy and architectural decisions that shape our component library, making it a reliable choice for modern web applications.
+
+## Core Philosophy
+
+### Zero Runtime Dependencies
+
+Harukit UI follows a copy-and-paste approach where components are integrated directly into your codebase, providing unprecedented control and flexibility:
+
+* **Zero runtime overhead**: Components become part of your application bundle with no external dependencies to load or manage
+* **Complete customization freedom**: Modify styling, behavior, or structure without worrying about breaking upstream changes
+* **Elimination of version conflicts**: You control the update cycle—upgrade components when you're ready, not when forced
+* **Full code transparency**: See exactly what's running in your application with no hidden abstractions or black boxes
+* **Bundle optimization**: Tree-shake unused code and optimize exactly what you need
+* **Offline development**: Work without internet connectivity—no CDN dependencies or external resources
+
+### Accessibility First
+
+Accessibility isn't a feature—it's a fundamental requirement. Every component is designed with inclusive practices from the ground up:
+
+* **WAI-ARIA compliance**: Strictly follows established accessibility patterns and ARIA specifications
+* **Universal keyboard navigation**: All interactive elements support comprehensive keyboard controls with intuitive shortcuts
+* **Enhanced screen reader support**: Semantic HTML, proper ARIA labels, live regions, and descriptive content for assistive technologies
+* **Advanced focus management**: Intelligent focus trapping, restoration, and visual indicators that meet accessibility standards
+* **Superior color contrast**: Exceeds WCAG AA standards with careful attention to color blindness and low vision users
+* **Responsive design**: Adapts seamlessly across devices and assistive technologies
+* **Semantic HTML foundation**: Uses proper HTML elements to ensure compatibility with all accessibility tools
+
+### TypeScript Native
+
+TypeScript integration is architected at the core level, not added as an afterthought:
+
+* **Comprehensive type safety**: Every prop, variant, event handler, and component API is fully typed with strict definitions
+* **Rich IntelliSense experience**: Autocomplete with detailed documentation, parameter hints, and real-time error detection
+* **Compile-time error prevention**: Catch type mismatches, missing props, and API misuse before deployment
+* **Self-documenting code**: Types serve as living documentation that stays in sync with implementation
+* **Enhanced refactoring support**: Confidently rename, move, or modify components with IDE assistance
+* **Generic type support**: Flexible typing for data-driven components while maintaining type safety
+
+### Tailwind CSS Integration
+
+Built specifically for Tailwind CSS to provide optimal styling flexibility:
+
+* **Utility-first approach**: Leverage Tailwind's atomic CSS classes for rapid styling and customization
+* **Design system compatibility**: Seamlessly integrate with existing Tailwind design tokens and themes
+* **Responsive by default**: Built-in responsive modifiers work naturally with component variants
+* **Dark mode ready**: Full support for Tailwind's dark mode with automatic theme switching
+* **Custom variant creation**: Easily extend components with new variants using Tailwind's configuration system
+* **Minimal CSS footprint**: Only include the styles you actually use through Tailwind's purge system
+
+## Performance & Developer Experience
+
+### Optimized Performance
+
+Every architectural decision considers performance impact:
+
+* **Minimal JavaScript footprint**: Components use efficient algorithms and avoid unnecessary re-renders
+* **CSS-in-utility approach**: Leverage Tailwind's atomic CSS for optimal caching and reuse
+* **Tree-shaking friendly**: Components are structured for maximum dead code elimination
+* **SSR/SSG compatible**: Full support for server-side rendering and static generation
+* **Progressive enhancement**: Core functionality works without JavaScript when possible
+
+### Superior Developer Experience
+
+Designed to make development faster, more reliable, and more enjoyable:
+
+* **Intuitive component APIs**: Consistent naming conventions and predictable behavior patterns
+* **Comprehensive documentation**: Each component includes examples, props reference, and usage guidelines
+* **IDE-first development**: Optimized for modern development environments with rich tooling support
+* **Copy-paste simplicity**: Get started instantly without complex build configurations or setup steps
+* **Flexible composition**: Components work together seamlessly while remaining independently functional
+
+## Conclusion
+
+Harukit UI's design principles create a component library that delivers on five core promises:
+
+* **Inclusive accessibility**: Built for everyone, ensuring your applications reach the widest possible audience
+* **Unlimited customization**: Adapts perfectly to your unique design system, brand guidelines, and technical requirements  
+* **Exceptional performance**: Optimized for speed, efficiency, and minimal resource consumption
+* **Outstanding developer experience**: TypeScript-native development with modern tooling and clear, consistent APIs
+* **Long-term maintainability**: Clean, readable code that's easy to understand, modify, extend, and debug over time
+

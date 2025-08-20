@@ -3,39 +3,48 @@ title: Design Principles
 description: Understanding the design philosophy and principles behind Harukit UI
 ---
 
-Harukit UI is built on a foundation of thoughtful design principles that prioritize accessibility, customization, and developer experience. This guide explains the philosophy and design decisions that shape our component library.
+Harukit UI is a simple, copy-paste component library built with Tailwind CSS. Our design principles focus on giving you control, keeping things accessible, and making development straightforward.
 
 ## Core Philosophy
 
-### Zero Runtime Dependencies
+### Copy & Paste Components
 
 Harukit UI components are copied directly into your project, giving you complete control over the code. This approach means:
 
-- **No runtime overhead**: Components are part of your bundle, not external dependencies
-- **Full customization**: Modify any aspect of the component to fit your needs
-- **No version conflicts**: You control when and how components are updated
-- **Transparency**: You can see exactly what code is running in your application
+- **No runtime overhead**: Components become part of your code, not external packages
+- **Full customization**: Change anything you want without worrying about breaking updates
+- **You control updates**: Add new components when you need them
+- **Transparency**: All code is in your project, nothing hidden
 
 ### Accessibility First
 
 Every component is built with accessibility as a primary concern:
 
-- **WAI-ARIA compliance**: Components follow established accessibility patterns
-- **Keyboard navigation**: All interactive elements are keyboard accessible
-- **Screen reader support**: Proper ARIA labels and descriptions
+- **Keyboard navigation**: All interactive elements work with keyboard
+- **Screen reader friendly**: Proper ARIA labels and descriptions for assistive technology
+- **Good color contrast**: Meets accessibility standards for readability
 - **Focus management**: Logical tab order and focus indicators
-- **Color contrast**: Meets WCAG AA standards for color contrast
+- **Semantic HTML**: Uses proper HTML elements that work well with accessibility tools
 
-### TypeScript Native
+### TypeScript Ready
 
 TypeScript is not an afterthought - it's built into the core of every component:
 
-- **Full type safety**: All props, variants, and events are fully typed
-- **IntelliSense support**: Rich autocomplete and documentation
-- **Compile-time errors**: Catch issues before they reach production
+- **Type safety**: Props and events are properly typed
+- **Better autocomplete**: Your IDE will help you use components correctly
+- **Catch errors early**: TypeScript helps prevent common mistakes
 - **Better DX**: Enhanced developer experience with type checking
 
-## Conclusion
+### Built with Tailwind CSS
+
+Designed specifically to work great with Tailwind:
+
+- **Use Tailwind classes**: Style components with familiar utility classes
+- **Responsive design**: Easy to make components work on all screen sizes
+- **Dark mode support**: Works with Tailwind's dark mode
+- **Small bundle size**: Only includes the CSS you actually use
+
+## What You Get
 
 Harukit UI's design principles are centered around creating a component library that is:
 
@@ -45,7 +54,7 @@ Harukit UI's design principles are centered around creating a component library 
 - **Developer-friendly**: Great developer experience with TypeScript and clear APIs
 - **Maintainable**: Easy to understand, modify, and extend
 
-By following these principles, Harukit UI provides a solid foundation for building beautiful, accessible, and maintainable user interfaces.
+By following these principles, Harukit UI provides a solid foundation for building beautiful, accessible, and maintainable user interfaces. Perfect for getting your project up and running quickly while maintaining quality and accessibility standards.
 
 ## Support
 
