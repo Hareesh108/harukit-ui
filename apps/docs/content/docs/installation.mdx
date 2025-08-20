@@ -25,7 +25,7 @@ cd my-app
 
 ### Step 2: Initialize Harukit
 
-```bash
+````bash
 # Choose your package manager
 npx harukit@latest init    # npm
 pnpm dlx harukit@latest init  # pnpm
@@ -38,19 +38,19 @@ bunx --bun harukit@latest init  # bun
 
 ```bash
 npx harukit@latest add button
-```
+````
 
 ### Step 4: Use the component
 
 ```tsx
-import { Button } from "@/components/button"
+import { Button } from "@/components/button";
 
 export default function Page() {
   return (
     <div className="p-8">
       <Button>Hello Harukit!</Button>
     </div>
-  )
+  );
 }
 ```
 
@@ -240,26 +240,30 @@ The `harukit.json` file contains your project configuration:
 To verify that Harukit is properly installed:
 
 1. **Check the configuration file**:
+
    ```bash
    cat harukit.json
    ```
 
 2. **Check the components directory**:
+
    ```bash
    ls components/
    ```
 
 3. **Check the lib directory**:
+
    ```bash
    ls lib/
    ```
 
 4. **Test a component**:
+
    ```tsx
-   import { Button } from "@/components/button"
-   
+   import { Button } from "@/components/button";
+
    export default function TestPage() {
-     return <Button>Test Button</Button>
+     return <Button>Test Button</Button>;
    }
    ```
 
@@ -302,6 +306,5 @@ To verify that Harukit is properly installed:
 
 ## Support
 
-- **GitHub**: [https://github.com/Hareesh108/harukit-ui](https://github.com/Hareesh108/harukit-ui)
-- **Issues**: [https://github.com/Hareesh108/harukit-ui/issues](https://github.com/Hareesh108/harukit-ui/issues)
-
+- **GitHub**: [Github Repository](https://github.com/Hareesh108/harukit-ui)
+- **Issues**: [Github Issues](https://github.com/Hareesh108/harukit-ui/issues)
