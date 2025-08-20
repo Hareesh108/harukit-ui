@@ -5,6 +5,8 @@ description: Step-by-step guide to install and set up Harukit UI in your project
 
 This guide will walk you through installing and setting up Harukit UI in your project.
 
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
 ## Prerequisites
 
 Before installing Harukit UI, make sure you have:
@@ -19,26 +21,77 @@ Before installing Harukit UI, make sure you have:
 
 ```bash
 # Create a new Next.js project
-npx create-next-app@latest my-app --typescript --tailwind --eslint --app --src-dir --import-alias "@/*" --yes
-cd my-app
+npx create-next-app@latest my-harukit-app --typescript --tailwind --eslint --app --src-dir --import-alias "@/*" --yes
+cd my-harukit-app
 ```
 
 ### Step 2: Initialize Harukit
 
-````bash
-# Choose your package manager
-npx harukit@latest init    # npm
-pnpm dlx harukit@latest init  # pnpm
-yarn harukit@latest init      # yarn
-bunx --bun harukit@latest init  # bun
+<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
+  <Tab value="bun">
+
+```bash
+bunx --bun harukit@latest init
+```
+
+  </Tab>
+  <Tab value="npm">
+
+```bash
+npx harukit@latest init
+```
+
+  </Tab>
+  <Tab value="pnpm">
+
+```bash
+pnpm dlx harukit@latest init
+```
+
+  </Tab>
+  <Tab value="yarn">
+
+```bash
+yarn harukit@latest init
+```
+
+  </Tab>
+</Tabs>
 
 > **Note:** Harukit will automatically detect your package manager (npm, yarn, pnpm, or bun) and install all required dependencies for you. You do not need to run a separate install command.
 
 ### Step 3: Add your first component
 
+<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
+  <Tab value="bun">
+
+```bash
+bunx --bun harukit@latest add button
+```
+
+  </Tab>
+  <Tab value="npm">
+
 ```bash
 npx harukit@latest add button
-````
+```
+
+  </Tab>
+  <Tab value="pnpm">
+
+```bash
+pnpm dlx harukit@latest add button
+```
+
+  </Tab>
+  <Tab value="yarn">
+
+```bash
+yarn harukit@latest add button
+```
+
+  </Tab>
+</Tabs>
 
 ### Step 4: Use the component
 
@@ -70,10 +123,40 @@ cd my-harukit-app
 
 #### 2. Initialize Harukit
 
+<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
+  <Tab value="bun">
+
+```bash
+# Initialize Harukit in your project
+bunx --bun harukit@latest init
+```
+
+  </Tab>
+  <Tab value="npm">
+
 ```bash
 # Initialize Harukit in your project
 npx harukit@latest init
 ```
+
+  </Tab>
+  <Tab value="pnpm">
+
+```bash
+# Initialize Harukit in your project
+pnpm dlx harukit@latest init
+```
+
+  </Tab>
+  <Tab value="yarn">
+
+```bash
+# Initialize Harukit in your project
+yarn harukit@latest init
+```
+
+  </Tab>
+</Tabs>
 
 This command will:
 
@@ -86,6 +169,23 @@ This command will:
 
 #### 3. Add Components
 
+<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
+  <Tab value="bun">
+
+```bash
+# Add a single component
+bunx --bun harukit@latest add button
+
+# Add multiple components
+bunx --bun harukit@latest add button card input
+
+# Add all available components
+bunx --bun harukit@latest add accordion button card input label tooltip
+```
+
+  </Tab>
+  <Tab value="npm">
+
 ```bash
 # Add a single component
 npx harukit@latest add button
@@ -97,6 +197,37 @@ npx harukit@latest add button card input
 npx harukit@latest add accordion button card input label tooltip
 ```
 
+  </Tab>
+  <Tab value="pnpm">
+
+```bash
+# Add a single component
+pnpm dlx harukit@latest add button
+
+# Add multiple components
+pnpm dlx harukit@latest add button card input
+
+# Add all available components
+pnpm dlx harukit@latest add accordion button card input label tooltip
+```
+
+  </Tab>
+  <Tab value="yarn">
+
+```bash
+# Add a single component
+yarn harukit@latest add button
+
+# Add multiple components
+yarn harukit@latest add button card input
+
+# Add all available components
+yarn harukit@latest add accordion button card input label tooltip
+```
+
+  </Tab>
+</Tabs>
+
 ### For Existing Projects
 
 #### 1. Navigate to your project
@@ -107,19 +238,147 @@ cd your-existing-project
 
 #### 2. Initialize Harukit
 
+<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
+  <Tab value="bun">
+
+```bash
+# Initialize Harukit in your existing project
+bunx --bun harukit@latest init
+```
+
+  </Tab>
+  <Tab value="npm">
+
 ```bash
 # Initialize Harukit in your existing project
 npx harukit@latest init
 ```
 
+  </Tab>
+  <Tab value="pnpm">
+
+```bash
+# Initialize Harukit in your existing project
+pnpm dlx harukit@latest init
+```
+
+  </Tab>
+  <Tab value="yarn">
+
+```bash
+# Initialize Harukit in your existing project
+yarn harukit@latest init
+```
+
+  </Tab>
+</Tabs>
+
 > **Note:** If your project already has some of the required dependencies, Harukit will skip installing them and only install the missing ones.
 
 #### 3. Add Components
+
+<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
+  <Tab value="bun">
+
+```bash
+# Add the components you need
+bunx --bun harukit@latest add button card input
+```
+
+  </Tab>
+  <Tab value="npm">
 
 ```bash
 # Add the components you need
 npx harukit@latest add button card input
 ```
+
+  </Tab>
+  <Tab value="pnpm">
+
+```bash
+# Add the components you need
+pnpm dlx harukit@latest add button card input
+```
+
+  </Tab>
+  <Tab value="yarn">
+
+```bash
+# Add the components you need
+yarn harukit@latest add button card input
+```
+
+  </Tab>
+</Tabs>
+
+## CLI Commands
+
+### Getting Component Information
+
+<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
+  <Tab value="bun">
+
+```bash
+bunx --bun harukit@latest info [component]
+```
+
+  </Tab>
+  <Tab value="npm">
+
+```bash
+npx harukit@latest info [component]
+```
+
+  </Tab>
+  <Tab value="pnpm">
+
+```bash
+pnpm dlx harukit@latest info [component]
+```
+
+  </Tab>
+  <Tab value="yarn">
+
+```bash
+yarn harukit@latest info [component]
+```
+
+  </Tab>
+</Tabs>
+
+### Listing Available Components
+
+<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
+  <Tab value="bun">
+
+```bash
+bunx --bun harukit@latest list
+```
+
+  </Tab>
+  <Tab value="npm">
+
+```bash
+npx harukit@latest list
+```
+
+  </Tab>
+  <Tab value="pnpm">
+
+```bash
+pnpm dlx harukit@latest list
+```
+
+  </Tab>
+  <Tab value="yarn">
+
+```bash
+yarn harukit@latest list
+```
+
+  </Tab>
+</Tabs>
 
 ## Package Manager Support
 
@@ -128,69 +387,6 @@ Harukit automatically detects your package manager and installs dependencies acc
 1. **CLI Package Manager**: Detects the package manager used to run the CLI (npx → npm, yarn → yarn, etc.)
 2. **Project Lock Files**: Falls back to the package manager indicated by lock files in your project
 3. **System Preference**: Uses bun if available, otherwise defaults to npm
-
-### npm
-
-```bash
-# Initialize (automatically uses npm for dependencies)
-npx harukit@latest init
-
-# Add components
-npx harukit@latest add button card
-```
-
-### pnpm
-
-```bash
-# Initialize (automatically uses pnpm for dependencies)
-pnpm dlx harukit@latest init
-
-# Add components
-pnpm dlx harukit@latest add button card
-```
-
-### yarn
-
-```bash
-# Initialize (automatically uses yarn for dependencies)
-yarn harukit@latest init
-
-# Add components
-yarn harukit@latest add button card
-```
-
-### bun
-
-```bash
-# Initialize (automatically uses bun for dependencies)
-bunx --bun harukit@latest init
-
-# Add components
-bunx --bun harukit@latest add button card
-```
-
-## What Gets Installed
-
-When you run `npx harukit@latest init`, the following dependencies are automatically installed:
-
-### Core Dependencies
-
-- `clsx` - Utility for constructing className strings conditionally
-- `tailwind-merge` - Utility to merge Tailwind CSS classes without style conflicts
-- `class-variance-authority` - Library for creating variant-based component APIs
-
-### Component-Specific Dependencies
-
-When you add specific components, their dependencies are automatically installed:
-
-- **Button**: `@radix-ui/react-slot`
-- **Accordion**: `@radix-ui/react-accordion`
-- **Tooltip**: `@radix-ui/react-tooltip`
-- **Label**: `@radix-ui/react-label`
-
-### Development Dependencies
-
-- `tailwindcss-animate` - Animation utilities for Tailwind CSS
 
 ## Project Structure After Installation
 
@@ -298,11 +494,37 @@ To verify that Harukit is properly installed:
 - Check your internet connection
 - Try using a different npm registry or package manager
 - Clear your package manager cache:
-  ```bash
-  npm cache clean --force  # npm
-  yarn cache clean         # yarn
-  pnpm store prune         # pnpm
-  ```
+
+<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
+  <Tab value="bun">
+
+```bash
+bun cache clear
+```
+
+  </Tab>
+  <Tab value="npm">
+
+```bash
+npm cache clean --force
+```
+
+  </Tab>
+  <Tab value="pnpm">
+
+```bash
+pnpm store prune
+```
+
+  </Tab>
+  <Tab value="yarn">
+
+```bash
+yarn cache clean
+```
+
+  </Tab>
+</Tabs>
 
 ## Support
 
