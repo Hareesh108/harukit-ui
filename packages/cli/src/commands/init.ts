@@ -28,28 +28,59 @@ export async function init(options: any) {
       console.log(chalk.red("Harukit is already initialized in this project."));
       console.log(chalk.blue("\nConfiguration file found:"));
       console.log(chalk.green(`  ${existingConfigPath}`));
+
+      // Initialize package manager to get the correct command
+      const packageManager = new PackageManager(process.cwd());
+      await packageManager.init();
+      const manager = packageManager.getCurrentManager();
+
+      // Show commands with detected package manager
+      const getRunCommand = (command: string) => {
+        switch (manager) {
+          case "npm":
+            return `npx harukit@latest ${command}`;
+          case "yarn":
+            return `yarn dlx harukit@latest ${command}`;
+          case "pnpm":
+            return `pnpm dlx harukit@latest ${command}`;
+          case "bun":
+            return `bunx --bun harukit@latest ${command}`;
+          default:
+            return `npx harukit@latest ${command}`;
+        }
+      };
+
       console.log(chalk.blue("\nYou can:"));
       console.log(
         chalk.green(
-          "  • Add components with: npx harukit@latest add <component>"
+          `  • Add components with: ${getRunCommand("add <component>")}`
         )
       );
       console.log(
         chalk.green(
-          "  • Remove components with: npx harukit@latest remove <component>"
+          `  • Remove components with: ${getRunCommand("remove <component>")}`
         )
       );
       console.log(
         chalk.green(
-          "  • List available components with: npx harukit@latest list"
+          `  • List available components with: ${getRunCommand("list")}`
         )
       );
       console.log(
-        chalk.green("  • Update components with: npx harukit@latest update")
+        chalk.green(`  • Update components with: ${getRunCommand("update")}`)
       );
       console.log(chalk.yellow("  • Delete harukit.json to reinitialize"));
       process.exit(0);
     }
+
+    // Initialize package manager early to detect which one was used
+    const packageManager = new PackageManager(process.cwd());
+    await packageManager.init();
+    const detectedManager = packageManager.getCurrentManager();
+
+    console.log(
+      chalk.blue(`Detected package manager: ${chalk.green(detectedManager)}`)
+    );
 
     // Detect project type
     const detector = new ProjectDetector(process.cwd());
@@ -70,9 +101,7 @@ export async function init(options: any) {
     // Default preferences
     let preferences: Preferences = {
       typescript: true,
-      tailwind: true,
-      eslint: true,
-      srcDir: false,
+      srcDir: true,
       importAlias: "@/components",
       baseColor: "default",
     };
@@ -80,24 +109,6 @@ export async function init(options: any) {
     // Ask user if not running with --yes
     if (!opts.yes) {
       const answers = await prompts([
-        {
-          type: "confirm",
-          name: "typescript",
-          message: "Would you like to use TypeScript?",
-          initial: true,
-        },
-        {
-          type: "confirm",
-          name: "tailwind",
-          message: "Would you like to use Tailwind CSS?",
-          initial: true,
-        },
-        {
-          type: "confirm",
-          name: "eslint",
-          message: "Would you like to use ESLint?",
-          initial: true,
-        },
         {
           type: "confirm",
           name: "srcDir",
@@ -128,7 +139,6 @@ export async function init(options: any) {
       preferences = { ...preferences, ...opts };
     }
 
-    // Start spinner only after prompts
     const spinner = ora("Initializing Harukit...").start();
 
     const cssPath = preferences.srcDir
@@ -138,7 +148,13 @@ export async function init(options: any) {
     const cssContent = buildCssContent(preferences.baseColor);
     await fs.outputFile(cssPath, cssContent);
 
-    await installDeps({ typescript: preferences.typescript }, spinner);
+    await installDeps(
+      {
+        typescript: preferences.typescript,
+        packageManager: packageManager,
+      },
+      spinner
+    );
 
     // Create configuration
     const config = {
@@ -161,6 +177,7 @@ export async function init(options: any) {
         hooks: "@/hooks",
       },
       iconLibrary: "lucide",
+      packageManager: detectedManager,
     };
 
     // Write config file
@@ -202,12 +219,34 @@ export async function init(options: any) {
 
     spinner.succeed("Harukit initialized successfully!");
     spinner.succeed("Please check the global.css file. It got overwritten.");
+
+    // Show next steps with the detected package manager
+    const getRunCommand = (command: string) => {
+      switch (detectedManager) {
+        case "npm":
+          return `npx harukit@latest ${command}`;
+        case "yarn":
+          return `yarn dlx harukit@latest ${command}`;
+        case "pnpm":
+          return `pnpm dlx harukit@latest ${command}`;
+        case "bun":
+          return `bunx --bun harukit@latest ${command}`;
+        default:
+          return `npx harukit@latest ${command}`;
+      }
+    };
+
     console.log(chalk.blue("\nNext steps:"));
     console.log(chalk.green("1. Start building your UI!"));
     console.log(
-      chalk.green("2. Add components with: npx harukit@latest add <component>")
+      chalk.green(`2. Add components with: ${getRunCommand("add <component>")}`)
     );
     console.log(chalk.green("3. Check the documentation for usage examples"));
+    console.log(
+      chalk.blue(
+        `\n💡 Using ${chalk.green(detectedManager)} for package management`
+      )
+    );
   } catch (error) {
     console.log(chalk.red("Failed to initialize Harukit"));
     console.error(error);

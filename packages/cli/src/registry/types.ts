@@ -50,8 +50,6 @@ export interface CacheEntry {
 
 export type Preferences = {
   typescript: boolean;
-  tailwind: boolean;
-  eslint: boolean;
   srcDir: boolean;
   importAlias: string;
   baseColor: keyof typeof Colors;

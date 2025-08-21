@@ -20,9 +20,14 @@ function isPackageInstalled(pkgName: string): boolean {
 }
 
 export async function installDeps(
-  preferences: { typescript: boolean },
+  options: {
+    typescript: boolean;
+    packageManager?: PackageManager;
+  },
   spinner: ora.Ora
 ) {
+  const { typescript, packageManager } = options;
+
   const dependencies = [
     "clsx",
     "lucide-react",
@@ -36,7 +41,7 @@ export async function installDeps(
     "@tailwindcss/postcss",
   ];
 
-  if (preferences.typescript) {
+  if (typescript) {
     devDependencies.push("@types/node");
   }
 
@@ -46,7 +51,19 @@ export async function installDeps(
     (dep) => !isPackageInstalled(dep)
   );
 
-  const pm = new PackageManager(process.cwd());
+  // Use provided package manager or create a new one
+  const pm = packageManager || new PackageManager(process.cwd());
+
+  // Initialize if we created a new package manager
+  if (!packageManager) {
+    await pm.init();
+  }
+
+  const manager = pm.getCurrentManager();
+
+  console.log(
+    chalk.cyan(`\nUsing ${chalk.green(manager)} for package management`)
+  );
 
   console.log(chalk.cyan("\nInstalling dependencies:"));
   depsToInstall.forEach((dep) => console.log(chalk.cyan(`- ${dep}`)));
@@ -60,7 +77,7 @@ export async function installDeps(
     console.log(chalk.gray("All devDependencies already installed ✅"));
   }
 
-  spinner.text = "Installing dependencies...";
+  spinner.text = `Installing dependencies with ${manager}...`;
   try {
     if (depsToInstall.length > 0) {
       await pm.addMultiple(depsToInstall, false);
@@ -68,9 +85,9 @@ export async function installDeps(
     if (devDepsToInstall.length > 0) {
       await pm.addMultiple(devDepsToInstall, true);
     }
-    spinner.succeed("All dependencies installed!");
+    spinner.succeed(`All dependencies installed with ${manager}!`);
   } catch (err) {
-    spinner.fail("Failed to install dependencies.");
+    spinner.fail(`Failed to install dependencies with ${manager}.`);
     console.error(err);
     process.exit(1);
   }
