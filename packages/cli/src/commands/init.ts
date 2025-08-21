@@ -108,33 +108,83 @@ export async function init(options: any) {
 
     // Ask user if not running with --yes
     if (!opts.yes) {
-      const answers = await prompts([
-        {
-          type: "confirm",
-          name: "srcDir",
-          message: "Would you like to use a src directory?",
-          initial: false,
-        },
-        {
-          type: "text",
-          name: "importAlias",
-          message: "What import alias would you like to use?",
-          initial: "@/components",
-        },
-        {
-          type: "select",
-          name: "baseColor",
-          message: "Choose a base color theme",
-          choices: [
-            { title: "Default", value: "default" },
-            { title: "Rose", value: "rose" },
-            { title: "Yellow", value: "yellow" },
-          ],
-          initial: 0,
-        },
-      ]);
+      try {
+        // Configure prompts to handle terminal issues better
+        prompts.override({});
 
-      preferences = { ...preferences, ...answers };
+        const answers = await prompts(
+          [
+            {
+              type: "confirm",
+              name: "srcDir",
+              message: "Would you like to use a src directory?",
+              initial: false,
+            },
+            {
+              type: "text",
+              name: "importAlias",
+              message: "What import alias would you like to use?",
+              initial: "@/components",
+              validate: (value: string) => {
+                if (!value || value.trim().length === 0) {
+                  return "Import alias cannot be empty";
+                }
+                if (
+                  !value.startsWith("@/") &&
+                  !value.startsWith("~/") &&
+                  !value.startsWith("./")
+                ) {
+                  return "Import alias should start with @/, ~/, or ./";
+                }
+                return true;
+              },
+            },
+            {
+              type: "select",
+              name: "baseColor",
+              message: "Choose a base color theme",
+              choices: [
+                { title: "Default", value: "default" },
+                { title: "Rose", value: "rose" },
+                { title: "Yellow", value: "yellow" },
+              ],
+              initial: 0,
+            },
+          ],
+          {
+            onCancel: () => {
+              console.log(chalk.red("\nOperation cancelled"));
+              process.exit(1);
+            },
+          }
+        );
+
+        // Check if user cancelled (Ctrl+C)
+        if (!answers || Object.keys(answers).length === 0) {
+          console.log(chalk.red("\nOperation cancelled"));
+          process.exit(1);
+        }
+
+        preferences = { ...preferences, ...answers };
+      } catch (error) {
+        // Fallback for prompt failures
+        console.log(
+          chalk.yellow("\n⚠️ Interactive prompts failed. Using default values.")
+        );
+        console.log(
+          chalk.blue(
+            "You can modify these settings in harukit.json after initialization."
+          )
+        );
+
+        // Use CLI options if provided, otherwise use defaults
+        preferences = {
+          ...preferences,
+          ...Object.fromEntries(
+            Object.entries(opts).filter(([_, value]) => value !== undefined)
+          ),
+        };
+      }
     } else {
       preferences = { ...preferences, ...opts };
     }
@@ -145,6 +195,7 @@ export async function init(options: any) {
       ? path.join(process.cwd(), "src/app/globals.css")
       : path.join(process.cwd(), "app/globals.css");
 
+    spinner.text = "Creating global CSS...";
     const cssContent = buildCssContent(preferences.baseColor);
     await fs.outputFile(cssPath, cssContent);
 
@@ -157,6 +208,7 @@ export async function init(options: any) {
     );
 
     // Create configuration
+    spinner.text = "Creating configuration...";
     const config = {
       $schema: "https://harukit.com/schema.json",
       style: "default",
@@ -183,7 +235,6 @@ export async function init(options: any) {
     // Write config file
     const configPath = path.join(process.cwd(), "harukit.json");
     await fs.writeJson(configPath, config, { spaces: 2 });
-    spinner.succeed("Created harukit.json");
 
     // Ensure baseDir is correct
     const baseDir = preferences.srcDir
@@ -191,6 +242,7 @@ export async function init(options: any) {
       : process.cwd();
 
     // Create components + lib inside baseDir
+    spinner.text = "Creating directory structure...";
     const componentsDir = path.join(baseDir, "components");
     const libDir = path.join(baseDir, "lib");
     await fs.ensureDir(componentsDir);
@@ -202,6 +254,7 @@ export async function init(options: any) {
 
     if (!(await fs.pathExists(utilsDest))) {
       try {
+        spinner.text = "Downloading utils.ts...";
         const response = await fetch(utilsFile.path);
         if (!response.ok) {
           throw new Error(
@@ -210,15 +263,37 @@ export async function init(options: any) {
         }
         const content = await response.text();
         await fs.outputFile(utilsDest, content);
-        console.log(chalk.green("✅ Added utils.ts from GitHub"));
       } catch (err) {
+        spinner.warn(
+          "Failed to fetch utils.ts, you may need to add it manually"
+        );
         console.error(chalk.red("❌ Failed to fetch utils.ts:"), err);
-        throw err;
+        // Don't throw here, continue with initialization
       }
     }
 
     spinner.succeed("Harukit initialized successfully!");
-    spinner.succeed("Please check the global.css file. It got overwritten.");
+
+    // Show important notices
+    console.log(
+      chalk.yellow(
+        "⚠️  Please check the globals.css file. It has been updated with Harukit styles."
+      )
+    );
+
+    // Show configuration summary
+    console.log(chalk.blue("\n📋 Configuration Summary:"));
+    console.log(
+      chalk.green(`  • TypeScript: ${preferences.typescript ? "Yes" : "No"}`)
+    );
+    console.log(
+      chalk.green(
+        `  • Source Directory: ${preferences.srcDir ? "Yes (src/)" : "No"}`
+      )
+    );
+    console.log(chalk.green(`  • Import Alias: ${preferences.importAlias}`));
+    console.log(chalk.green(`  • Base Color: ${preferences.baseColor}`));
+    console.log(chalk.green(`  • Package Manager: ${detectedManager}`));
 
     // Show next steps with the detected package manager
     const getRunCommand = (command: string) => {
@@ -236,17 +311,20 @@ export async function init(options: any) {
       }
     };
 
-    console.log(chalk.blue("\nNext steps:"));
+    console.log(chalk.blue("\n🚀 Next steps:"));
     console.log(chalk.green("1. Start building your UI!"));
     console.log(
       chalk.green(`2. Add components with: ${getRunCommand("add <component>")}`)
     );
     console.log(chalk.green("3. Check the documentation for usage examples"));
-    console.log(
-      chalk.blue(
-        `\n💡 Using ${chalk.green(detectedManager)} for package management`
-      )
-    );
+
+    if (detectedManager === "bun") {
+      console.log(
+        chalk.yellow(
+          `\n💡 Tip: If you experience caching issues with Bun, run: ${chalk.cyan("bun pm cache rm")}`
+        )
+      );
+    }
   } catch (error) {
     console.log(chalk.red("Failed to initialize Harukit"));
     console.error(error);
