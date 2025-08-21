@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { ComponentFile } from "../registry/types";
 
 export const COMPONENTS = [
@@ -42,3 +43,10 @@ export function makeFile(
     type,
   };
 }
+
+export const log = {
+  info: (msg: string) => console.log(chalk.blue(`ℹ️  ${msg}`)),
+  success: (msg: string) => console.log(chalk.green(`✔ ${msg}`)),
+  warn: (msg: string) => console.log(chalk.yellow(`⚠ ${msg}`)),
+  error: (msg: string) => console.log(chalk.red(`✖ ${msg}`)),
+};

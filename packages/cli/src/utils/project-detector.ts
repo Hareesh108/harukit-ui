@@ -1,5 +1,5 @@
-import fs from 'fs-extra';
-import path from 'path';
+import fs from "fs-extra";
+import path from "path";
 
 export interface ProjectInfo {
   isValid: boolean;
@@ -20,39 +20,42 @@ export class ProjectDetector {
   }
 
   async detect(): Promise<ProjectInfo> {
-    const packageJsonPath = path.join(this.root, 'package.json');
-    
+    const packageJsonPath = path.join(this.root, "package.json");
+
     if (!(await fs.pathExists(packageJsonPath))) {
       return {
         isValid: false,
-        framework: 'unknown',
+        framework: "unknown",
         hasTypeScript: false,
         hasTailwind: false,
         hasNextJs: false,
         hasReact: false,
-        packageManager: 'npm',
+        packageManager: "npm",
         root: this.root,
       };
     }
 
     const packageJson = await fs.readJson(packageJsonPath);
-    const dependencies = { ...packageJson.dependencies, ...packageJson.devDependencies };
+    const dependencies = {
+      ...packageJson.dependencies,
+      ...packageJson.devDependencies,
+    };
 
     const hasTypeScript = await this.hasTypeScript();
     const hasTailwind = await this.hasTailwind();
-    const hasNextJs = 'next' in dependencies;
-    const hasReact = 'react' in dependencies;
+    const hasNextJs = "next" in dependencies;
+    const hasReact = "react" in dependencies;
     const packageManager = await this.detectPackageManager();
 
-    let framework = 'unknown';
+    let framework = "unknown";
     if (hasNextJs) {
-      framework = 'Next.js';
+      framework = "Next.js";
     } else if (hasReact) {
-      framework = 'React';
-    } else if ('vue' in dependencies) {
-      framework = 'Vue';
-    } else if ('svelte' in dependencies) {
-      framework = 'Svelte';
+      framework = "React";
+    } else if ("vue" in dependencies) {
+      framework = "Vue";
+    } else if ("svelte" in dependencies) {
+      framework = "Svelte";
     }
 
     return {
@@ -68,38 +71,47 @@ export class ProjectDetector {
   }
 
   private async hasTypeScript(): Promise<boolean> {
-    const tsConfigPath = path.join(this.root, 'tsconfig.json');
+    const tsConfigPath = path.join(this.root, "tsconfig.json");
     const hasTsConfig = await fs.pathExists(tsConfigPath);
-    
+
     if (hasTsConfig) {
       return true;
     }
 
     // Check for TypeScript in package.json
-    const packageJsonPath = path.join(this.root, 'package.json');
+    const packageJsonPath = path.join(this.root, "package.json");
     if (await fs.pathExists(packageJsonPath)) {
       const packageJson = await fs.readJson(packageJsonPath);
-      const dependencies = { ...packageJson.dependencies, ...packageJson.devDependencies };
-      return 'typescript' in dependencies;
+      const dependencies = {
+        ...packageJson.dependencies,
+        ...packageJson.devDependencies,
+      };
+      return "typescript" in dependencies;
     }
 
     return false;
   }
 
   private async hasTailwind(): Promise<boolean> {
-    const tailwindConfigPath = path.join(this.root, 'tailwind.config.js');
-    const tailwindConfigTsPath = path.join(this.root, 'tailwind.config.ts');
-    
-    if (await fs.pathExists(tailwindConfigPath) || await fs.pathExists(tailwindConfigTsPath)) {
+    const tailwindConfigPath = path.join(this.root, "tailwind.config.js");
+    const tailwindConfigTsPath = path.join(this.root, "tailwind.config.ts");
+
+    if (
+      (await fs.pathExists(tailwindConfigPath)) ||
+      (await fs.pathExists(tailwindConfigTsPath))
+    ) {
       return true;
     }
 
     // Check for Tailwind in package.json
-    const packageJsonPath = path.join(this.root, 'package.json');
+    const packageJsonPath = path.join(this.root, "package.json");
     if (await fs.pathExists(packageJsonPath)) {
       const packageJson = await fs.readJson(packageJsonPath);
-      const dependencies = { ...packageJson.dependencies, ...packageJson.devDependencies };
-      return 'tailwindcss' in dependencies;
+      const dependencies = {
+        ...packageJson.dependencies,
+        ...packageJson.devDependencies,
+      };
+      return "tailwindcss" in dependencies;
     }
 
     return false;
@@ -107,9 +119,10 @@ export class ProjectDetector {
 
   private async detectPackageManager(): Promise<string> {
     const lockFiles = [
-      { name: 'pnpm', file: 'pnpm-lock.yaml' },
-      { name: 'yarn', file: 'yarn.lock' },
-      { name: 'npm', file: 'package-lock.json' },
+      { name: "pnpm", file: "pnpm-lock.yaml" },
+      { name: "yarn", file: "yarn.lock" },
+      { name: "npm", file: "package-lock.json" },
+      { name: "bun", file: "bun.lockb" },
     ];
 
     for (const { name, file } of lockFiles) {
@@ -118,6 +131,6 @@ export class ProjectDetector {
       }
     }
 
-    return 'npm';
+    return "npm";
   }
-} 
+}
