@@ -18,15 +18,6 @@ import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 | `update` | Check for updates and show update instructions        |
 | `info`   | Show information about Harukit or specific components |
 
-## Global Options
-
-All commands support these global options:
-
-- `--help, -h` - Show help information
-- `--version, -v` - Show version information
-- `--verbose` - Enable verbose output
-- `--quiet` - Suppress output (except errors)
-
 ## init
 
 Initialize Harukit in your project.
@@ -56,7 +47,7 @@ pnpm dlx harukit@latest init [options]
   <Tab value="yarn">
 
 ```bash
-yarn harukit@latest init [options]
+yarn dlx harukit@latest init [options]
 ```
 
   </Tab>
@@ -65,11 +56,6 @@ yarn harukit@latest init [options]
 ### Options
 
 - `-y, --yes` - Skip prompts and use defaults
-- `--typescript` - Use TypeScript
-- `--tailwind` - Use Tailwind CSS
-- `--eslint` - Use ESLint
-- `--src-dir` - Use src directory
-- `--import-alias <alias>` - Import alias for components
 
 ### Examples
 
@@ -125,7 +111,7 @@ pnpm dlx harukit@latest add <components...> [options]
   <Tab value="yarn">
 
 ```bash
-yarn harukit@latest add <components...> [options]
+yarn dlx harukit@latest add <components...> [options]
 ```
 
   </Tab>
@@ -186,7 +172,7 @@ pnpm dlx harukit@latest list
   <Tab value="yarn">
 
 ```bash
-yarn harukit@latest list
+yarn dlx harukit@latest list
 ```
 
   </Tab>
@@ -221,7 +207,7 @@ pnpm dlx harukit@latest remove <components...>
   <Tab value="yarn">
 
 ```bash
-yarn harukit@latest remove <components...>
+yarn dlx harukit@latest remove <components...>
 ```
 
   </Tab>
@@ -280,7 +266,7 @@ pnpm dlx harukit@latest list
   <Tab value="yarn">
 
 ```bash
-yarn harukit@latest list
+yarn dlx harukit@latest list
 ```
 
   </Tab>
@@ -315,7 +301,7 @@ pnpm dlx harukit@latest update [options]
   <Tab value="yarn">
 
 ```bash
-yarn harukit@latest update [options]
+yarn dlx harukit@latest update [options]
 ```
 
   </Tab>
@@ -350,7 +336,7 @@ pnpm dlx harukit@latest info [component]
   <Tab value="yarn">
 
 ```bash
-yarn harukit@latest info [component]
+yarn dlx harukit@latest info [component]
 ```
 
   </Tab>

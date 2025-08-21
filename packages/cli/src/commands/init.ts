@@ -30,15 +30,12 @@ export async function init(options: typeof initSchema) {
     await packageManager.init();
     const detectedManager = packageManager.getCurrentManager();
 
-    // Detect project type
     const detector = new ProjectDetector(process.cwd());
     const projectInfo = await detector.detect();
 
     if (!projectInfo.isValid) {
-      console.log(
-        chalk.red(
-          "Could not detect project type. Please run this command in a supported project."
-        )
+      log.error(
+        "Could not detect project type. Please run this command in a supported project."
       );
       process.exit(1);
     }
