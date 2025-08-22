@@ -285,7 +285,7 @@ export default function HomePage() {
 
         <div className="relative z-10">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-            Build Modern React/Nextjs Apps <br /> with{" "}
+            Build Modern Nextjs Apps <br /> with{" "}
             <span className="bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-600 bg-clip-text text-transparent">
               Harukit UI
             </span>
