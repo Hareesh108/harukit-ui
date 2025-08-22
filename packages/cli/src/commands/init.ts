@@ -11,6 +11,7 @@ import { installDeps } from "../utils/install-dep";
 import { initSchema } from "../utils/init-utils";
 import { log, makeFile } from "../utils/utils";
 import { getErrorMessage } from "../utils/error-utils";
+import { ensureNextJsProject } from "../utils/create-next-app";
 
 export async function init(options: typeof initSchema) {
   try {
@@ -30,14 +31,25 @@ export async function init(options: typeof initSchema) {
     await packageManager.init();
     const detectedManager = packageManager.getCurrentManager();
 
-    const detector = new ProjectDetector(process.cwd());
-    const projectInfo = await detector.detect();
+    let projectRoot = process.cwd();
+
+    const detector = new ProjectDetector(projectRoot);
+    let projectInfo = await detector.detect();
 
     if (!projectInfo.isValid) {
-      log.error(
-        "Could not detect project type. Please run this command in a supported project."
-      );
-      process.exit(1);
+      log.info("No valid Next.js project found. Creating one...\n");
+      projectRoot = await ensureNextJsProject(process.cwd(), detectedManager);
+
+      // re-run detector in the *new project root*
+      const detector2 = new ProjectDetector(projectRoot);
+      projectInfo = await detector2.detect();
+
+      if (!projectInfo.isValid) {
+        log.error(
+          "Failed to detect Next.js project even after initialization."
+        );
+        process.exit(1);
+      }
     }
 
     if (detectedManager === "bun") {
