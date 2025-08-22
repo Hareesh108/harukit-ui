@@ -13,19 +13,10 @@ Before installing Harukit UI, make sure you have:
 
 - **Node.js** (version 16 or higher)
 - **npm**, **yarn**, **pnpm**, or **bun** package manager
-- A React project (Next.js, Vite, Create React App, etc.)
 
 ## Quick Installation
 
-### Step 1: Create a new project (if you don't have one)
-
-```bash
-# Create a new Next.js project
-npx create-next-app@latest my-harukit-app --typescript --tailwind --eslint --app --src-dir --import-alias "@/*" --yes
-cd my-harukit-app
-```
-
-### Step 2: Initialize Harukit
+### Step 1: Initialize Harukit
 
 <Tabs items={["bun", "npm", "pnpm", "yarn"]}>
   <Tab value="bun">
@@ -107,127 +98,6 @@ export default function Page() {
 }
 ```
 
-## Detailed Installation Guide
-
-### For New Projects
-
-#### 1. Create a Next.js Project
-
-```bash
-# Create a new Next.js project with TypeScript and Tailwind CSS
-npx create-next-app@latest my-harukit-app --typescript --tailwind --eslint --app --src-dir --import-alias "@/*" --yes
-
-# Navigate to the project directory
-cd my-harukit-app
-```
-
-#### 2. Initialize Harukit
-
-<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
-  <Tab value="bun">
-
-```bash
-# Initialize Harukit in your project
-bunx --bun harukit@latest init
-```
-
-  </Tab>
-  <Tab value="npm">
-
-```bash
-# Initialize Harukit in your project
-npx harukit@latest init
-```
-
-  </Tab>
-  <Tab value="pnpm">
-
-```bash
-# Initialize Harukit in your project
-pnpm dlx harukit@latest init
-```
-
-  </Tab>
-  <Tab value="yarn">
-
-```bash
-# Initialize Harukit in your project
-yarn dlx harukit@latest init
-```
-
-  </Tab>
-</Tabs>
-
-This command will:
-
-- Create a `harukit.json` configuration file
-- Set up the necessary directories (`components/`, `lib/`)
-- Create the `utils.ts` file with the `cn` function
-- Add global CSS with Tailwind variables
-- **Automatically install all required dependencies** using your detected package manager
-- Show progress for each dependency as it installs
-
-#### 3. Add Components
-
-<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
-  <Tab value="bun">
-
-```bash
-# Add a single component
-bunx --bun harukit@latest add button
-
-# Add multiple components
-bunx --bun harukit@latest add button card input
-
-# Add all available components
-bunx --bun harukit@latest add accordion button card input label tooltip
-```
-
-  </Tab>
-  <Tab value="npm">
-
-```bash
-# Add a single component
-npx harukit@latest add button
-
-# Add multiple components
-npx harukit@latest add button card input
-
-# Add all available components
-npx harukit@latest add accordion button card input label tooltip
-```
-
-  </Tab>
-  <Tab value="pnpm">
-
-```bash
-# Add a single component
-pnpm dlx harukit@latest add button
-
-# Add multiple components
-pnpm dlx harukit@latest add button card input
-
-# Add all available components
-pnpm dlx harukit@latest add accordion button card input label tooltip
-```
-
-  </Tab>
-  <Tab value="yarn">
-
-```bash
-# Add a single component
-yarn dlx harukit@latest add button
-
-# Add multiple components
-yarn dlx harukit@latest add button card input
-
-# Add all available components
-yarn dlx harukit@latest add accordion button card input label tooltip
-```
-
-  </Tab>
-</Tabs>
-
 ### For Existing Projects
 
 #### 1. Navigate to your project
@@ -307,74 +177,6 @@ pnpm dlx harukit@latest add button card input
 ```bash
 # Add the components you need
 yarn dlx harukit@latest add button card input
-```
-
-  </Tab>
-</Tabs>
-
-## CLI Commands
-
-### Getting Component Information
-
-<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
-  <Tab value="bun">
-
-```bash
-bunx --bun harukit@latest info [component]
-```
-
-  </Tab>
-  <Tab value="npm">
-
-```bash
-npx harukit@latest info [component]
-```
-
-  </Tab>
-  <Tab value="pnpm">
-
-```bash
-pnpm dlx harukit@latest info [component]
-```
-
-  </Tab>
-  <Tab value="yarn">
-
-```bash
-yarn dlx harukit@latest info [component]
-```
-
-  </Tab>
-</Tabs>
-
-### Listing Available Components
-
-<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
-  <Tab value="bun">
-
-```bash
-bunx --bun harukit@latest list
-```
-
-  </Tab>
-  <Tab value="npm">
-
-```bash
-npx harukit@latest list
-```
-
-  </Tab>
-  <Tab value="pnpm">
-
-```bash
-pnpm dlx harukit@latest list
-```
-
-  </Tab>
-  <Tab value="yarn">
-
-```bash
-yarn dlx harukit@latest list
 ```
 
   </Tab>
