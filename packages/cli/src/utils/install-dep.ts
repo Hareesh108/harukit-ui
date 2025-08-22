@@ -73,6 +73,8 @@ export async function installDeps(
 
   console.log(chalk.cyan("\nInstalling devDependencies:"));
   devDepsToInstall.forEach((dep) => console.log(chalk.cyan(`- ${dep}`)));
+  console.log();
+
   if (devDepsToInstall.length === 0) {
     console.log(chalk.gray("All devDependencies already installed ✅"));
   }

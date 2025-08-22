@@ -193,14 +193,13 @@ export async function init(options: typeof initSchema) {
     }
 
     // 09: Setup completed!!
-    console.log();
     spinner.succeed("Harukit initialized successfully!");
     log.warn(
       "Please check the globals.css file. It has been updated with Harukit styles.\n"
     );
     log.info("Next steps:");
     log.info("1. Start building your UI!");
-    log.info("3. Check the documentation for usage examples\n");
+    log.info("2. Check the documentation for usage examples\n");
   } catch (error) {
     log.error("Failed to initialize Harukit");
     log.error(getErrorMessage(error));

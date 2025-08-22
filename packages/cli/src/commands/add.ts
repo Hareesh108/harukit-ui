@@ -7,23 +7,23 @@ import { ConfigManager } from "../config/manager";
 import { PackageManager } from "../utils/package-manager";
 import { RegistryClient } from "../registry/client";
 import { getRemoteUtilsFile } from "../utils/get-utils-path";
+import { log } from "../utils/utils";
 
 export async function add(components: string[], options: any) {
   const spinner = ora("Adding components...").start();
 
   try {
-    // Load configuration
+    // 01: Load configuration
     const configManager = new ConfigManager(process.cwd());
     const config = await configManager.load();
 
     if (!config) {
-      spinner.fail(
+      log.error(
         'No Harukit configuration found. Run "npx harukit@latest init" first.'
       );
       process.exit(1);
     }
 
-    // Get components to add
     let componentsToAdd = components;
 
     if (componentsToAdd.length === 0) {
@@ -33,11 +33,10 @@ export async function add(components: string[], options: any) {
       process.exit(1);
     }
 
-    // Initialize registry client and package manager
+    // 02: Initialize registry client and package manager
     const registryClient = new RegistryClient();
     const packageManager = new PackageManager(process.cwd());
 
-    // Get component metadata and validate components
     const componentMetas: any[] = [];
     const invalidComponents: string[] = [];
 
