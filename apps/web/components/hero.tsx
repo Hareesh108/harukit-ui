@@ -19,7 +19,7 @@ export const Hero: React.FC = () => {
             Get Started
           </a>
           <a
-            href="/component"
+            href="/components"
             className="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
           >
             View Components
