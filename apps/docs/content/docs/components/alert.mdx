@@ -1,0 +1,236 @@
+---
+title: "Alert"
+description: "A flexible alert component for displaying important messages with variants and customizable content."
+---
+
+## Installation
+
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+
+<Tabs items={["bun", "npm", "pnpm", "yarn"]}>
+  <Tab value="bun">
+
+```bash
+bunx --bun harukit@latest add alert
+```
+
+  </Tab>
+  <Tab value="npm">
+
+```bash
+npx harukit@latest add alert
+```
+
+  </Tab>
+  <Tab value="pnpm">
+
+```bash
+pnpm dlx harukit@latest add alert
+```
+
+  </Tab>
+  <Tab value="yarn">
+
+```bash
+yarn dlx harukit@latest add alert
+```
+
+  </Tab>
+</Tabs>
+
+## Example
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Alert>
+      <AlertTitle>Alert Title</AlertTitle>
+      <AlertDescription>
+        This is an important message that requires the user's attention.
+      </AlertDescription>
+    </Alert>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import {
+      Alert,
+      AlertTitle,
+      AlertDescription,
+    } from "@/components/ui/alert";
+
+    export function BasicAlert() {
+      return (
+        <Alert>
+          <AlertTitle>Alert Title</AlertTitle>
+          <AlertDescription>
+            This is an important message that requires the user's attention.
+          </AlertDescription>
+        </Alert>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+## Variants
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <div className="space-y-4">
+      <Alert>
+        <AlertTitle>Default Alert</AlertTitle>
+        <AlertDescription>
+          This is a default alert message.
+        </AlertDescription>
+      </Alert>
+      
+      <Alert variant="destructive">
+        <AlertTitle>Destructive Alert</AlertTitle>
+        <AlertDescription>
+          This is a destructive alert message indicating an error or warning.
+        </AlertDescription>
+      </Alert>
+    </div>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import {
+      Alert,
+      AlertTitle,
+      AlertDescription,
+    } from "@/components/ui/alert";
+
+    export function AlertVariants() {
+      return (
+        <div className="space-y-4">
+          <Alert>
+            <AlertTitle>Default Alert</AlertTitle>
+            <AlertDescription>
+              This is a default alert message.
+            </AlertDescription>
+          </Alert>
+
+          <Alert variant="destructive">
+            <AlertTitle>Destructive Alert</AlertTitle>
+            <AlertDescription>
+              This is a destructive alert message indicating an error or warning.
+            </AlertDescription>
+          </Alert>
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+## With Icon
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Alert>
+      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <AlertTitle>Information</AlertTitle>
+      <AlertDescription>
+        You can add icons to your alerts for better visual communication.
+      </AlertDescription>
+    </Alert>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import {
+      Alert,
+      AlertTitle,
+      AlertDescription,
+    } from "@/components/ui/alert";
+
+    export function AlertWithIcon() {
+      return (
+        <Alert>
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <AlertTitle>Information</AlertTitle>
+          <AlertDescription>
+            You can add icons to your alerts for better visual communication.
+          </AlertDescription>
+        </Alert>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+## API Reference
+
+### Alert
+
+The main alert container component with support for variants.
+
+```tsx
+import { Alert } from "@/components/ui/alert";
+```
+
+#### Props
+
+| Prop        | Type                           | Default     | Description                                      |
+| ----------- | ------------------------------ | ----------- | ------------------------------------------------ |
+| `variant`   | `"default"` \| `"destructive"` | `"default"` | The visual style variant of the alert.           |
+| `className` | `string`                       | -           | Additional CSS classes to apply to the alert.    |
+| `role`      | `string`                       | `"alert"`   | ARIA role for accessibility (automatically set). |
+
+### AlertTitle
+
+The title component for the alert header.
+
+```tsx
+import { AlertTitle } from "@/components/ui/alert";
+```
+
+#### Props
+
+| Prop        | Type     | Default | Description                                   |
+| ----------- | -------- | ------- | --------------------------------------------- |
+| `className` | `string` | -       | Additional CSS classes to apply to the title. |
+
+### AlertDescription
+
+The description component for the alert content.
+
+```tsx
+import { AlertDescription } from "@/components/ui/alert";
+```
+
+#### Props
+
+| Prop        | Type     | Default | Description                                         |
+| ----------- | -------- | ------- | --------------------------------------------------- |
+| `className` | `string` | -       | Additional CSS classes to apply to the description. |
+
+## Accessibility
+
+The Alert component includes built-in accessibility features:
+
+- Uses `role="alert"` to announce important messages to screen readers
+- Proper semantic HTML structure with heading elements
+- Support for keyboard navigation
+- High contrast variants for better visibility
+
+## Styling
+
+The component uses Tailwind CSS classes and can be customized through:
+
+- The `variant` prop for predefined styles
+- The `className` prop for additional custom styling
+- CSS custom properties for theme customization
+
+### Default Styling
+
+- Rounded corners with border
+- Padding and typography optimized for readability
+- Icon positioning and spacing handled automatically
+- Responsive design considerations
