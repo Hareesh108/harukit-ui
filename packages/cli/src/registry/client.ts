@@ -3,6 +3,19 @@ import { ComponentMeta, RegistryResponse } from "./types";
 
 const harukitComponents: ComponentMeta[] = [
   {
+    name: "alert",
+    description: "Versatile alert component with multiple variants",
+    category: "Feedback",
+    version: "0.1.0",
+    tags: ["feedback", "alert", "accessible"],
+    dependencies: [],
+    devDependencies: [],
+    files: [makeFile("ui", "alert.tsx", "component")],
+    author: "Harukit Team",
+    license: "MIT",
+    repository: "https://github.com/Hareesh108/harukit-ui",
+  },
+  {
     name: "button",
     description: "Versatile button with multiple variants",
     category: "Form",
