@@ -216,20 +216,22 @@ The `harukit.json` file contains your project configuration:
 ```json
 {
   "$schema": "https://harukit.com/schema.json",
-  "style": "default",
   "rsc": true,
   "tsx": true,
   "tailwind": {
-    "config": "tailwind.config.js",
     "css": "app/globals.css",
-    "baseColor": "slate",
-    "cssVariables": true,
-    "prefix": ""
+    "baseColor": "default",
+    "cssVariables": true
   },
   "aliases": {
     "components": "@/components",
-    "utils": "@/lib/utils"
-  }
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "iconLibrary": "lucide",
+  "packageManager": "pnpm"
 }
 ```
 
