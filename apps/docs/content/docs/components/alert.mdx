@@ -6,7 +6,7 @@ description: "A flexible alert component for displaying important messages with 
 ## Installation
 
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Alert, AlertTitle, AlertDescription } from "@/registry/ui/alert";
 import { Info } from "lucide-react";
 
 <Tabs items={["bun", "npm", "pnpm", "yarn"]}>
@@ -57,7 +57,7 @@ yarn dlx harukit@latest add alert
       Alert,
       AlertTitle,
       AlertDescription,
-    } from "@/components/ui/alert";
+    } from "@/registry/ui/alert";
 
     export function BasicAlert() {
       return (
@@ -100,7 +100,7 @@ yarn dlx harukit@latest add alert
       Alert,
       AlertTitle,
       AlertDescription,
-    } from "@/components/ui/alert";
+    } from "@/registry/ui/alert";
 
     export function AlertVariants() {
       return (
@@ -145,7 +145,7 @@ yarn dlx harukit@latest add alert
       Alert,
       AlertTitle,
       AlertDescription,
-    } from "@/components/ui/alert";
+    } from "@/registry/ui/alert";
     import { Info } from "lucide-react";
 
     export function AlertWithIcon() {
@@ -171,7 +171,7 @@ yarn dlx harukit@latest add alert
 The main alert container component with support for variants.
 
 ```tsx
-import { Alert } from "@/components/ui/alert";
+import { Alert } from "@/registry/ui/alert";
 ```
 
 #### Props
@@ -187,7 +187,7 @@ import { Alert } from "@/components/ui/alert";
 The title component for the alert header.
 
 ```tsx
-import { AlertTitle } from "@/components/ui/alert";
+import { AlertTitle } from "@/registry/ui/alert";
 ```
 
 #### Props
@@ -201,7 +201,7 @@ import { AlertTitle } from "@/components/ui/alert";
 The description component for the alert content.
 
 ```tsx
-import { AlertDescription } from "@/components/ui/alert";
+import { AlertDescription } from "@/registry/ui/alert";
 ```
 
 #### Props

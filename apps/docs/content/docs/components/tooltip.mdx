@@ -10,7 +10,7 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-} from "@/components/ui/tooltip";
+} from "@/registry/ui/tooltip";
 
 <Tabs items={["bun", "npm", "pnpm", "yarn"]}>
   <Tab value="bun">
@@ -64,7 +64,7 @@ yarn dlx harukit@latest add tooltip
     ```tsx
     "use client";
 
-    import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+    import { Tooltip, TooltipTrigger, TooltipContent } from "@/registry/ui/tooltip";
 
     export function TooltipDemo() {
       return (

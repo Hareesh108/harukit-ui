@@ -6,8 +6,8 @@ description: "A form label component with accessibility features."
 ## Installation
 
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Input } from "@/registry/ui/input";
+import { Label } from "@/registry/ui/label";
 
 <Tabs items={["bun", "npm", "pnpm", "yarn"]}>
   <Tab value="bun">
@@ -54,7 +54,7 @@ yarn dlx harukit@latest add input
     ```tsx
     "use client";
 
-    import { Label } from "@/components/ui/label";
+    import { Label } from "@/registry/ui/label";
 
     export function LabelDemo() {
       return (
@@ -76,7 +76,7 @@ yarn dlx harukit@latest add input
 The main label component.
 
 ```tsx
-import { Label } from "@/components/ui/label";
+import { Label } from "@/registry/ui/label";
 ```
 
 #### Props

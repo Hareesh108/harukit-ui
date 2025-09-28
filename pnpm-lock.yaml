@@ -68,6 +68,9 @@ importers:
       tailwind-merge:
         specifier: ^3.3.1
         version: 3.3.1
+      web:
+        specifier: workspace:*
+        version: link:../web
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*

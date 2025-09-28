@@ -9,8 +9,8 @@
   },
   "aliases": {
     "components": "@/components",
-    "utils": "@/lib/utils",
-    "ui": "@/components/ui",
+    "utils": "@/registry/lib/utils",
+    "ui": "@/registry/ui",
     "lib": "@/lib",
     "hooks": "@/hooks"
   },

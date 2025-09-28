@@ -4,7 +4,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@/.source": ["./.source/index.ts"]
+      "@/.source": ["./.source/index.ts"],
+      "@/registry/*": ["../web/registry/*"]
     },
     "target": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],
