@@ -87,7 +87,7 @@ yarn dlx harukit@latest add button
 ### Step 4: Use the component
 
 ```tsx
-import { Button } from "@/components/button";
+import { Button } from "@/registry/ui/button";
 
 export default function Page() {
   return (
@@ -225,8 +225,8 @@ The `harukit.json` file contains your project configuration:
   },
   "aliases": {
     "components": "@/components",
-    "utils": "@/lib/utils",
-    "ui": "@/components/ui",
+    "utils": "@/registry/lib/utils",
+    "ui": "@/registry/ui",
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
@@ -260,7 +260,7 @@ To verify that Harukit is properly installed:
 4. **Test a component**:
 
    ```tsx
-   import { Button } from "@/components/button";
+   import { Button } from "@/registry/ui/button";
 
    export default function TestPage() {
      return <Button>Test Button</Button>;

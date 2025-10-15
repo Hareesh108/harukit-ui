@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@repo/ui": "workspace:*",
+    "web": "workspace:*",
     "@tailwindcss/postcss": "^4.1.11",
     "@types/mdx": "^2.0.13",
     "class-variance-authority": "^0.7.1",
